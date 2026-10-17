@@ -17,7 +17,6 @@ import { BASEMAP_STYLE, hatchImage, restyleBasemap, squareImage } from "@/compon
 import { surveyPinElement } from "@/components/map/survey-pin";
 import { cssVar } from "@/lib/css-var";
 import {
-  DATA_BASE,
   GROUPS,
   sourceNames,
   thaiShortDate,
@@ -29,10 +28,11 @@ import {
   type PoiProps,
   VERIFICATION,
 } from "@/lib/data/bangmod";
-import { applyAiLabels } from "@/lib/data/ai-labels";
+import { loadBangmod } from "@/lib/data/load";
 import { countByGroup, findIsochrone, type IsochroneFC, type PoiFC } from "@/lib/geo/catchment";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 import { rolesFor, type Role } from "@/lib/profile/schema";
 import { useStoredProfile } from "@/lib/profile/store";
 
@@ -104,17 +104,11 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
     map.addControl(new NavigationControl({ showCompass: false }), "top-right");
     map.addControl(new ScaleControl({ unit: "metric" }), "bottom-left");
 
-    const load = (f: string) => fetch(`${DATA_BASE}/${f}`).then((r) => r.json());
-    // AI labels are optional: without poi_ai.json the map falls back to rule-based groups.
-    const loadAi = fetch(`${DATA_BASE}/poi_ai.json`).then((r) => (r.ok ? (r.json() as Promise<PoiAiFile>) : null)).catch(() => null);
-    const dataP = Promise.all([load("poi.geojson"), load("isochrones.geojson"), load("transit.geojson"), load("campus.geojson"), loadAi]);
+    const dataP = loadBangmod();
 
     // style.load (not load): add our layers as soon as the style is parsed, without waiting for every tile.
     map.once("style.load", async () => {
-      const [rawPoi, isoFc, transitFc, campusFc, aiFile] = (await dataP) as [
-        PoiFC, IsochroneFC, FeatureCollection<Point>, FeatureCollection, PoiAiFile | null,
-      ];
-      const poiFc = applyAiLabels(rawPoi, aiFile);
+      const { poi: poiFc, iso: isoFc, transit: transitFc, campus: campusFc, population, ai: aiFile } = await dataP;
       setAi(aiFile);
       restyleBasemap(map);
 
@@ -126,8 +120,8 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
       map.addImage("hatch", hatchImage(ink));
       map.addImage("stop", squareImage(cssVar("--color-civic"), paper));
 
-      if (hasPopulation) {
-        map.addSource("population", { type: "geojson", data: `${DATA_BASE}/population.geojson` });
+      if (hasPopulation && population) {
+        map.addSource("population", { type: "geojson", data: population });
         map.addLayer({
           id: "population",
           type: "fill",
@@ -312,6 +306,9 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
                 </li>
               ))}
             </ul>
+            <ButtonLink href="/compare" variant="secondary" className="mt-3 w-full">
+              เปรียบเทียบคะแนน A/B/C
+            </ButtonLink>
           </Section>
 
           <Section title={`ในระยะเดิน · ทำเล ${selected?.id ?? ""}`}>

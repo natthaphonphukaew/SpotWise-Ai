@@ -30,6 +30,7 @@ Deploy: Vercel Hobby
 - class `.maplibregl-map` บังคับ `position: relative` ดังนั้น container ของแผนที่ต้องกำหนดขนาดเอง (`h-full w-full`) ห้ามใช้ `absolute inset-0`
 - สีบนแผนที่ต้องอ่านจาก CSS token ผ่าน `cssVar()` (`lib/css-var.ts`) ห้าม hardcode hex
 - ตอน dev มี `window.__map` ไว้ debug แผนที่
+- Loc-Score: ตัวเลขดีมานด์มาจาก WorldPop (ไม่นับนักศึกษา) + จุดดีมานด์ มจธ. จากจำนวนนักศึกษา FTE ของ THE 2025 ทั้งหมดเป็น "ประมาณการ" ห้ามนำเสนอเป็นยอดขายจริง หรือ % โอกาสรอด
 - LLM: ทุกงานคือ `LlmTask` (`lib/llm/tasks/*`) ที่มี zod schema + `version` (เปลี่ยน prompt/schema ต้องเพิ่ม version) เรียกผ่าน `runTask()` เท่านั้น ไม่มี key = โหมดเดโม ห้ามเขียนผล AI ลง `llm-cache/` ด้วยมือ
 - เทสต์: `npm test` (vitest 3 เพราะ vitest 5 ไม่รองรับ Node 23 ที่ใช้อยู่)
 - **ข้อมูล Overture ย่านนี้ ~97% มาจากเพจ Facebook แหล่งเดียว** บางรายการปักหมุดผิดย่าน: ทุกจุดมี `verification` และต้องผ่าน `data-pipeline/validate.py` ห้ามแสดงสถานที่โดยไม่บอกสถานะการยืนยัน
@@ -58,6 +59,8 @@ docs/                # SPEC, DESIGN
 - [x] LLM adapter `lib/llm/` (cache ไฟล์ `llm-cache/` + โหมดเดโม + Gemini + zod) และ Business Profiler: หน้าแรกพิมพ์คอนเซ็ปต์ → การ์ดโปรไฟล์ที่แก้ได้ → แผนที่ใช้บทบาทคู่แข่ง/เกื้อหนุนตามโปรไฟล์
 - [x] ต่อ Gemini (`gemini-3.8-flash`) เรียกจริงผ่าน (17 ต.ค. 69) ผลแรกอยู่ใน `llm-cache/business-profile/` (ดู [docs/GEMINI_SETUP.md](docs/GEMINI_SETUP.md))
 - [x] POI Classifier: `npm run classify:poi` ให้ AI จัดหมวดสถานที่ในรัศมี 1.5 กม. (batch ละ 80, cache ใน `llm-cache/poi-classify/`) → `public/data/bangmod/poi_ai.json` แผนที่ใช้หมวดของ AI ทับกฎ และแสดงเหตุผลใน Evidence · วัดผลเทียบ CampusSpot: `npm run eval:poi` → `eval_poi.json`
+- [x] Loc-Score 5 มิติ + Huff model (`lib/scoring/`, เทสต์ monotonicity) และหน้า `/compare`: การ์ดคะแนน (แถบทึบ/ลายทแยงตามความแน่นอน), Evidence ต่อมิติ, ตาราง A/B/C, กรอกค่าเช่า, ปรับสมมติฐาน (อัตราซื้อ, คนใน มจธ. ระหว่างวัน)
+- [ ] รัน `npm run classify:poi` ต่อให้ครบ 25 batch (ค้าง 8 batch เพราะโควตาฟรี 20 ครั้ง/วัน)
 - [ ] เตรียมข้อความเดโมเพิ่ม (ร้านกาแฟ ฯลฯ) ให้มีผลใน `llm-cache/` ก่อนวันส่ง
 - [ ] ถ้ารัน data pipeline ใหม่ (`poi.geojson` เปลี่ยน) ต้องรัน `npm run classify:poi` ใหม่ด้วย
 - [ ] ลงพื้นที่สำรวจทำเลจริง 6–10 จุด + ค่าเช่า → แทน `data-pipeline/candidates.json`
