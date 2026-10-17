@@ -30,29 +30,45 @@
       "file": "poi.geojson",
       "source": [
         "overture",
-        "osm"
+        "osm",
+        "campusspot"
       ],
       "fetched": "2026-10-17",
-      "count": 4224,
+      "count": 4183,
       "by_group": {
-        "other": 1207,
-        "food": 971,
-        "retail": 456,
-        "office": 289,
-        "coffee": 267,
-        "education": 262,
-        "dormitory": 249,
-        "convenience": 164,
-        "health": 123,
+        "other": 1173,
+        "food": 997,
+        "retail": 445,
+        "office": 291,
+        "coffee": 275,
+        "education": 249,
+        "dormitory": 239,
+        "convenience": 166,
+        "health": 115,
         "leisure": 109,
-        "drink_dessert": 78,
-        "market": 30,
-        "bubble_tea": 19
+        "drink_dessert": 75,
+        "market": 29,
+        "bubble_tea": 20
       },
       "by_source": {
-        "overture": 4069,
-        "osm": 155
+        "overture": 4026,
+        "osm": 157
       },
+      "by_verification": {
+        "unverified": 2552,
+        "local_name": 703,
+        "curated": 632,
+        "osm": 166,
+        "multi_source": 130
+      },
+      "rejected": 119,
+      "rejected_by_reason": {
+        "postcode_outside": 86,
+        "name_mentions_elsewhere": 19,
+        "osm_name_elsewhere": 13,
+        "locality_outside": 1
+      },
+      "curated_conflicts": 7,
       "classification": "rule-based (pre-LLM)"
     },
     "isochrones": {
@@ -74,6 +90,12 @@
       "total_pop": 194510,
       "cell_m": 100,
       "year": 2025
+    },
+    "campus": {
+      "file": "campus.geojson",
+      "source": "osm",
+      "fetched": "2026-10-17",
+      "count": 1
     }
   },
   "sources": {
@@ -88,6 +110,12 @@
       "url": "https://www.openstreetmap.org/copyright",
       "license": "ODbL-1.0 (© OpenStreetMap contributors)",
       "limits": "ความครอบคลุมร้านค้าในไทยไม่สม่ำเสมอ ขึ้นกับอาสาสมัคร"
+    },
+    "campusspot": {
+      "name": "CampusSpot — รายชื่อร้านรอบ มจธ. ที่คัดกรองแล้ว",
+      "url": "data-pipeline/reference/campusspot_README.md",
+      "license": "CDLA-Permissive-2.0 / CC0-1.0 / Apache-2.0 (Overture) + ODbL-1.0 (OSM)",
+      "limits": "เฉพาะร้านกาแฟ อาหาร ซักผ้า ปริ้นต์ ในรัศมี 1.5 กม. ไม่รวมร้านในมหาวิทยาลัย ข้อมูล 16.10.69"
     },
     "worldpop": {
       "name": "WorldPop 2025 constrained 100m (R2025A v1)",

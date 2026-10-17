@@ -28,6 +28,20 @@ export type PoiProps = {
   opening_hours: string | null;
   source: "overture" | "osm";
   osm_ref: string | null;
+  verification: Verification;
+  in_campus: boolean;
+  name_issue: "vowels_missing" | null;
+};
+
+/** How a place's existence/location was corroborated (set by data-pipeline/s05_merge_poi.py). */
+export type Verification = "curated" | "osm" | "multi_source" | "local_name" | "unverified";
+
+export const VERIFICATION: Record<Verification, { label: string; note: string }> = {
+  curated: { label: "คัดกรองแล้ว", note: "อยู่ในรายชื่อร้าน CampusSpot ที่คัดด้วยมือ" },
+  osm: { label: "ยืนยันจาก OSM", note: "มีใน OpenStreetMap ซึ่งอาสาสมัครปักหมุดเอง" },
+  multi_source: { label: "พบหลายแหล่ง", note: "Overture รวมจากแหล่งอื่นนอกจาก Facebook ด้วย" },
+  local_name: { label: "ชื่อระบุย่านนี้", note: "ชื่อสถานที่อ้างถึงบางมด/มจธ./ประชาอุทิศ ฯลฯ" },
+  unverified: { label: "ยังไม่ยืนยัน", note: "มาจากเพจ Facebook ผ่าน Overture แหล่งเดียว พิกัดอาจคลาดเคลื่อน" },
 };
 
 export type SourceInfo = { name: string; url: string; license: string; limits: string };

@@ -22,17 +22,27 @@ import {
   sourceNames,
   thaiShortDate,
   type Candidate,
+  type DatasetInfo,
   type Manifest,
   type PoiGroup,
   type PoiProps,
+  VERIFICATION,
 } from "@/lib/data/bangmod";
 import { countByGroup, findIsochrone, type IsochroneFC, type PoiFC } from "@/lib/geo/catchment";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 
-type Layers = { population: boolean; context: boolean };
+type Layers = { population: boolean; context: boolean; verifiedOnly: boolean };
 type Data = { poi: PoiFC; iso: IsochroneFC; transit: FeatureCollection<Point> };
 
-const POI_LAYERS =["poi-context", "poi-synergy", "poi-comp-indirect", "poi-comp"];
+const POI_ROLES = { "poi-context": "context", "poi-synergy": "synergy", "poi-comp-indirect": "comp-indirect", "poi-comp": "comp" } as const;
+const POI_LAYERS = Object.keys(POI_ROLES) as (keyof typeof POI_ROLES)[];
+
+const byRole = (role: string) =>
+  ["in", ["get", "group"], ["literal", Object.entries(GROUPS).filter(([, s]) => s.role === role).map(([g]) => g)]];
+const poiFilter = (role: string, verifiedOnly: boolean) =>
+  (verifiedOnly ? ["all", byRole(role), ["!=", ["get", "verification"], "unverified"]] : byRole(role)) as unknown as ExpressionSpecification;
+// Uncertainty stays visible: single-source (unverified) places are drawn faded.
+const certainty = ["case", ["==", ["get", "verification"], "unverified"], 0.4, 1] as unknown as ExpressionSpecification;
 const COUNT_ROWS: PoiGroup[] = ["bubble_tea", "coffee", "drink_dessert", "education", "dormitory", "office"];
 
 export function MapExplorer({ manifest, candidates }: { manifest: Manifest; candidates: Candidate[] }) {
@@ -43,7 +53,7 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
   const [data, setData] = useState<Data | null>(null);
   const [cand, setCand] = useState(candidates.find((c) => c.id === "B")?.id ?? candidates[0]?.id);
   const [poi, setPoi] = useState<PoiProps | null>(null);
-  const [layers, setLayers] = useState<Layers>({ population: true, context: false });
+  const [layers, setLayers] = useState<Layers>({ population: true, context: false, verifiedOnly: false });
   const [cursor, setCursor] = useState({ lng: manifest.center[0], lat: manifest.center[1], zoom: 15 });
 
   const hasPopulation = Boolean(manifest.datasets.population);
@@ -71,11 +81,11 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
     map.addControl(new ScaleControl({ unit: "metric" }), "bottom-left");
 
     const load = (f: string) => fetch(`${DATA_BASE}/${f}`).then((r) => r.json());
-    const dataP = Promise.all([load("poi.geojson"), load("isochrones.geojson"), load("transit.geojson")]);
+    const dataP = Promise.all([load("poi.geojson"), load("isochrones.geojson"), load("transit.geojson"), load("campus.geojson")]);
 
     // style.load (not load): add our layers as soon as the style is parsed, without waiting for every tile.
     map.once("style.load", async () => {
-      const [poiFc, isoFc, transitFc] = (await dataP) as [PoiFC, IsochroneFC, FeatureCollection<Point>];
+      const [poiFc, isoFc, transitFc, campusFc] = (await dataP) as [PoiFC, IsochroneFC, FeatureCollection<Point>, FeatureCollection];
       restyleBasemap(map);
 
       const ink = cssVar("--color-ink");
@@ -102,6 +112,11 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
         });
       }
 
+      const edu = cssVar("--color-edu");
+      map.addSource("campus", { type: "geojson", data: campusFc });
+      map.addLayer({ id: "campus-fill", type: "fill", source: "campus", paint: { "fill-color": edu, "fill-opacity": 0.08 } });
+      map.addLayer({ id: "campus-line", type: "line", source: "campus", paint: { "line-color": edu, "line-width": 1.2 } });
+
       map.addSource("iso", { type: "geojson", data: isoFc });
       map.addLayer({ id: "iso-10", type: "line", source: "iso", paint: { "line-color": ink3, "line-width": 1.2, "line-dasharray": [3, 3] } });
       map.addLayer({ id: "iso-5-fill", type: "fill", source: "iso", paint: { "fill-pattern": "hatch" } });
@@ -115,17 +130,16 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
         ...Object.entries(GROUPS).flatMap(([g, s]) => [g, cssVar(s.color)]),
         ink3,
       ] as unknown as ExpressionSpecification;
-      const byRole = (role: string) => ["in", ["get", "group"], ["literal", Object.entries(GROUPS).filter(([, s]) => s.role === role).map(([g]) => g)]] as unknown as ExpressionSpecification;
 
       map.addSource("poi", { type: "geojson", data: poiFc, promoteId: "id" });
-      map.addLayer({ id: "poi-context", type: "circle", source: "poi", filter: byRole("context"),
+      map.addLayer({ id: "poi-context", type: "circle", source: "poi", filter: poiFilter("context", false),
         paint: { "circle-radius": 2.2, "circle-color": ink3, "circle-opacity": 0.55 } });
-      map.addLayer({ id: "poi-synergy", type: "circle", source: "poi", filter: byRole("synergy"),
-        paint: { "circle-radius": 4, "circle-color": groupColor, "circle-stroke-color": paper, "circle-stroke-width": 1 } });
-      map.addLayer({ id: "poi-comp-indirect", type: "circle", source: "poi", filter: byRole("comp-indirect"),
-        paint: { "circle-radius": 4, "circle-color": paper, "circle-stroke-color": comp, "circle-stroke-width": 1.6 } });
-      map.addLayer({ id: "poi-comp", type: "circle", source: "poi", filter: byRole("comp"),
-        paint: { "circle-radius": 5.5, "circle-color": comp, "circle-stroke-color": paper, "circle-stroke-width": 1.5 } });
+      map.addLayer({ id: "poi-synergy", type: "circle", source: "poi", filter: poiFilter("synergy", false),
+        paint: { "circle-radius": 4, "circle-color": groupColor, "circle-stroke-color": paper, "circle-stroke-width": 1, "circle-opacity": certainty } });
+      map.addLayer({ id: "poi-comp-indirect", type: "circle", source: "poi", filter: poiFilter("comp-indirect", false),
+        paint: { "circle-radius": 4, "circle-color": paper, "circle-stroke-color": comp, "circle-stroke-width": 1.6, "circle-stroke-opacity": certainty } });
+      map.addLayer({ id: "poi-comp", type: "circle", source: "poi", filter: poiFilter("comp", false),
+        paint: { "circle-radius": 5.5, "circle-color": comp, "circle-stroke-color": paper, "circle-stroke-width": 1.5, "circle-opacity": certainty } });
       map.addLayer({ id: "poi-selected", type: "circle", source: "poi", filter: ["==", ["get", "id"], ""],
         paint: { "circle-radius": 10, "circle-color": "rgba(0,0,0,0)", "circle-stroke-color": accent, "circle-stroke-width": 2 } });
 
@@ -182,6 +196,7 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
     if (!map || !ready) return;
     if (hasPopulation) map.setLayoutProperty("population", "visibility", layers.population ? "visible" : "none");
     map.setLayoutProperty("poi-context", "visibility", layers.context ? "visible" : "none");
+    for (const id of POI_LAYERS) map.setFilter(id, poiFilter(POI_ROLES[id], layers.verifiedOnly));
   }, [ready, layers, hasPopulation]);
 
   useEffect(() => {
@@ -193,11 +208,14 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
   // --- counts inside the selected candidate's catchments (real data, rule-based grouping) ---
   const counts = useMemo(() => {
     if (!data || !cand) return null;
+    const pool = layers.verifiedOnly
+      ? { ...data.poi, features: data.poi.features.filter((f) => f.properties.verification !== "unverified") }
+      : data.poi;
     const five = findIsochrone(data.iso, cand, 5);
     const ten = findIsochrone(data.iso, cand, 10);
     const stops = (area: typeof five) => (area ? data.transit.features.filter((f) => booleanPointInPolygon(f, area)).length : 0);
-    return { five: countByGroup(data.poi, five), ten: countByGroup(data.poi, ten), stops5: stops(five), stops10: stops(ten) };
-  }, [data, cand]);
+    return { five: countByGroup(pool, five), ten: countByGroup(pool, ten), stops5: stops(five), stops10: stops(ten) };
+  }, [data, cand, layers.verifiedOnly]);
 
   const poiDs = manifest.datasets.poi;
   const selected = candidates.find((c) => c.id === cand);
@@ -298,7 +316,11 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
               <Toggle checked={layers.context} onChange={(v) => setLayers((l) => ({ ...l, context: v }))}>
                 สถานที่อื่นๆ (ร้านอาหาร ร้านค้า ฯลฯ)
               </Toggle>
+              <Toggle checked={layers.verifiedOnly} onChange={(v) => setLayers((l) => ({ ...l, verifiedOnly: v }))}>
+                แสดงเฉพาะที่ยืนยันแล้ว <span className="font-mono text-[11px] text-ink-3">ตัวเลขในตารางเปลี่ยนตาม</span>
+              </Toggle>
             </div>
+            {poiDs && <QualityNote ds={poiDs} />}
           </Section>
 
           <Section title="สัญลักษณ์">
@@ -309,6 +331,10 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
               <li><span className="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-pop-2 align-middle" />หอพัก/ที่พัก</li>
               <li><span className="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-civic align-middle" />สำนักงาน</li>
               <li><span className="mr-2 inline-block h-2.5 w-2.5 bg-civic align-middle" />ป้ายรถ/วิน</li>
+              <li className="col-span-2">
+                <span className="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-comp align-middle opacity-40" />
+                จุดจาง = ยังไม่ยืนยัน (มาจากเพจ Facebook แหล่งเดียว)
+              </li>
               <li className="col-span-2">
                 <span className="hatch mr-2 inline-block h-2.5 w-6 border border-dashed border-ink align-middle text-ink/40" />
                 เดินถึงใน 5 นาที (ประมาณ) · เส้นประจาง = 10 นาที
@@ -358,6 +384,14 @@ function Evidence({ poi, manifest, onClose }: { poi: PoiProps; manifest: Manifes
     ["กลุ่ม", `${GROUPS[poi.group]?.label ?? poi.group} (กฎเบื้องต้น)`],
     ["หมวดดิบ", <span key="c" className="font-mono text-[13px]">{poi.category ?? "—"}</span>],
     ["แหล่ง", src?.name ?? poi.source],
+    ["การตรวจ", (
+      <span key="v">
+        <span className={poi.verification === "unverified" ? "font-medium text-ink-2" : "font-medium"}>{VERIFICATION[poi.verification]?.label}</span>
+        <span className="block text-xs text-ink-3">{VERIFICATION[poi.verification]?.note}</span>
+      </span>
+    )],
+    ...(poi.in_campus ? ([["ตำแหน่ง", "ในรั้ว มจธ."]] as [string, React.ReactNode][]) : []),
+    ...(poi.name_issue ? ([["หมายเหตุ", <span key="n" className="text-ink-2">ชื่อในแหล่งข้อมูลสระ/วรรณยุกต์หาย แสดงตามต้นฉบับ</span>]] as [string, React.ReactNode][]) : []),
     ["ความมั่นใจ", poi.confidence != null ? <span key="k" className="font-mono text-[13px]">{Math.round(poi.confidence * 100)}% (คะแนนของ Overture)</span> : "—"],
     ["ดึงข้อมูล", <span key="d" className="font-mono text-[13px]">{ds ? thaiShortDate(ds.fetched) : "—"}</span>],
     ["License", <span key="l" className="font-mono text-[13px]">{src?.license ?? "—"}</span>],
@@ -381,6 +415,19 @@ function Evidence({ poi, manifest, onClose }: { poi: PoiProps; manifest: Manifes
   );
 }
 
+/** What the location checks removed, so the counts above are auditable. */
+function QualityNote({ ds }: { ds: DatasetInfo }) {
+  const rejected = (ds.rejected as number | undefined) ?? 0;
+  const byV = (ds.by_verification as Record<string, number> | undefined) ?? {};
+  const unverified = byV.unverified ?? 0;
+  return (
+    <p className="mt-3 text-xs leading-relaxed text-ink-3">
+      ตัดออกแล้ว {rejected.toLocaleString("en-US")} รายการที่พิกัดน่าจะผิด (ที่อยู่/รหัสไปรษณีย์อยู่นอกย่าน หรือชื่อตรงกับสถานที่ใน OSM
+      ที่อยู่ไกลออกไป) · ยังไม่ยืนยัน {unverified.toLocaleString("en-US")} จาก {ds.count.toLocaleString("en-US")} รายการ
+    </p>
+  );
+}
+
 function Sources({ manifest }: { manifest: Manifest }) {
   return (
     <section className="mt-8 border-t border-ink pt-3">
@@ -389,9 +436,13 @@ function Sources({ manifest }: { manifest: Manifest }) {
         {Object.entries(manifest.sources).map(([id, s], i) => (
           <li key={id}>
             <span className="font-mono text-ink-3">[{i + 1}]</span>{" "}
-            <a href={s.url} target="_blank" rel="noreferrer" className="underline decoration-rule underline-offset-2 hover:decoration-ink">
-              {s.name}
-            </a>{" "}
+            {s.url.startsWith("http") ? (
+              <a href={s.url} target="_blank" rel="noreferrer" className="underline decoration-rule underline-offset-2 hover:decoration-ink">
+                {s.name}
+              </a>
+            ) : (
+              s.name
+            )}{" "}
             · <span className="font-mono">{s.license}</span>
           </li>
         ))}

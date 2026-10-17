@@ -30,6 +30,7 @@ Deploy: Vercel Hobby
 - class `.maplibregl-map` บังคับ `position: relative` ดังนั้น container ของแผนที่ต้องกำหนดขนาดเอง (`h-full w-full`) ห้ามใช้ `absolute inset-0`
 - สีบนแผนที่ต้องอ่านจาก CSS token ผ่าน `cssVar()` (`lib/css-var.ts`) ห้าม hardcode hex
 - ตอน dev มี `window.__map` ไว้ debug แผนที่
+- **ข้อมูล Overture ย่านนี้ ~97% มาจากเพจ Facebook แหล่งเดียว** บางรายการปักหมุดผิดย่าน: ทุกจุดมี `verification` และต้องผ่าน `data-pipeline/validate.py` ห้ามแสดงสถานที่โดยไม่บอกสถานะการยืนยัน
 
 ## โครงสร้าง (เป้าหมาย)
 
@@ -49,6 +50,7 @@ docs/                # SPEC, DESIGN
 
 - [x] วิเคราะห์ไอเดีย + ล็อกขอบเขต (17 ต.ค. 69)
 - [x] style tile + design tokens (`app/globals.css`)
-- [x] data pipeline ย่านบางมด (Overture 4,069 + OSM 155 = 4,224 สถานที่, ป้ายรถ 55, isochrones)
+- [x] data pipeline ย่านบางมด: 4,183 สถานที่หลังตรวจพิกัด (ตัด 119 ที่ปักผิดย่าน ดู `data-pipeline/cache/rejected.csv`), รวมรายชื่อร้าน CampusSpot 632 ร้านที่ผู้ใช้คัดไว้, ป้ายรถ 55, รั้ว มจธ., isochrones
+- [ ] ตรวจหน้างาน 7 ร้านใน CampusSpot ที่ที่อยู่ใน Overture ชี้ไปเขตอื่น (สคริปต์ `s05` พิมพ์รายชื่อ)
 - [x] หน้า `/` (ปก) และ `/map` (แผนที่ + นับสถานที่ในระยะเดิน + evidence)
 - [ ] ลงพื้นที่สำรวจทำเลจริง 6–10 จุด + ค่าเช่า → แทน `data-pipeline/candidates.json`

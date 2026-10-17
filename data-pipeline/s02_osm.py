@@ -43,6 +43,17 @@ def tidy(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     return gpd.GeoDataFrame(gdf[["osm_id", *cols]], geometry=gdf.geometry, crs=4326)
 
 
+def campus() -> None:
+    """KMUTT campus outline: used to flag in-campus shops and drawn on the map."""
+    uni = ox.features_from_bbox(BBOX, tags={"amenity": "university"}).reset_index()
+    uni = uni[uni.geom_type.isin(["Polygon", "MultiPolygon"])]
+    kmutt = uni[uni["name"].fillna("").str.contains("พระจอมเกล้าธนบุรี|King Mongkut's University of Technology Thonburi", regex=True)]
+    out = gpd.GeoDataFrame({"name": kmutt["name"]}, geometry=kmutt.geometry, crs=4326).dissolve().reset_index(drop=True)
+    out.to_file(OUT / "campus.geojson", driver="GeoJSON", **GEOJSON_OPTS)
+    manifest.record("campus", "osm", "campus.geojson", len(kmutt))
+    print(f"campus polygons: {len(kmutt)} -> {out.geometry.iloc[0].area * 111_000**2:,.0f} m2 approx")
+
+
 def main() -> None:
     ox.settings.use_cache = True
     ox.settings.cache_folder = str(CACHE / "osmnx")
@@ -67,6 +78,8 @@ def main() -> None:
     walk = ox.graph_from_bbox(bbox, network_type="walk", simplify=True)
     ox.save_graphml(walk, CACHE / "walk.graphml")
     print(f"walk graph: {len(walk.nodes)} nodes, {len(walk.edges)} edges")
+
+    campus()
 
 
 if __name__ == "__main__":
