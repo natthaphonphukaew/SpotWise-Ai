@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:68d91dde-7f71-47bd-b265-06a917441a35"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ชื่อบริษัทการค้าและยาง"
+      },
+      {
+        "id": "p2",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุกาแฟสดชัดเจน"
+      },
+      {
+        "id": "p3",
+        "group": "office",
+        "confidence": "low",
+        "reason": "บริการด้านสื่อหรือโปรดักชัน"
+      },
+      {
+        "id": "p4",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการสักลายเป็นงานบริการเฉพาะทาง"
+      },
+      {
+        "id": "p5",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "บริการขนส่งพัสดุชิปปิ้ง"
+      },
+      {
+        "id": "p6",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ชื่อบริษัทเอ็นเตอร์ไพรส์และผู้ผลิต"
+      },
+      {
+        "id": "p7",
+        "group": "bubble_tea",
+        "confidence": "medium",
+        "reason": "ชื่อชาดงทองเป็นร้านชา/เครื่องดื่ม"
+      },
+      {
+        "id": "p8",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านเบอร์เกอร์และอาหาร"
+      },
+      {
+        "id": "p9",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขาย/ผลิตเสื้อผ้าส่ง"
+      },
+      {
+        "id": "p10",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายอะไหล่แอร์"
+      },
+      {
+        "id": "p11",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ศูนย์บริการยางรถยนต์ไทร์พลัส"
+      },
+      {
+        "id": "p12",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ห้องปฏิบัติการวิจัยในมหาวิทยาลัย KMUTT"
+      },
+      {
+        "id": "p13",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อครัวบ่งบอกร้านอาหาร"
+      },
+      {
+        "id": "p14",
+        "group": "dormitory",
+        "confidence": "low",
+        "reason": "หมวดระบุ lodging ที่พักอาศัย"
+      },
+      {
+        "id": "p15",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ชื่อบริษัท Co., Ltd"
+      },
+      {
+        "id": "p16",
+        "group": "food",
+        "confidence": "low",
+        "reason": "หมวดระบุฟาสต์ฟู้ด"
+      },
+      {
+        "id": "p17",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ก๋วยเตี๋ยวไก่ตุ๋นบุฟเฟต์"
+      },
+      {
+        "id": "p18",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านช่างบริการซ่อมรถ"
+      },
+      {
+        "id": "p19",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารซีฟู้ด"
+      },
+      {
+        "id": "p20",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "สโลว์บาร์กาแฟสด"
+      },
+      {
+        "id": "p21",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซักล้างอบผ้า"
+      },
+      {
+        "id": "p22",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านบะหมี่ฮ่องเต้"
+      },
+      {
+        "id": "p23",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายและบริการแบตเตอรี่รถยนต์"
+      },
+      {
+        "id": "p24",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารเจ"
+      },
+      {
+        "id": "p25",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ร้านขายยาเภสัช"
+      },
+      {
+        "id": "p26",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารเบนโตะ ชาบู"
+      },
+      {
+        "id": "p27",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผมบาร์เบอร์"
+      },
+      {
+        "id": "p28",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "โรงละคร สถานที่แสดงและพักผ่อน"
+      },
+      {
+        "id": "p29",
+        "group": "leisure",
+        "confidence": "low",
+        "reason": "หมวดระบุสถานที่ออกกำลังกาย"
+      },
+      {
+        "id": "p30",
+        "group": "education",
+        "confidence": "high",
+        "reason": "หน่วยรับสมัครนักศึกษาของมหาวิทยาลัย"
+      },
+      {
+        "id": "p31",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวหมูต้มยำ"
+      },
+      {
+        "id": "p32",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านขายอาหารทะเลและไก่สด"
+      },
+      {
+        "id": "p33",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทจำกัด"
+      },
+      {
+        "id": "p34",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านรับส่งพัสดุด่วน"
+      },
+      {
+        "id": "p35",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายของดองของแซ่บ"
+      },
+      {
+        "id": "p36",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำผมตัดผม"
+      },
+      {
+        "id": "p37",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "อพาร์ทเม้นท์ที่พักอาศัย"
+      },
+      {
+        "id": "p38",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารเต้าหู้ทอด"
+      },
+      {
+        "id": "p39",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกทันตกรรมทำฟัน"
+      },
+      {
+        "id": "p40",
+        "group": "education",
+        "confidence": "high",
+        "reason": "คณะเทคโนโลยีสารสนเทศ"
+      },
+      {
+        "id": "p41",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการพิมพ์สกรีน"
+      },
+      {
+        "id": "p42",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ชื่อไม่ชัดเจนว่าเป็นธุรกิจใด"
+      },
+      {
+        "id": "p43",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันกวดวิชาวิศวกรรม"
+      },
+      {
+        "id": "p44",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารเหนือ"
+      },
+      {
+        "id": "p45",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ธนาคารไทยพาณิชย์"
+      },
+      {
+        "id": "p46",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันกวดวิชา Classroom"
+      },
+      {
+        "id": "p47",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ Proud Coffee"
+      },
+      {
+        "id": "p48",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านไอศกรีมและของหวาน Swensen's"
+      },
+      {
+        "id": "p49",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ฟิตเนสออกกำลังกาย"
+      },
+      {
+        "id": "p50",
+        "group": "food",
+        "confidence": "high",
+        "reason": "บาร์และร้านอาหาร"
+      },
+      {
+        "id": "p51",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านจำหน่ายอุปกรณ์เครื่องจักรการ์เมนต์"
+      },
+      {
+        "id": "p52",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายเฟอร์นิเจอร์"
+      },
+      {
+        "id": "p53",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านปะยางเปลี่ยนยางรถยนต์"
+      },
+      {
+        "id": "p54",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารคลีนฟู้ด"
+      },
+      {
+        "id": "p55",
+        "group": "retail",
+        "confidence": "low",
+        "reason": "ร้านเกี่ยวกับสัตว์เลี้ยงเพ็ทช็อป"
+      },
+      {
+        "id": "p56",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารครัวร่มไม้"
+      },
+      {
+        "id": "p57",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านคาเฟ่ ชบา Cafe"
+      },
+      {
+        "id": "p58",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านเสริมสวยซาลอน"
+      },
+      {
+        "id": "p59",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านลาบอาหารอีสาน"
+      },
+      {
+        "id": "p60",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านค้าสะดวกซื้อโชห่วย"
+      },
+      {
+        "id": "p61",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารและบาร์"
+      },
+      {
+        "id": "p62",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ร้านขายยาหนึ่ง"
+      },
+      {
+        "id": "p63",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยว Tangy noodle"
+      },
+      {
+        "id": "p64",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "ร้านชานมไข่มุกหมีพ่นไฟ"
+      },
+      {
+        "id": "p65",
+        "group": "education",
+        "confidence": "medium",
+        "reason": "ห้องแล็บทดลองทางการศึกษา"
+      },
+      {
+        "id": "p66",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำป้ายไวนิลและสิ่งพิมพ์"
+      },
+      {
+        "id": "p67",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หอพักที่อยู่อาศัย"
+      },
+      {
+        "id": "p68",
+        "group": "education",
+        "confidence": "high",
+        "reason": "หน่วยงานในมหาวิทยาลัย KMUTT"
+      },
+      {
+        "id": "p69",
+        "group": "education",
+        "confidence": "high",
+        "reason": "หน่วยงานในมหาวิทยาลัย KMUTT"
+      },
+      {
+        "id": "p70",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านรับทำป้ายโฆษณา"
+      },
+      {
+        "id": "p71",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ร้านขายยาเภสัช"
+      },
+      {
+        "id": "p72",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการซักอบรีด"
+      },
+      {
+        "id": "p73",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านรับซ่อมคอมพิวเตอร์และโน้ตบุ๊ก"
+      },
+      {
+        "id": "p74",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดดิบระบุร้านอาหาร"
+      },
+      {
+        "id": "p75",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำเล็บและต่อขนตา"
+      },
+      {
+        "id": "p76",
+        "group": "office",
+        "confidence": "low",
+        "reason": "ชื่อกลุ่มบริษัท Bảo Long Group"
+      },
+      {
+        "id": "p77",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "คอนโด The Privacy"
+      },
+      {
+        "id": "p78",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ปั๊มน้ำมัน ปตท."
+      },
+      {
+        "id": "p79",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "ร้านชา Jin Cha"
+      },
+      {
+        "id": "p80",
+        "group": "dormitory",
+        "confidence": "low",
+        "reason": "ชื่อซอย/อาคารที่พักอาศัย"
+      }
+    ]
+  },
+  "createdAt": "2026-10-17T13:05:07.660Z"
+}

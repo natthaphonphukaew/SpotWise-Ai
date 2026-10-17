@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:02007cce-fd8e-4131-876c-b80fcbe5a858"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นอู่ซ่อมรถยนต์"
+      },
+      {
+        "id": "p2",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ชื่อเป็นบริษัทด้านมารีนหรือบริการทางกฎหมาย"
+      },
+      {
+        "id": "p3",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านแว่นตา"
+      },
+      {
+        "id": "p4",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านก๋วยเตี๋ยวเย็นตาโฟ"
+      },
+      {
+        "id": "p5",
+        "group": "coffee",
+        "confidence": "medium",
+        "reason": "ชื่อระบุว่าเป็นคาเฟ่"
+      },
+      {
+        "id": "p6",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ชื่อเป็นบริษัทจำกัด"
+      },
+      {
+        "id": "p7",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นแมนชั่นที่พักอาศัย"
+      },
+      {
+        "id": "p8",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านผัดไทย"
+      },
+      {
+        "id": "p9",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นคณะและสาขาวิชาในมหาวิทยาลัย"
+      },
+      {
+        "id": "p10",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านนวดเพื่อสุขภาพ"
+      },
+      {
+        "id": "p11",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นโรงพิมพ์และสิ่งพิมพ์"
+      },
+      {
+        "id": "p12",
+        "group": "leisure",
+        "confidence": "medium",
+        "reason": "ชื่อระบุเกี่ยวกับสนามแบดมินตัน"
+      },
+      {
+        "id": "p13",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นคาเฟ่"
+      },
+      {
+        "id": "p14",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟสตาร์บัคส์"
+      },
+      {
+        "id": "p15",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านอาหารญี่ปุ่น"
+      },
+      {
+        "id": "p16",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านแกงใต้"
+      },
+      {
+        "id": "p17",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัทโลจิสติกส์"
+      },
+      {
+        "id": "p18",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นคลินิกเวชกรรม"
+      },
+      {
+        "id": "p19",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ชื่อระบุเป็นบริการโกดังให้เช่า"
+      },
+      {
+        "id": "p20",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านทำเล็บ"
+      },
+      {
+        "id": "p21",
+        "group": "bubble_tea",
+        "confidence": "medium",
+        "reason": "ชื่อระบุเป็นร้านน้ำชา"
+      },
+      {
+        "id": "p22",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "ชื่อแบรนด์ Am Tea เป็นร้านชา"
+      },
+      {
+        "id": "p23",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุฟาร์มาซีเป็นร้านขายยา"
+      },
+      {
+        "id": "p24",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านบะหมี่"
+      },
+      {
+        "id": "p25",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านแซนวิชอาหาร"
+      },
+      {
+        "id": "p26",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ชื่อร้านอาหารเกี่ยวกับหมู"
+      },
+      {
+        "id": "p27",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านต้มเล้งแซ่บ"
+      },
+      {
+        "id": "p28",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัท"
+      },
+      {
+        "id": "p29",
+        "group": "other",
+        "confidence": "high",
+        "reason": "เป็นศาสนสถาน คริสตจักร"
+      },
+      {
+        "id": "p30",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านข้าวต้มโต้รุ่ง"
+      },
+      {
+        "id": "p31",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นเวดดิ้งสตูดิโอ"
+      },
+      {
+        "id": "p32",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นขนมกะหรี่ปั๊บ"
+      },
+      {
+        "id": "p33",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ชื่อระบุเป็นบริการสินเชื่อการเงิน"
+      },
+      {
+        "id": "p34",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นคลินิกรักษาสัตว์"
+      },
+      {
+        "id": "p35",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "หมวดดิบเป็นร้านขายวัสดุอุปกรณ์"
+      },
+      {
+        "id": "p36",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านฟาสต์ฟู้ดแมคโดนัลด์"
+      },
+      {
+        "id": "p37",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านซีฟู้ดอาหารทะเล"
+      },
+      {
+        "id": "p38",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริการล้างรถและคาร์ดีเทลลิ่ง"
+      },
+      {
+        "id": "p39",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านก๋วยเตี๋ยวและอาหารตามสั่ง"
+      },
+      {
+        "id": "p40",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุว่าขายข้าวและก๋วยเตี๋ยว"
+      },
+      {
+        "id": "p41",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นโรงพยาบาล"
+      },
+      {
+        "id": "p42",
+        "group": "food",
+        "confidence": "high",
+        "reason": "หมวดดิบเป็นบาร์และร้านอาหาร"
+      },
+      {
+        "id": "p43",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านชาบู"
+      },
+      {
+        "id": "p44",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านก๋วยเตี๋ยว"
+      },
+      {
+        "id": "p45",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านจำหน่ายมอเตอร์ไซค์"
+      },
+      {
+        "id": "p46",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัทขนส่ง"
+      },
+      {
+        "id": "p47",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดดิบเป็นร้านอาหารฮาลาล"
+      },
+      {
+        "id": "p48",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุขายสเต็กและเบอร์เกอร์"
+      },
+      {
+        "id": "p49",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นโครงการหมู่บ้านที่อยู่อาศัย"
+      },
+      {
+        "id": "p50",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นศูนย์กีฬา"
+      },
+      {
+        "id": "p51",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัทอุตสาหกรรม"
+      },
+      {
+        "id": "p52",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริการซักแห้งซักรีด"
+      },
+      {
+        "id": "p53",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นศูนย์พยาบาล"
+      },
+      {
+        "id": "p54",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุว่าเป็นคอนโดมิเนียม"
+      },
+      {
+        "id": "p55",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัทจำกัด"
+      },
+      {
+        "id": "p56",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ชื่อเป็นชื่อทำเลข้อมูลไม่ชัดเจน"
+      },
+      {
+        "id": "p57",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นคลินิกเวชกรรมเด็ก"
+      },
+      {
+        "id": "p58",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านกาแฟ Coffee pro"
+      },
+      {
+        "id": "p59",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็น Dessert Cafe ขนมหวาน"
+      },
+      {
+        "id": "p60",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านเป็ดย่าง"
+      },
+      {
+        "id": "p61",
+        "group": "bubble_tea",
+        "confidence": "medium",
+        "reason": "ชื่อร้านชาบ้านสวน ขายเครื่องดื่มชา"
+      },
+      {
+        "id": "p62",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุขายแซลมอนเป็นร้านอาหาร"
+      },
+      {
+        "id": "p63",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริการต่อขนตาเสริมสวย"
+      },
+      {
+        "id": "p64",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านก๋วยเตี๋ยวเป็ด"
+      },
+      {
+        "id": "p65",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุชวนชิมและหมวดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p66",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านซีฟู้ดอาหารทะเล"
+      },
+      {
+        "id": "p67",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นสำนักงานการศึกษาในมหาวิทยาลัย"
+      },
+      {
+        "id": "p68",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นโรงกลึงบริการช่าง"
+      },
+      {
+        "id": "p69",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุว่าเป็นคาเฟ่"
+      },
+      {
+        "id": "p70",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านราเมน"
+      },
+      {
+        "id": "p71",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "หมวดดิบเป็นร้านขายอุปกรณ์ฮาร์ดแวร์"
+      },
+      {
+        "id": "p72",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบาร์และร้านอาหาร"
+      },
+      {
+        "id": "p73",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ชื่อและหมวดระบุเป็นสนามเด็กเล่น Kids Cafe"
+      },
+      {
+        "id": "p74",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "หมวดดิบระบุเป็นบริการเสริมความงาม"
+      },
+      {
+        "id": "p75",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นกวยจั๊บญวน"
+      },
+      {
+        "id": "p76",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ชื่อเป็นชื่อซอย ข้อมูลไม่ชัดเจน"
+      },
+      {
+        "id": "p77",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นอาคารเรียนจุลชีววิทยา"
+      },
+      {
+        "id": "p78",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบอร์ดเกมและคาราโอเกะ"
+      },
+      {
+        "id": "p79",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านกาแฟพันธุ์ไทย"
+      },
+      {
+        "id": "p80",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ชื่อระบุบริการทำป้ายโฆษณาสื่อสิ่งพิมพ์"
+      }
+    ]
+  },
+  "createdAt": "2026-10-17T13:01:14.103Z"
+}

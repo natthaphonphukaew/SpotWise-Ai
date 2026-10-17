@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:1d6af172-141b-4096-afe4-2b22a4968590"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ข้อมูลชื่อและหมวดไม่ชัดเจน"
+      },
+      {
+        "id": "p2",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดระบุ bar เป็นร้านอาหาร/เครื่องดื่ม"
+      },
+      {
+        "id": "p3",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "หมวดร้านงานฝีมือและงานอดิเรก"
+      },
+      {
+        "id": "p4",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ศูนย์วิจัย/ความเป็นเลิศในมหาวิทยาลัย มจธ."
+      },
+      {
+        "id": "p5",
+        "group": "drink_dessert",
+        "confidence": "medium",
+        "reason": "ชื่อโฮมเมด หมวดอาหารทานเล่น/ของหวาน"
+      },
+      {
+        "id": "p6",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุเนอสเซอรี่ สถานรับเลี้ยงเด็ก"
+      },
+      {
+        "id": "p7",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายอุปกรณ์อิเล็กทรอนิกส์/UPS"
+      },
+      {
+        "id": "p8",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุโรงพยาบาลสัตว์"
+      },
+      {
+        "id": "p9",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ธนาคาร ไม่ตรงกับกลุ่มพาณิชย์อื่น"
+      },
+      {
+        "id": "p10",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "หมวดร้านขายดอกไม้และของขวัญ"
+      },
+      {
+        "id": "p11",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุคลินิกความงาม"
+      },
+      {
+        "id": "p12",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุภาควิชาในมหาวิทยาลัย"
+      },
+      {
+        "id": "p13",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุไก่ย่าง ร้านอาหาร"
+      },
+      {
+        "id": "p14",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุกาแฟสด"
+      },
+      {
+        "id": "p15",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "บริการซ่อม/แต่งรถ EV"
+      },
+      {
+        "id": "p16",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุค่ายนวัตกรรมดิจิทัลสำหรับเด็ก"
+      },
+      {
+        "id": "p17",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุลาบเป็ดยโส ร้านอาหาร"
+      },
+      {
+        "id": "p18",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุบาร์ หมวด bar"
+      },
+      {
+        "id": "p19",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ลานกิจกรรมภายในมหาวิทยาลัย มจธ."
+      },
+      {
+        "id": "p20",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุบ้านกินเส้น ร้านก๋วยเตี๋ยว/อาหาร"
+      },
+      {
+        "id": "p21",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อ Kafe ร้านกาแฟ"
+      },
+      {
+        "id": "p22",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุคอนโด ที่อยู่อาศัย"
+      },
+      {
+        "id": "p23",
+        "group": "market",
+        "confidence": "medium",
+        "reason": "ลานไม้ โครงการคอมมูนิตี้/ตลาดร้านค้า"
+      },
+      {
+        "id": "p24",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านอาหาร บ้านใบปอ"
+      },
+      {
+        "id": "p25",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ศูนย์บริการและจำหน่ายรถยนต์/มอเตอร์ไซค์"
+      },
+      {
+        "id": "p26",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุบริษัท"
+      },
+      {
+        "id": "p27",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านรับจ้างพิมพ์ บริการงานพิมพ์"
+      },
+      {
+        "id": "p28",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุครัวชาวนา ร้านอาหาร"
+      },
+      {
+        "id": "p29",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารเรียนพหุวิทยาการใน มจธ."
+      },
+      {
+        "id": "p30",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านค้าในทุ่งครุพลาซ่า หมวดฮาร์ดแวร์"
+      },
+      {
+        "id": "p31",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "มารุชา แบรนด์ร้านชานมไข่มุก"
+      },
+      {
+        "id": "p32",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุก๋วยเตี๋ยวเป็ดและข้าวขาหมู"
+      },
+      {
+        "id": "p33",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ผู้ให้บริการโซลูชันบันทึกเวลาทำงาน"
+      },
+      {
+        "id": "p34",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "โครงการหมู่บ้าน/ทาวน์โฮมพลีโน่"
+      },
+      {
+        "id": "p35",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Co, Ltd บริษัทนิติบุคคล"
+      },
+      {
+        "id": "p36",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อเพลส หมวด lodging ที่พักอาศัย"
+      },
+      {
+        "id": "p37",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุบริษัทจำกัด"
+      },
+      {
+        "id": "p38",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านสัก Tattoo บริการส่วนบุคคล"
+      },
+      {
+        "id": "p39",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านน้ำจรวดโบราณ เครื่องดื่มน้ำอัดลมโบราณ"
+      },
+      {
+        "id": "p40",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Beans และ Cafe ร้านกาแฟ"
+      },
+      {
+        "id": "p41",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายอุปกรณ์เกมมิ่ง"
+      },
+      {
+        "id": "p42",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "พฤกษาวิลล์ โครงการหมู่บ้านจัดสรร"
+      },
+      {
+        "id": "p43",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านอาหาร"
+      },
+      {
+        "id": "p44",
+        "group": "other",
+        "confidence": "high",
+        "reason": "คริสตจักร ศาสนสถาน"
+      },
+      {
+        "id": "p45",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุบริษัทออกแบบตกแต่งภายใน"
+      },
+      {
+        "id": "p46",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ เซเว่นอีเลฟเว่น"
+      },
+      {
+        "id": "p47",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Co., Ltd. บริษัทนิติบุคคล"
+      },
+      {
+        "id": "p48",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "บริษัทบริการท่องเที่ยว แทรเวล"
+      },
+      {
+        "id": "p49",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ชื่อจะหวานไปไหน สื่อถึงร้านของหวาน"
+      },
+      {
+        "id": "p50",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านพิซซ่า Bangmod Pizzeria"
+      },
+      {
+        "id": "p51",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อแฮร์ ร้านทำผมเสริมสวย"
+      },
+      {
+        "id": "p52",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อวิลล่า หมวดที่พัก/โรงแรม"
+      },
+      {
+        "id": "p53",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุคลินิกเวชกรรม"
+      },
+      {
+        "id": "p54",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายดอกไม้ในตลาด"
+      },
+      {
+        "id": "p55",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านบริการซ่อมมือถือ Mobile service"
+      },
+      {
+        "id": "p56",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านคาเฟ่ หมวด cafe"
+      },
+      {
+        "id": "p57",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุก๋วยเตี๋ยวเรือ ป.ประทีป"
+      },
+      {
+        "id": "p58",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุโภชนา ร้านอาหาร"
+      },
+      {
+        "id": "p59",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Burger ร้านเบอร์เกอร์และอาหาร"
+      },
+      {
+        "id": "p60",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อ Salon ร้านทำผมเสริมสวย"
+      },
+      {
+        "id": "p61",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุคาเฟ่ Cafe"
+      },
+      {
+        "id": "p62",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สระว่ายน้ำและสปอร์ตคลับ"
+      },
+      {
+        "id": "p63",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ศูนย์คอมพิวเตอร์ในมหาวิทยาลัย มจธ."
+      },
+      {
+        "id": "p64",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Condo คอนโดที่อยู่อาศัย"
+      },
+      {
+        "id": "p65",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ร้านขายยาและเวชภัณฑ์ Pharmacy"
+      },
+      {
+        "id": "p66",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุคอฟฟี่ ร้านกาแฟ"
+      },
+      {
+        "id": "p67",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านข้าว ร้านอาหาร"
+      },
+      {
+        "id": "p68",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุราเมน Ebisu Ramen"
+      },
+      {
+        "id": "p69",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำกรอบรูป บริการสินค้าและงานฝีมือ"
+      },
+      {
+        "id": "p70",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านนวด/สปาเพื่อสุขภาพและความงาม"
+      },
+      {
+        "id": "p71",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านรับพิมพ์งาน บริการพรินต์"
+      },
+      {
+        "id": "p72",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุครัวมุสลิม ร้านอาหาร"
+      },
+      {
+        "id": "p73",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุยำแซ่บ ร้านอาหาร"
+      },
+      {
+        "id": "p74",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุภาควิชาใน มจธ."
+      },
+      {
+        "id": "p75",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ชื่อ Nail ร้านทำเล็บ เสริมสวย"
+      },
+      {
+        "id": "p76",
+        "group": "education",
+        "confidence": "high",
+        "reason": "คณะวิศวกรรมศาสตร์ มหาวิทยาลัยบางมด"
+      },
+      {
+        "id": "p77",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Co.,Ltd. บริษัทผลิต/จำหน่ายคลัตช์"
+      },
+      {
+        "id": "p78",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ เซเว่น อีเลฟเว่น"
+      },
+      {
+        "id": "p79",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "มัณฑนา โครงการหมู่บ้านจัดสรร"
+      },
+      {
+        "id": "p80",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านขนมหวาน"
+      }
+    ]
+  },
+  "createdAt": "2026-10-17T13:02:21.834Z"
+}

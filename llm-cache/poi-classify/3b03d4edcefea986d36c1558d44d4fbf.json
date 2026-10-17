@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:1110de8b-5ead-4b32-aab6-cf4f78ff09fb"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "drink_dessert",
+        "confidence": "medium",
+        "reason": "ร้านของหวานและสมูทตี้โบว์ล"
+      },
+      {
+        "id": "p2",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายนาฬิกาติดผนัง"
+      },
+      {
+        "id": "p3",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านพิซซ่า"
+      },
+      {
+        "id": "p4",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านหม่าล่าปิ้งย่าง"
+      },
+      {
+        "id": "p5",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหาร"
+      },
+      {
+        "id": "p6",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ภาควิชาจุลชีววิทยาในมหาวิทยาลัย"
+      },
+      {
+        "id": "p7",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านให้บริการงานช่างหรือซ่อมบำรุง"
+      },
+      {
+        "id": "p8",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกทันตกรรมจัดฟัน"
+      },
+      {
+        "id": "p9",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ศูนย์วิศวกรรมในมหาวิทยาลัย KMUTT"
+      },
+      {
+        "id": "p10",
+        "group": "office",
+        "confidence": "low",
+        "reason": "ชื่อสื่อถึงหน่วยงานหรือสำนักงาน"
+      },
+      {
+        "id": "p11",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สนามฟุตบอลและสนามกีฬา"
+      },
+      {
+        "id": "p12",
+        "group": "education",
+        "confidence": "medium",
+        "reason": "สถาบันการศึกษาหรือกวดวิชา"
+      },
+      {
+        "id": "p13",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหาร"
+      },
+      {
+        "id": "p14",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำเล็บและบริการความงาม"
+      },
+      {
+        "id": "p15",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านถ่ายเอกสาร ปริ้นสี และเข้าเล่ม"
+      },
+      {
+        "id": "p16",
+        "group": "office",
+        "confidence": "high",
+        "reason": "สำนักวิจัยและหน่วยงานบริการ"
+      },
+      {
+        "id": "p17",
+        "group": "education",
+        "confidence": "high",
+        "reason": "โรงเรียนอนุบาล"
+      },
+      {
+        "id": "p18",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารโภชนา"
+      },
+      {
+        "id": "p19",
+        "group": "office",
+        "confidence": "high",
+        "reason": "สมาคมนักศึกษาเก่า"
+      },
+      {
+        "id": "p20",
+        "group": "food",
+        "confidence": "low",
+        "reason": "หมวดดิบระบุเป็นร้านอาหาร"
+      },
+      {
+        "id": "p21",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "แบรนด์ร้านชานมและเครื่องดื่มชา"
+      },
+      {
+        "id": "p22",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยว"
+      },
+      {
+        "id": "p23",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านคาเฟ่เครื่องดื่มกาแฟ"
+      },
+      {
+        "id": "p24",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หอพักที่อยู่อาศัย"
+      },
+      {
+        "id": "p25",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านอาหารญี่ปุ่น"
+      },
+      {
+        "id": "p26",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารขายข้าว"
+      },
+      {
+        "id": "p27",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารเป็ดย่าง"
+      },
+      {
+        "id": "p28",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกทันตกรรม"
+      },
+      {
+        "id": "p29",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายปลาสวยงาม"
+      },
+      {
+        "id": "p30",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "โรงหล่อพระและงานโลหะ"
+      },
+      {
+        "id": "p31",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารโจ๊กและกระเพาะปลา"
+      },
+      {
+        "id": "p32",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายและซ่อมรถมอเตอร์ไซค์"
+      },
+      {
+        "id": "p33",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "แมนชั่นที่อยู่อาศัย"
+      },
+      {
+        "id": "p34",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ร้านขายยาและเวชภัณฑ์"
+      },
+      {
+        "id": "p35",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายเฟรนช์ฟรายส์ของทอด"
+      },
+      {
+        "id": "p36",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ คาเฟ่ อเมซอน"
+      },
+      {
+        "id": "p37",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารราดหน้า"
+      },
+      {
+        "id": "p38",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารเมนูไก่"
+      },
+      {
+        "id": "p39",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ซูเปอร์มาร์เก็ตหรือร้านสะดวกซื้อ Lotus's"
+      },
+      {
+        "id": "p40",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ คาเฟ่"
+      },
+      {
+        "id": "p41",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายและบริการแบตเตอรี่รถยนต์"
+      },
+      {
+        "id": "p42",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกทันตกรรม"
+      },
+      {
+        "id": "p43",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกเวชกรรมรักษาโรค"
+      },
+      {
+        "id": "p44",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกทันตกรรมดูแลฟัน"
+      },
+      {
+        "id": "p45",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารขายเคบับและพิซซ่า"
+      },
+      {
+        "id": "p46",
+        "group": "office",
+        "confidence": "high",
+        "reason": "สำนักงานบัญชีและภาษี"
+      },
+      {
+        "id": "p47",
+        "group": "education",
+        "confidence": "high",
+        "reason": "คณะวิศวกรรมศาสตร์ในมหาวิทยาลัย"
+      },
+      {
+        "id": "p48",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน"
+      },
+      {
+        "id": "p49",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ คาเฟ่"
+      },
+      {
+        "id": "p50",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน"
+      },
+      {
+        "id": "p51",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านขายขนม"
+      },
+      {
+        "id": "p52",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารซีฟู้ด"
+      },
+      {
+        "id": "p53",
+        "group": "education",
+        "confidence": "medium",
+        "reason": "ชมรมนักศึกษาในมหาวิทยาลัย"
+      },
+      {
+        "id": "p54",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการติดฟิล์มกรองแสงรถยนต์"
+      },
+      {
+        "id": "p55",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการงานพิมพ์"
+      },
+      {
+        "id": "p56",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน"
+      },
+      {
+        "id": "p57",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารซูชิ"
+      },
+      {
+        "id": "p58",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านล้างรถคาร์แคร์"
+      },
+      {
+        "id": "p59",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ห้างค้าส่งค้าปลีกสินค้าอุปโภคบริโภค"
+      },
+      {
+        "id": "p60",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ตัวแทนจำหน่ายรถยนต์ BYD"
+      },
+      {
+        "id": "p61",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายแว่นตา"
+      },
+      {
+        "id": "p62",
+        "group": "food",
+        "confidence": "low",
+        "reason": "หมวดดิบระบุเป็นร้านอาหาร"
+      },
+      {
+        "id": "p63",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารและเครื่องดื่มบาร์"
+      },
+      {
+        "id": "p64",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านเครื่องดื่มน้ำส้มเกล็ดหิมะ"
+      },
+      {
+        "id": "p65",
+        "group": "market",
+        "confidence": "high",
+        "reason": "ตลาดจำหน่ายสินค้า"
+      },
+      {
+        "id": "p66",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกทันตกรรม"
+      },
+      {
+        "id": "p67",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "สตูดิโอความงามหรือถ่ายภาพ"
+      },
+      {
+        "id": "p68",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชนผลิตเหล็ก"
+      },
+      {
+        "id": "p69",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายและติดตั้งกล้องวงจรปิด"
+      },
+      {
+        "id": "p70",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "บ่อตกปลาและร้านอาหารบาร์"
+      },
+      {
+        "id": "p71",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายอุปกรณ์เครื่องเสียง"
+      },
+      {
+        "id": "p72",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารราเมน"
+      },
+      {
+        "id": "p73",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ห้างหุ้นส่วนจำกัดทำการค้า"
+      },
+      {
+        "id": "p74",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารเรียนรู้ในมหาวิทยาลัย KMUTT"
+      },
+      {
+        "id": "p75",
+        "group": "dormitory",
+        "confidence": "medium",
+        "reason": "คอนโดมิเนียมที่อยู่อาศัย เดอะ ไพรเวซี่"
+      },
+      {
+        "id": "p76",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารข้าวแกง"
+      },
+      {
+        "id": "p77",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านขายขนมหวานวุ้นเป็ด"
+      },
+      {
+        "id": "p78",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน"
+      },
+      {
+        "id": "p79",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "บริการพ่นสีเพาเดอร์โค้ท"
+      },
+      {
+        "id": "p80",
+        "group": "education",
+        "confidence": "medium",
+        "reason": "สถาบันสอนภาษาจีน"
+      }
+    ]
+  },
+  "createdAt": "2026-10-17T13:01:53.272Z"
+}

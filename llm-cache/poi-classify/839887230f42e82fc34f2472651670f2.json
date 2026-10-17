@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:b61a076e-e842-44cc-8615-881a64154e53"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "other",
+        "confidence": "medium",
+        "reason": "ชื่อบริการจัดงานอีเวนต์ ไม่เข้ากลุ่มหลัก"
+      },
+      {
+        "id": "p2",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านหม่าล่าสายพาน จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p3",
+        "group": "other",
+        "confidence": "high",
+        "reason": "วัดและศาสนสถาน จัดเป็นกลุ่ม other"
+      },
+      {
+        "id": "p4",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ธนาคาร ไม่เข้ากลุ่มที่กำหนด"
+      },
+      {
+        "id": "p5",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุชัดเจนว่าเป็นอพาร์ตเมนต์"
+      },
+      {
+        "id": "p6",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ราดหน้ายอดผัก จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p7",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารซูชิ"
+      },
+      {
+        "id": "p8",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ฟิตเนสและศูนย์กีฬา"
+      },
+      {
+        "id": "p9",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ คาเฟ่ อเมซอน"
+      },
+      {
+        "id": "p10",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "บริษัทหรือบริการธุรกิจ จัดเป็นสำนักงาน"
+      },
+      {
+        "id": "p11",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p12",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านต่อขนตาและทำเล็บ จัดเป็นบริการเสริมความงาม"
+      },
+      {
+        "id": "p13",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายเฟอร์นิเจอร์"
+      },
+      {
+        "id": "p14",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "โครงการหมู่บ้าน/ที่พักอาศัยพลีโน่"
+      },
+      {
+        "id": "p15",
+        "group": "education",
+        "confidence": "high",
+        "reason": "หน่วยงานการศึกษา มจธ."
+      },
+      {
+        "id": "p16",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านค้าบริการเกี่ยวกับยานยนต์"
+      },
+      {
+        "id": "p17",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดระบุว่าเป็นร้านอาหาร"
+      },
+      {
+        "id": "p18",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุว่าเป็น Cafe"
+      },
+      {
+        "id": "p19",
+        "group": "education",
+        "confidence": "high",
+        "reason": "คณะหรือหน่วยงานในมหาวิทยาลัย"
+      },
+      {
+        "id": "p20",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุชัดเจนว่าเป็นหอพักชาย"
+      },
+      {
+        "id": "p21",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดระบุว่าเป็นร้านอาหาร"
+      },
+      {
+        "id": "p22",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านค้าอุปกรณ์หรือฮาร์ดแวร์"
+      },
+      {
+        "id": "p23",
+        "group": "drink_dessert",
+        "confidence": "medium",
+        "reason": "หมวดระบุบาร์น้ำผลไม้และสมูทตี้"
+      },
+      {
+        "id": "p24",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดระบุว่าเป็นร้านอาหาร"
+      },
+      {
+        "id": "p25",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวเป็ด จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p26",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สนามฟุตบอล จัดเป็นสถานที่กีฬา/นันทนาการ"
+      },
+      {
+        "id": "p27",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุชัดเจนว่าเป็นร้านอาหาร"
+      },
+      {
+        "id": "p28",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารตามสั่งและส้มตำ"
+      },
+      {
+        "id": "p29",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผมชาย บริการเสริมสวย"
+      },
+      {
+        "id": "p30",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านรับทำป้ายและสื่อโฆษณา"
+      },
+      {
+        "id": "p31",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Coffee ร้านกาแฟ"
+      },
+      {
+        "id": "p32",
+        "group": "health",
+        "confidence": "high",
+        "reason": "เนอร์สซิงโฮมดูแลผู้สูงอายุ จัดเป็นบริการสุขภาพ"
+      },
+      {
+        "id": "p33",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ศาลเจ้า ศาสนสถาน จัดเป็น other"
+      },
+      {
+        "id": "p34",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวเรือ"
+      },
+      {
+        "id": "p35",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวลูกชิ้นปลา"
+      },
+      {
+        "id": "p36",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านไก่ทอดเดชา"
+      },
+      {
+        "id": "p37",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารแนวคาเฟ่ที่มีข้าวปลา"
+      },
+      {
+        "id": "p38",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านสักลาย บริการความงามและร่างกาย"
+      },
+      {
+        "id": "p39",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน จัดเป็นสำนักงาน"
+      },
+      {
+        "id": "p40",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผมชาย บริการส่วนบุคคล"
+      },
+      {
+        "id": "p41",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "บิ๊กซีมินิ ร้านสะดวกซื้อ"
+      },
+      {
+        "id": "p42",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายเป็ดย่างฮ่องกง"
+      },
+      {
+        "id": "p43",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ภาควิชาวิศวกรรมศาสตร์ในมหาวิทยาลัย"
+      },
+      {
+        "id": "p44",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านบะหมี่เกี๊ยว"
+      },
+      {
+        "id": "p45",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านข้าวแกงกะหรี่ญี่ปุ่น"
+      },
+      {
+        "id": "p46",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุว่าเป็น Cafe"
+      },
+      {
+        "id": "p47",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกศัลยกรรมความงาม"
+      },
+      {
+        "id": "p48",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ศูนย์บริการรถยนต์หรือโชว์รูม"
+      },
+      {
+        "id": "p49",
+        "group": "food",
+        "confidence": "high",
+        "reason": "โรงอาหาร จัดเป็นสถานที่จำหน่ายอาหาร"
+      },
+      {
+        "id": "p50",
+        "group": "other",
+        "confidence": "medium",
+        "reason": "ชุมชนที่อยู่อาศัย ไม่เข้ากลุ่มใดชัดเจน"
+      },
+      {
+        "id": "p51",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทจำกัด จัดเป็นสำนักงาน"
+      },
+      {
+        "id": "p52",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p53",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ศูนย์หนังสือ ร้านขายหนังสือ"
+      },
+      {
+        "id": "p54",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ เซเว่นอีเลฟเว่น"
+      },
+      {
+        "id": "p55",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านเครื่องดื่มมะพร้าวและของหวาน"
+      },
+      {
+        "id": "p56",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทจำกัด จัดเป็นสำนักงาน"
+      },
+      {
+        "id": "p57",
+        "group": "dormitory",
+        "confidence": "medium",
+        "reason": "ที่พักอาศัยบ้านพักหรืออพาร์ตเมนต์"
+      },
+      {
+        "id": "p58",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านเบอร์เกอร์ จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p59",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "แว่นท็อปเจริญ ร้านขายแว่นตา"
+      },
+      {
+        "id": "p60",
+        "group": "other",
+        "confidence": "high",
+        "reason": "มัสยิด ศาสนสถาน จัดเป็น other"
+      },
+      {
+        "id": "p61",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดระบุว่าเป็นร้านอาหาร"
+      },
+      {
+        "id": "p62",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านส้มตำไก่ย่าง"
+      },
+      {
+        "id": "p63",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันกวดวิชา Tutor"
+      },
+      {
+        "id": "p64",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุว่าเป็นหมู่บ้านจัดสรร"
+      },
+      {
+        "id": "p65",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายข้าวหมูทอด"
+      },
+      {
+        "id": "p66",
+        "group": "food",
+        "confidence": "high",
+        "reason": "สตรีทฟู้ด ร้านอาหารริมทาง"
+      },
+      {
+        "id": "p67",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านยำแซ่บ อาหารฮาลาล"
+      },
+      {
+        "id": "p68",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านเสริมสวยซาลอน"
+      },
+      {
+        "id": "p69",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านขายนมสดและของหวาน"
+      },
+      {
+        "id": "p70",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านขายนมสดและของหวาน"
+      },
+      {
+        "id": "p71",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกความงามหรือเวชกรรม"
+      },
+      {
+        "id": "p72",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "ร้านชานมหมี Sha Bear"
+      },
+      {
+        "id": "p73",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกทันตกรรม จัดเป็นสถานพยาบาล"
+      },
+      {
+        "id": "p74",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการกดสิวและดูแลผิวหน้า"
+      },
+      {
+        "id": "p75",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายอุปกรณ์กีฬา"
+      },
+      {
+        "id": "p76",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านคาร์แคร์ ล้างรถ"
+      },
+      {
+        "id": "p77",
+        "group": "retail",
+        "confidence": "low",
+        "reason": "หมวดระบุบริการความงาม ข้อมูลน้อย"
+      },
+      {
+        "id": "p78",
+        "group": "education",
+        "confidence": "high",
+        "reason": "คณะวิทยาศาสตร์และเทคโนโลยี ในมหาวิทยาลัย"
+      },
+      {
+        "id": "p79",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ผู้ผลิตหรือโรงงานจำหน่ายน้ำ จัดเป็น office"
+      },
+      {
+        "id": "p80",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านรับซื้อของเก่าหรือเศษวัสดุ"
+      }
+    ]
+  },
+  "createdAt": "2026-10-17T13:08:13.509Z"
+}

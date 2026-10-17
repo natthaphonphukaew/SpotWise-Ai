@@ -1,0 +1,200 @@
+{
+  "created": "2026-10-17T13:12:21.468Z",
+  "model": "gemini-3.8-flash",
+  "n": 351,
+  "rule_accuracy": 0.949,
+  "ai_accuracy": 0.866,
+  "rule_accuracy_lenient": 0.957,
+  "ai_accuracy_lenient": 0.903,
+  "ai_labeled": "1360/1931",
+  "fixed_by_ai": 6,
+  "broken_by_ai": 35,
+  "confusion": {
+    "rule": {
+      "food→food": 291,
+      "food→drink": 14,
+      "drink→drink": 37,
+      "service→other": 3,
+      "service→service": 5,
+      "food→other": 1
+    },
+    "ai": {
+      "food→other": 15,
+      "food→drink": 26,
+      "food→food": 262,
+      "drink→drink": 34,
+      "service→service": 8,
+      "drink→service": 1,
+      "food→service": 3,
+      "drink→other": 1,
+      "drink→food": 1
+    }
+  },
+  "examples_fixed": [
+    {
+      "name": "ซัก อบ รีด Ms.Laundry",
+      "truth": "service",
+      "rule": "other",
+      "ai": "service",
+      "reason": "ร้านบริการซักอบรีด"
+    },
+    {
+      "name": "Cafe & Restaurant",
+      "truth": "food",
+      "rule": "drink",
+      "ai": "food",
+      "reason": "ร้านอาหาร"
+    },
+    {
+      "name": "Whitehouse DryClean Basket",
+      "truth": "service",
+      "rule": "other",
+      "ai": "service",
+      "reason": "ชื่อระบุเป็นบริการซักแห้งซักรีด"
+    },
+    {
+      "name": "Dwash",
+      "truth": "service",
+      "rule": "other",
+      "ai": "service",
+      "reason": "ร้านล้างรถคาร์แคร์"
+    },
+    {
+      "name": "ปราณี ขนมจีน & ข้าวซอย",
+      "truth": "food",
+      "rule": "drink",
+      "ai": "food",
+      "reason": "ร้านอาหารขนมจีนและข้าวซอย"
+    },
+    {
+      "name": "The Road Burger x Masha Cafe",
+      "truth": "food",
+      "rule": "drink",
+      "ai": "food",
+      "reason": "ร้านเบอร์เกอร์และคาเฟ่"
+    }
+  ],
+  "examples_broken": [
+    {
+      "name": "Help Health",
+      "truth": "food",
+      "rule": "food",
+      "ai": "other",
+      "aiGroup": "health",
+      "reason": "ชื่อ Help Health เกี่ยวข้องกับสุขภาพ"
+    },
+    {
+      "name": "SK-Secret Nail Salon",
+      "truth": "drink",
+      "rule": "drink",
+      "ai": "service",
+      "aiGroup": "retail",
+      "reason": "ร้านทำเล็บ Nail Salon"
+    },
+    {
+      "name": "ร้านประจักษ์ผลไม้",
+      "truth": "food",
+      "rule": "food",
+      "ai": "service",
+      "aiGroup": "retail",
+      "reason": "ร้านขายผลไม้สด"
+    },
+    {
+      "name": "กล้วยปิ้งลิงเกาะ บาย มาดามอ้น",
+      "truth": "food",
+      "rule": "food",
+      "ai": "drink",
+      "aiGroup": "drink_dessert",
+      "reason": "ร้านขายกล้วยปิ้งของหวาน"
+    },
+    {
+      "name": "The Milk บ้ๅนสวนธน",
+      "truth": "food",
+      "rule": "food",
+      "ai": "drink",
+      "aiGroup": "drink_dessert",
+      "reason": "ร้านขายนมและเครื่องดื่มของหวาน"
+    },
+    {
+      "name": "เฉาก๊วยนมสด By Doomilk Audio",
+      "truth": "food",
+      "rule": "food",
+      "ai": "drink",
+      "aiGroup": "drink_dessert",
+      "reason": "ร้านเฉาก๊วยนมสดของหวาน"
+    },
+    {
+      "name": "HR Safe Facility",
+      "truth": "food",
+      "rule": "food",
+      "ai": "other",
+      "aiGroup": "office",
+      "reason": "ชื่อสื่อถึงหน่วยงานหรือสำนักงาน"
+    },
+    {
+      "name": "ละม น เดอ คาเฟ",
+      "truth": "food",
+      "rule": "food",
+      "ai": "drink",
+      "aiGroup": "coffee",
+      "reason": "ชื่อระบุว่าเป็นคาเฟ่"
+    },
+    {
+      "name": "พระราม 2 พุธทบุชา",
+      "truth": "drink",
+      "rule": "drink",
+      "ai": "other",
+      "aiGroup": "other",
+      "reason": "ชื่อเป็นชื่อทำเลข้อมูลไม่ชัดเจน"
+    },
+    {
+      "name": "หมู่บ้านสวนกล้วยไม้ ซอยพุทธบูชา39",
+      "truth": "food",
+      "rule": "food",
+      "ai": "other",
+      "aiGroup": "dormitory",
+      "reason": "ชื่อระบุว่าเป็นหมู่บ้านจัดสรร"
+    },
+    {
+      "name": "โย๊ตจัง บัวลอยไข่หวาน",
+      "truth": "food",
+      "rule": "food",
+      "ai": "drink",
+      "aiGroup": "drink_dessert",
+      "reason": "ชื่อระบุร้านบัวลอยไข่หวาน ขนมหวาน"
+    },
+    {
+      "name": "PM Powder Coat",
+      "truth": "food",
+      "rule": "food",
+      "ai": "service",
+      "aiGroup": "retail",
+      "reason": "บริการพ่นสีเพาเดอร์โค้ท"
+    },
+    {
+      "name": "สวนหมาก",
+      "truth": "food",
+      "rule": "food",
+      "ai": "other",
+      "aiGroup": "market",
+      "reason": "สวนหมาก ศูนย์อาหารและตลาดนัด"
+    },
+    {
+      "name": "โบรา โคเรียน มาร์ท Bora Korean Mart สาขาบางมด",
+      "truth": "food",
+      "rule": "food",
+      "ai": "other",
+      "aiGroup": "convenience",
+      "reason": "ร้านมินิมาร์ทสินค้าเกาหลี"
+    },
+    {
+      "name": "สำนักงานทนายความสมุทร โพธิ์ไทย",
+      "truth": "food",
+      "rule": "food",
+      "ai": "other",
+      "aiGroup": "office",
+      "reason": "สำนักงานทนายความ"
+    }
+  ],
+  "caveat": "ความจริงอ้างอิงคือหมวดใน CampusSpot (คาเฟ่/อาหาร/บริการ) ซึ่งคัดจากหมวดของ Overture เอง จึงเอนเข้าหาวิธีกฎ (กฎก็อ่านหมวด Overture) และไม่มีหมวดของหวาน ใช้เป็นตัวชี้วัดคร่าวๆ เท่านั้น ต้องมีชุดที่ label ด้วยมือ (SPEC §9.2) จึงจะสรุปได้"
+}

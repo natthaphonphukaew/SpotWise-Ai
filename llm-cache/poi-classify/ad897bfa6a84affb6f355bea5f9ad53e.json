@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:9d45497f-0716-4971-967a-21673fe8d134"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Jollycoffee กาแฟและเบเกิล"
+      },
+      {
+        "id": "p2",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Clinic คลินิกเสริมความงาม/สุขภาพ"
+      },
+      {
+        "id": "p3",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุบริษัทการช่าง"
+      },
+      {
+        "id": "p4",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ชื่อระบุเอ็มโพเรียมขายเครื่องจักร"
+      },
+      {
+        "id": "p5",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการคาร์แคร์ล้างรถ"
+      },
+      {
+        "id": "p6",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "อุทยานแห่งชาติ สถานที่ท่องเที่ยวพักผ่อน"
+      },
+      {
+        "id": "p7",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผมบาร์เบอร์และซาลอน"
+      },
+      {
+        "id": "p8",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "คาเฟ่ อเมซอน ร้านกาแฟ"
+      },
+      {
+        "id": "p9",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านบัวลอยไข่หวาน ขนมหวาน"
+      },
+      {
+        "id": "p10",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ชื่อระบุบ้านข้าวกล้อง ร้านอาหาร"
+      },
+      {
+        "id": "p11",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "คลับสนุกเกอร์ สถานที่สันทนาการ"
+      },
+      {
+        "id": "p12",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p13",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านหม่าล่า บาร์เบียร์ อาหาร"
+      },
+      {
+        "id": "p14",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านเสริมสวย Salon"
+      },
+      {
+        "id": "p15",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำเล็บ Nail Salon"
+      },
+      {
+        "id": "p16",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวเย็นตาโฟ"
+      },
+      {
+        "id": "p17",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุหอพักหญิง"
+      },
+      {
+        "id": "p18",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ศูนย์กู้ภัยมูลนิธิป่อเต็กตึ๊ง"
+      },
+      {
+        "id": "p19",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สนามกีฬาเฉลิมพระเกียรติ บางมด"
+      },
+      {
+        "id": "p20",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านครัวข้าวต้ม 1 บาท"
+      },
+      {
+        "id": "p21",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "อู่ซ่อมรถ บริการซ่อมรถ"
+      },
+      {
+        "id": "p22",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทขนส่งและบริการ"
+      },
+      {
+        "id": "p23",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านส้มตำ อาหารอีสาน"
+      },
+      {
+        "id": "p24",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารเวียดนาม"
+      },
+      {
+        "id": "p25",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกรักษาสัตว์และบริการสัตว์เลี้ยง"
+      },
+      {
+        "id": "p26",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ขายแหนมปลากราย อาหาร"
+      },
+      {
+        "id": "p27",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านข้าวต้มแห้ง"
+      },
+      {
+        "id": "p28",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายอุปกรณ์กีฬาแบดมินตัน"
+      },
+      {
+        "id": "p29",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านอาหาร บ้านโขทัย"
+      },
+      {
+        "id": "p30",
+        "group": "education",
+        "confidence": "medium",
+        "reason": "โรงเรียนสอนเทควันโด สถาบันฝึกอบรม"
+      },
+      {
+        "id": "p31",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ศูนย์บริการยางรถยนต์และยานยนต์"
+      },
+      {
+        "id": "p32",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายและรับทำผ้าม่าน"
+      },
+      {
+        "id": "p33",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ คาเฟ่ More Cafe"
+      },
+      {
+        "id": "p34",
+        "group": "food",
+        "confidence": "high",
+        "reason": "บาร์และบิสโทร ร้านอาหาร"
+      },
+      {
+        "id": "p35",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ศูนย์บริการซ่อมรถมอเตอร์ไซค์/รถยนต์"
+      },
+      {
+        "id": "p36",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุแมนชัน ที่อยู่อาศัย"
+      },
+      {
+        "id": "p37",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันการศึกษาระดับบัณฑิตวิทยาลัย JGSEE"
+      },
+      {
+        "id": "p38",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p39",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "สตูดิโอถ่ายภาพและบริการแต่งหน้า"
+      },
+      {
+        "id": "p40",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวเรือ"
+      },
+      {
+        "id": "p41",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัท ซัคซีส โมเดล จำกัด"
+      },
+      {
+        "id": "p42",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกทันตกรรม Dental Clinic"
+      },
+      {
+        "id": "p43",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านข้าวต้มเครื่องและยำ"
+      },
+      {
+        "id": "p44",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ลานแอโรบิก ออกกำลังกาย พักผ่อน"
+      },
+      {
+        "id": "p45",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านโกโก้หนึบ ขนมเครื่องดื่ม"
+      },
+      {
+        "id": "p46",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านบริการเสริมความงาม อายตานิค"
+      },
+      {
+        "id": "p47",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านข้าวมันไก่"
+      },
+      {
+        "id": "p48",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านรับพิมพ์ลาย ออกแบบสิ่งพิมพ์"
+      },
+      {
+        "id": "p49",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านตัดผม ซาลอน Cut Theory"
+      },
+      {
+        "id": "p50",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผมชาย Barber Shop"
+      },
+      {
+        "id": "p51",
+        "group": "dormitory",
+        "confidence": "medium",
+        "reason": "ชื่อโครงการคอนโดหรือที่พักอาศัย"
+      },
+      {
+        "id": "p52",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านสุกี้หม้อไฟ"
+      },
+      {
+        "id": "p53",
+        "group": "education",
+        "confidence": "medium",
+        "reason": "ห้องปฏิบัติการวิจัย สถาบันศึกษา"
+      },
+      {
+        "id": "p54",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำเล็บ Nail salon"
+      },
+      {
+        "id": "p55",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกเวชกรรม เลเซอร์"
+      },
+      {
+        "id": "p56",
+        "group": "education",
+        "confidence": "high",
+        "reason": "หน่วยงานรับสมัคร มหาวิทยาลัย KMUTT"
+      },
+      {
+        "id": "p57",
+        "group": "education",
+        "confidence": "medium",
+        "reason": "สถาบันการเรียนรู้ กวดวิชา พัฒนาการ"
+      },
+      {
+        "id": "p58",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านอาหารสไตล์แคมป์ Isaac Camp"
+      },
+      {
+        "id": "p59",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p60",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านหม่าล่าปีชง"
+      },
+      {
+        "id": "p61",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหาร ครัวอีสาน"
+      },
+      {
+        "id": "p62",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ห้างหุ้นส่วนจำกัด บริษัทท่องเที่ยวค้าขาย"
+      },
+      {
+        "id": "p63",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุหมู่บ้านจัดสรร ที่อยู่อาศัย"
+      },
+      {
+        "id": "p64",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน"
+      },
+      {
+        "id": "p65",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุอพาร์ตเมนต์"
+      },
+      {
+        "id": "p66",
+        "group": "dormitory",
+        "confidence": "medium",
+        "reason": "หมวดระบุ lodging ที่พักอาศัย"
+      },
+      {
+        "id": "p67",
+        "group": "coffee",
+        "confidence": "low",
+        "reason": "ชื่อไม่ชัดเจน หมวดระบุคาเฟ่"
+      },
+      {
+        "id": "p68",
+        "group": "other",
+        "confidence": "high",
+        "reason": "สถานธรรม สถานที่ทางศาสนา"
+      },
+      {
+        "id": "p69",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ห้างทอง ร้านขายทอง"
+      },
+      {
+        "id": "p70",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "ชื่อระบุชานมไข่มุก Bubb ไข่มุก"
+      },
+      {
+        "id": "p71",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดระบุร้านอาหาร กระดานชนวน"
+      },
+      {
+        "id": "p72",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านจำหน่ายอุปกรณ์อิเล็กทรอนิกส์"
+      },
+      {
+        "id": "p73",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านจำหน่ายหรือซ่อมรถมอเตอร์ไซค์"
+      },
+      {
+        "id": "p74",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ห้างหุ้นส่วนจำกัดงานวิศวกรรม"
+      },
+      {
+        "id": "p75",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวไก่"
+      },
+      {
+        "id": "p76",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ชื่อระบุร้านเพชร/อัญมณี Diamond"
+      },
+      {
+        "id": "p77",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุแมนชั่น ที่พักอาศัย"
+      },
+      {
+        "id": "p78",
+        "group": "retail",
+        "confidence": "low",
+        "reason": "ชื่อปะการัง/ตู้ปลา ข้อมูลไม่ชัดเจน"
+      },
+      {
+        "id": "p79",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านเนื้อตุ๋น หมูตุ๋น อาหาร"
+      },
+      {
+        "id": "p80",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุโฮมคาเฟ่ Home cafe"
+      }
+    ]
+  },
+  "createdAt": "2026-10-17T13:07:30.080Z"
+}

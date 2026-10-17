@@ -10,7 +10,9 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "classify:poi": "tsx scripts/classify-poi.ts",
+    "eval:poi": "tsx scripts/eval-poi.ts"
   },
   "dependencies": {
     "@google/genai": "^2.30.0",
@@ -29,6 +31,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^3.2.7"
   }

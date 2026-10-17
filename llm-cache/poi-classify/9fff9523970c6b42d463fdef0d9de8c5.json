@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:72b13b0e-d018-463c-b43c-dc8c22c71e23"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ภาควิชาวิศวกรรมในมหาวิทยาลัย KMUTT"
+      },
+      {
+        "id": "p2",
+        "group": "health",
+        "confidence": "medium",
+        "reason": "ชื่อ Help Health เกี่ยวข้องกับสุขภาพ"
+      },
+      {
+        "id": "p3",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดระบุ restaurant ประเภทร้านอาหาร"
+      },
+      {
+        "id": "p4",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุกาแฟสดชัดเจน"
+      },
+      {
+        "id": "p5",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านบะหมี่ชัดเจน"
+      },
+      {
+        "id": "p6",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุก๋วยเตี๋ยวเนื้อชัดเจน"
+      },
+      {
+        "id": "p7",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดระบุอาหาร food"
+      },
+      {
+        "id": "p8",
+        "group": "drink_dessert",
+        "confidence": "low",
+        "reason": "ข้อมูลไม่พอ จึงคงกลุ่มเดิม drink_dessert"
+      },
+      {
+        "id": "p9",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "แม็คโคร ห้างค้าปลีกค้าส่งซูเปอร์มาร์เก็ต"
+      },
+      {
+        "id": "p10",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุสเต็กจานร้อนชัดเจน"
+      },
+      {
+        "id": "p11",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุบุฟเฟ่ต์ชัดเจน"
+      },
+      {
+        "id": "p12",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "หมวดผู้ผลิต manufacturer เป็นโรงงานสำนักงาน"
+      },
+      {
+        "id": "p13",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ชื่อและข้อมูลไม่ชัดเจน คงกลุ่ม other"
+      },
+      {
+        "id": "p14",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุ บริษัท จำกัด ชัดเจน"
+      },
+      {
+        "id": "p15",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Moo Baan (หมู่บ้าน)"
+      },
+      {
+        "id": "p16",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Gym ฟิตเนสออกกำลังกาย"
+      },
+      {
+        "id": "p17",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ศาลเจ้าแม่ทับทิม ศาสนสถาน"
+      },
+      {
+        "id": "p18",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดดิบระบุ restaurant ร้านอาหาร"
+      },
+      {
+        "id": "p19",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "7-Eleven ร้านสะดวกซื้อ"
+      },
+      {
+        "id": "p20",
+        "group": "office",
+        "confidence": "high",
+        "reason": "สำนักงานนิติบุคคล เป็นสำนักงาน"
+      },
+      {
+        "id": "p21",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายหมูสดในตลาด"
+      },
+      {
+        "id": "p22",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุสเต็กและอาหารอีสานชัดเจน"
+      },
+      {
+        "id": "p23",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ขายเสื้อและสบู่ เป็นร้านค้าปลีก"
+      },
+      {
+        "id": "p24",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ชื่อร้านอาหารและหมวด restaurant"
+      },
+      {
+        "id": "p25",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ป้ายรถเมล์หรือจุดจอดรถโดยสาร"
+      },
+      {
+        "id": "p26",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านอาหารอินเดียชัดเจน"
+      },
+      {
+        "id": "p27",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "หมวดระบุ electronics_store ร้านอุปกรณ์อิเล็กทรอนิกส์"
+      },
+      {
+        "id": "p28",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Steak ร้านอาหารสเต็ก"
+      },
+      {
+        "id": "p29",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุก๋วยเตี๋ยวไก่ชัดเจน"
+      },
+      {
+        "id": "p30",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Steak ร้านอาหารสเต็ก"
+      },
+      {
+        "id": "p31",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ช่างทำผม บริการเสริมสวย"
+      },
+      {
+        "id": "p32",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "7-11 ร้านสะดวกซื้อ"
+      },
+      {
+        "id": "p33",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "บริการขนส่งพัสดุ เป็นร้านบริการค้าปลีก"
+      },
+      {
+        "id": "p34",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านอาหารต้มตำยำ"
+      },
+      {
+        "id": "p35",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุส้มตำชัดเจน"
+      },
+      {
+        "id": "p36",
+        "group": "food",
+        "confidence": "high",
+        "reason": "โฮเด้ง แบรนด์ลูกชิ้น/ก๋วยเตี๋ยวเนื้อ"
+      },
+      {
+        "id": "p37",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านค้าไม้ ขายวัสดุก่อสร้าง"
+      },
+      {
+        "id": "p38",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุหม้อไฟ ร้านอาหาร"
+      },
+      {
+        "id": "p39",
+        "group": "food",
+        "confidence": "high",
+        "reason": "บาร์และร้านอาหารนั่งดื่ม"
+      },
+      {
+        "id": "p40",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หมวด lodging และชื่อ house ที่พักอาศัย"
+      },
+      {
+        "id": "p41",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุวิลล่า หมวดที่พักอาศัย"
+      },
+      {
+        "id": "p42",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุลาบ ร้านอาหารอีสาน"
+      },
+      {
+        "id": "p43",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุอพาร์ทเม้นท์ชัดเจน"
+      },
+      {
+        "id": "p44",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุภาควิชาในมหาวิทยาลัยชัดเจน"
+      },
+      {
+        "id": "p45",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุผัดไทยชัดเจน"
+      },
+      {
+        "id": "p46",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุลาบเป็ดชัดเจน"
+      },
+      {
+        "id": "p47",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ภาควิชาวิศวกรรมไฟฟ้า KMUTT ชัดเจน"
+      },
+      {
+        "id": "p48",
+        "group": "education",
+        "confidence": "medium",
+        "reason": "หน่วยงานศูนย์นวัตกรรมของ KMUTT"
+      },
+      {
+        "id": "p49",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุติวเตอร์ สถาบันกวดวิชา"
+      },
+      {
+        "id": "p50",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุสถานีอนามัย หน่วยบริการสุขภาพ"
+      },
+      {
+        "id": "p51",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "หมวดระบุ vehicle_parts_store ร้านขายอะไหล่รถยนต์"
+      },
+      {
+        "id": "p52",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ศูนย์บริการสาธารณสุข หน่วยงานสุขภาพ"
+      },
+      {
+        "id": "p53",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Food Center ศูนย์อาหาร"
+      },
+      {
+        "id": "p54",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุปลาหมึกย่างชัดเจน"
+      },
+      {
+        "id": "p55",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุติวเตอร์ สถาบันกวดวิชา"
+      },
+      {
+        "id": "p56",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "อู่ซ่อมรถเบนซ์ บริการซ่อมรถ"
+      },
+      {
+        "id": "p57",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "คาเฟ่ อเมซอน ร้านกาแฟ"
+      },
+      {
+        "id": "p58",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ปั๊มน้ำมันปิโตรนาส บริการเติมน้ำมัน"
+      },
+      {
+        "id": "p59",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ขายข้าวเหนียวมูน มะม่วง สังขยา ของหวาน"
+      },
+      {
+        "id": "p60",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "สิริเพลส โครงการทาวน์โฮมที่อยู่อาศัย"
+      },
+      {
+        "id": "p61",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ผู้ผลิตบรรจุภัณฑ์ โรงงานหรือบริษัท"
+      },
+      {
+        "id": "p62",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุอพาร์ทเมนท์ชัดเจน"
+      },
+      {
+        "id": "p63",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ขนมโตเกียว หมวดร้านอาหาร"
+      },
+      {
+        "id": "p64",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ชื่อระบุข้าวเหนียวมะม่วง ของหวาน"
+      },
+      {
+        "id": "p65",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "อาคารสัมมนา อาคารจัดประชุม"
+      },
+      {
+        "id": "p66",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผมและเสริมสวย บริการค้าปลีก"
+      },
+      {
+        "id": "p67",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายและติดตั้งเครื่องเสียง"
+      },
+      {
+        "id": "p68",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุชาบูชัดเจน"
+      },
+      {
+        "id": "p69",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "หมวด coffee_shop ร้านกาแฟ"
+      },
+      {
+        "id": "p70",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "The Cube โครงการคอนโดมิเนียม"
+      },
+      {
+        "id": "p71",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านกรูมมิ่งอาบน้ำตัดขนสัตว์เลี้ยง"
+      },
+      {
+        "id": "p72",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "Beauty Parlor ร้านเสริมสวย"
+      },
+      {
+        "id": "p73",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ชื่อระบุสระว่ายน้ำ สถานที่กีฬาพักผ่อน"
+      },
+      {
+        "id": "p74",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "คาเฟ่เครื่องดื่มกาแฟ"
+      },
+      {
+        "id": "p75",
+        "group": "education",
+        "confidence": "high",
+        "reason": "โรงเรียนสอนขับรถยนต์ สถานศึกษา"
+      },
+      {
+        "id": "p76",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านเสื้อผ้าไซส์ใหญ่"
+      },
+      {
+        "id": "p77",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุหมู่บ้านชัดเจน"
+      },
+      {
+        "id": "p78",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Grill ประเภทร้านปิ้งย่างอาหาร"
+      },
+      {
+        "id": "p79",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "โลตัสเอ็กเพรส ร้านสะดวกซื้อซูเปอร์มาร์เก็ต"
+      },
+      {
+        "id": "p80",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุสารพัดตำและยำ ร้านอาหาร"
+      }
+    ]
+  },
+  "createdAt": "2026-10-17T13:05:34.905Z"
+}

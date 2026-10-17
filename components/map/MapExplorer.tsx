@@ -23,11 +23,13 @@ import {
   thaiShortDate,
   type Candidate,
   type DatasetInfo,
+  type PoiAiFile,
   type Manifest,
   type PoiGroup,
   type PoiProps,
   VERIFICATION,
 } from "@/lib/data/bangmod";
+import { applyAiLabels } from "@/lib/data/ai-labels";
 import { countByGroup, findIsochrone, type IsochroneFC, type PoiFC } from "@/lib/geo/catchment";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import Link from "next/link";
@@ -49,6 +51,7 @@ const poiFilter = (role: Role, verifiedOnly: boolean, roles: Record<PoiGroup, Ro
     : byRole(role, roles)) as unknown as ExpressionSpecification;
 // Uncertainty stays visible: single-source (unverified) places are drawn faded.
 const certainty = ["case", ["==", ["get", "verification"], "unverified"], 0.4, 1] as unknown as ExpressionSpecification;
+const AI_CONFIDENCE = { high: "มั่นใจสูง", medium: "มั่นใจปานกลาง", low: "ไม่แน่ใจ" } as const;
 const DEFAULT_COUNT_ROWS: PoiGroup[] = ["bubble_tea", "coffee", "drink_dessert", "education", "dormitory", "office"];
 const SYNERGY_SWATCH: Partial<Record<PoiGroup, string>> = {
   education: "bg-edu", dormitory: "bg-pop-2", office: "bg-civic", market: "bg-pop-3", leisure: "bg-park",
@@ -60,6 +63,7 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
   const markersRef = useRef<Marker[]>([]);
   const [ready, setReady] = useState(false);
   const [data, setData] = useState<Data | null>(null);
+  const [ai, setAi] = useState<PoiAiFile | null>(null);
   const [cand, setCand] = useState(candidates.find((c) => c.id === "B")?.id ?? candidates[0]?.id);
   const [poi, setPoi] = useState<PoiProps | null>(null);
   const [layers, setLayers] = useState<Layers>({ population: true, context: false, verifiedOnly: false });
@@ -101,11 +105,17 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
     map.addControl(new ScaleControl({ unit: "metric" }), "bottom-left");
 
     const load = (f: string) => fetch(`${DATA_BASE}/${f}`).then((r) => r.json());
-    const dataP = Promise.all([load("poi.geojson"), load("isochrones.geojson"), load("transit.geojson"), load("campus.geojson")]);
+    // AI labels are optional: without poi_ai.json the map falls back to rule-based groups.
+    const loadAi = fetch(`${DATA_BASE}/poi_ai.json`).then((r) => (r.ok ? (r.json() as Promise<PoiAiFile>) : null)).catch(() => null);
+    const dataP = Promise.all([load("poi.geojson"), load("isochrones.geojson"), load("transit.geojson"), load("campus.geojson"), loadAi]);
 
     // style.load (not load): add our layers as soon as the style is parsed, without waiting for every tile.
     map.once("style.load", async () => {
-      const [poiFc, isoFc, transitFc, campusFc] = (await dataP) as [PoiFC, IsochroneFC, FeatureCollection<Point>, FeatureCollection];
+      const [rawPoi, isoFc, transitFc, campusFc, aiFile] = (await dataP) as [
+        PoiFC, IsochroneFC, FeatureCollection<Point>, FeatureCollection, PoiAiFile | null,
+      ];
+      const poiFc = applyAiLabels(rawPoi, aiFile);
+      setAi(aiFile);
       restyleBasemap(map);
 
       const ink = cssVar("--color-ink");
@@ -333,7 +343,12 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
               </tbody>
             </table>
             <p className="mt-2 text-xs leading-relaxed text-ink-3">
-              นับจากข้อมูลเปิด {poiDs ? `(${sourceNames(manifest, poiDs)} · ${thaiShortDate(poiDs.fetched)})` : ""} จัดกลุ่มด้วยกฎเบื้องต้น ยังไม่ผ่าน AI ·
+              นับจากข้อมูลเปิด {poiDs ? `(${sourceNames(manifest, poiDs)} · ${thaiShortDate(poiDs.fetched)})` : ""}{" "}
+              {ai
+                ? `จัดกลุ่มโดย AI (${ai.model}) ในรัศมี ${(ai.radius_m / 1000).toFixed(1)} กม. รอบ มจธ.${
+                    ai.complete ? "" : ` (ได้แล้ว ${ai.count.toLocaleString("en-US")} จาก ${ai.total.toLocaleString("en-US")} จุด เพราะโควตาฟรีรายวันหมด)`
+                  } ที่เหลือใช้กฎเบื้องต้น ·`
+                : "จัดกลุ่มด้วยกฎเบื้องต้น ยังไม่ผ่าน AI ·"}
               พื้นที่เดินถึงเป็น<span className="font-medium text-ink-2">ค่าประมาณ</span> (เดิน 75 ม./นาที ตามเครือข่ายทางเดิน OSM)
             </p>
           </Section>
@@ -414,7 +429,16 @@ function Evidence({ poi, manifest, onClose }: { poi: PoiProps; manifest: Manifes
   const ds = manifest.datasets.poi;
   const rows: [string, React.ReactNode][] = [
     ["ชื่อ", poi.name + (poi.name_en ? ` · ${poi.name_en}` : "")],
-    ["กลุ่ม", `${GROUPS[poi.group]?.label ?? poi.group} (กฎเบื้องต้น)`],
+    ["กลุ่ม", poi.group_source === "ai" ? (
+      <span key="g">
+        {GROUPS[poi.group]?.label ?? poi.group}{" "}
+        <span className="font-mono text-[11px] text-ink-3">AI · {AI_CONFIDENCE[poi.ai_confidence ?? "low"]}</span>
+        <span className="block text-xs text-ink-2">{poi.ai_reason}</span>
+        {poi.rule_group && poi.rule_group !== poi.group && (
+          <span className="block text-xs text-ink-3">กฎเดิมจัดเป็น {GROUPS[poi.rule_group]?.label}</span>
+        )}
+      </span>
+    ) : `${GROUPS[poi.group]?.label ?? poi.group} (กฎเบื้องต้น)`],
     ["หมวดดิบ", <span key="c" className="font-mono text-[13px]">{poi.category ?? "—"}</span>],
     ["แหล่ง", src?.name ?? poi.source],
     ["การตรวจ", (

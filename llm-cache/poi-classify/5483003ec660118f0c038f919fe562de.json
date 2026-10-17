@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:5037e226-981a-4a5d-bbda-6aff38a724bb"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านค้าส่งผ้า"
+      },
+      {
+        "id": "p2",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกรักษาสัตว์"
+      },
+      {
+        "id": "p3",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟแบรนด์ดัง"
+      },
+      {
+        "id": "p4",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "คอนโดมิเนียมที่พักอาศัย"
+      },
+      {
+        "id": "p5",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "บริษัทหรือโรงงานอุตสาหกรรม"
+      },
+      {
+        "id": "p6",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หอพักนักศึกษา"
+      },
+      {
+        "id": "p7",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ชมรมกีฬาเปตอง"
+      },
+      {
+        "id": "p8",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหาร"
+      },
+      {
+        "id": "p9",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สนามกีฬาฟุตบอลหญ้าเทียม"
+      },
+      {
+        "id": "p10",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารอีสานลาบเป็ด"
+      },
+      {
+        "id": "p11",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ตู้เบิกเงินสดเอทีเอ็ม"
+      },
+      {
+        "id": "p12",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านเสริมสวยและทำผม"
+      },
+      {
+        "id": "p13",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านเบเกอรี่ขนมปัง"
+      },
+      {
+        "id": "p14",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "โชว์รูมและศูนย์บริการรถยนต์"
+      },
+      {
+        "id": "p15",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทรักษาความปลอดภัย"
+      },
+      {
+        "id": "p16",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวบะหมี่"
+      },
+      {
+        "id": "p17",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ชื่อซอยหรือถนน"
+      },
+      {
+        "id": "p18",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกเวชกรรม"
+      },
+      {
+        "id": "p19",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านข้าวแกงปักษ์ใต้"
+      },
+      {
+        "id": "p20",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟนมสด"
+      },
+      {
+        "id": "p21",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายอาหารเกี๊ยวซ่า"
+      },
+      {
+        "id": "p22",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารตามสั่ง"
+      },
+      {
+        "id": "p23",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารส้มตำ"
+      },
+      {
+        "id": "p24",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "อาคารชุดคอนโดมิเนียม"
+      },
+      {
+        "id": "p25",
+        "group": "other",
+        "confidence": "high",
+        "reason": "สถานีบริการน้ำมัน"
+      },
+      {
+        "id": "p26",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวเรือ"
+      },
+      {
+        "id": "p27",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายและติดตั้งกล้องวงจรปิด"
+      },
+      {
+        "id": "p28",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านคาเฟ่กาแฟ"
+      },
+      {
+        "id": "p29",
+        "group": "food",
+        "confidence": "low",
+        "reason": "ข้อมูลไม่พอ คงกลุ่มเดิมตามหมวดดิบ"
+      },
+      {
+        "id": "p30",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวปลา"
+      },
+      {
+        "id": "p31",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารสุกี้หม่าล่า"
+      },
+      {
+        "id": "p32",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายข้าวแกง"
+      },
+      {
+        "id": "p33",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านค้าปลีกสะดวกซื้อโลตัส"
+      },
+      {
+        "id": "p34",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟคาเฟ่"
+      },
+      {
+        "id": "p35",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "อู่ทำสีรถยนต์"
+      },
+      {
+        "id": "p36",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านข้าวมันไก่"
+      },
+      {
+        "id": "p37",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารข้าวแกง"
+      },
+      {
+        "id": "p38",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายกล้องและอุปกรณ์"
+      },
+      {
+        "id": "p39",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารขนมจีนและข้าวซอย"
+      },
+      {
+        "id": "p40",
+        "group": "food",
+        "confidence": "high",
+        "reason": "โรงอาหารมหาวิทยาลัย"
+      },
+      {
+        "id": "p41",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทงานวิศวกรรม"
+      },
+      {
+        "id": "p42",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หมู่บ้านจัดสรรที่พักอาศัย"
+      },
+      {
+        "id": "p43",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารญี่ปุ่น"
+      },
+      {
+        "id": "p44",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านให้บริการซ่อมเสื้อผ้า"
+      },
+      {
+        "id": "p45",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผมชายบาร์เบอร์"
+      },
+      {
+        "id": "p46",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านซ่อมและหล่อยางรถ"
+      },
+      {
+        "id": "p47",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อเซเว่นอีเลฟเว่น"
+      },
+      {
+        "id": "p48",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายชุดยูนิฟอร์ม"
+      },
+      {
+        "id": "p49",
+        "group": "leisure",
+        "confidence": "medium",
+        "reason": "สถานที่จัดกิจกรรมค่ายลูกเสือ"
+      },
+      {
+        "id": "p50",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟและชา"
+      },
+      {
+        "id": "p51",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารชาบู"
+      },
+      {
+        "id": "p52",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ศูนย์การเรียนรู้ในมหาวิทยาลัย"
+      },
+      {
+        "id": "p53",
+        "group": "other",
+        "confidence": "high",
+        "reason": "สถาบันการเงินธนาคาร"
+      },
+      {
+        "id": "p54",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านอาหารตามสั่ง"
+      },
+      {
+        "id": "p55",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารฟาสต์ฟู้ดไก่ทอด"
+      },
+      {
+        "id": "p56",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวเป็ด"
+      },
+      {
+        "id": "p57",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายเสื้อผ้าสำเร็จรูป"
+      },
+      {
+        "id": "p58",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ภาควิชาการศึกษาในมหาวิทยาลัย"
+      },
+      {
+        "id": "p59",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ที่พักแบบโฮสเทล"
+      },
+      {
+        "id": "p60",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายไม้เก่าและวัสดุก่อสร้าง"
+      },
+      {
+        "id": "p61",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารสุกี้"
+      },
+      {
+        "id": "p62",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านเสริมสวยทำผม"
+      },
+      {
+        "id": "p63",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายและซ่อมจักรยาน"
+      },
+      {
+        "id": "p64",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารหมูกระทะ"
+      },
+      {
+        "id": "p65",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทอุตสาหกรรม"
+      },
+      {
+        "id": "p66",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารกระเพาะปลา"
+      },
+      {
+        "id": "p67",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทนำเที่ยวและท่องเที่ยว"
+      },
+      {
+        "id": "p68",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ข้อมูลไม่พอ คงกลุ่มเดิมตามที่เดา"
+      },
+      {
+        "id": "p69",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารป่า"
+      },
+      {
+        "id": "p70",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายอุปกรณ์อิเล็กทรอนิกส์"
+      },
+      {
+        "id": "p71",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายเครื่องดนตรีกีตาร์"
+      },
+      {
+        "id": "p72",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อเซเว่นอีเลฟเว่น"
+      },
+      {
+        "id": "p73",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ศูนย์ฝึกอบรมวิชาชีพ"
+      },
+      {
+        "id": "p74",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันกวดวิชา"
+      },
+      {
+        "id": "p75",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านรับพิมพ์ป้ายบริการ"
+      },
+      {
+        "id": "p76",
+        "group": "other",
+        "confidence": "high",
+        "reason": "วัดและศาสนสถาน"
+      },
+      {
+        "id": "p77",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกศัลยกรรมความงาม"
+      },
+      {
+        "id": "p78",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟคาเฟ่"
+      },
+      {
+        "id": "p79",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านของหวานบิงซู"
+      },
+      {
+        "id": "p80",
+        "group": "other",
+        "confidence": "medium",
+        "reason": "ชื่อซอยหรือถนน"
+      }
+    ]
+  },
+  "createdAt": "2026-10-17T13:04:16.652Z"
+}

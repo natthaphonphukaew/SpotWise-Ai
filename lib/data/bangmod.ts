@@ -31,6 +31,28 @@ export type PoiProps = {
   verification: Verification;
   in_campus: boolean;
   name_issue: "vowels_missing" | null;
+  /** Set by applyAiLabels(): where `group` came from, and the rule-based group it replaced. */
+  group_source?: "ai" | "rule";
+  rule_group?: PoiGroup;
+  ai_confidence?: "high" | "medium" | "low";
+  ai_reason?: string;
+};
+
+/** public/data/bangmod/poi_ai.json, written by scripts/classify-poi.ts. */
+export type PoiAiFile = {
+  task: string;
+  model: string;
+  created: string;
+  center: [number, number];
+  radius_m: number;
+  count: number;
+  /** Places in the radius; `count < total` while the daily free-tier quota stops a run part-way. */
+  total: number;
+  complete: boolean;
+  batches_done: number;
+  batches_total: number;
+  changed: number;
+  items: Record<string, { g: PoiGroup; c: "high" | "medium" | "low"; r: string }>;
 };
 
 /** How a place's existence/location was corroborated (set by data-pipeline/s05_merge_poi.py). */

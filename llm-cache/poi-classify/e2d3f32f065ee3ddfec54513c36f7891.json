@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "cs:osm10"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "แบรนด์ชาและไอศกรีมยอดนิยม"
+      },
+      {
+        "id": "p2",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "มีคำว่า Boba ชัดเจน"
+      },
+      {
+        "id": "p3",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารขายเนื้อ"
+      },
+      {
+        "id": "p4",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ชื่อสื่อถึงของหวาน ไอศกรีม"
+      },
+      {
+        "id": "p5",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านสุกี้หม่าล่า"
+      },
+      {
+        "id": "p6",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "มินิมาร์ทร้านสะดวกซื้อ"
+      },
+      {
+        "id": "p7",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ"
+      },
+      {
+        "id": "p8",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "แบรนด์ชานมไข่มุก"
+      },
+      {
+        "id": "p9",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายอุปกรณ์ไอที"
+      },
+      {
+        "id": "p10",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "แบรนด์ร้านกาแฟ"
+      },
+      {
+        "id": "p11",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านบะหมี่เกี๊ยว"
+      },
+      {
+        "id": "p12",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านพิซซ่าฟาสต์ฟู้ด"
+      },
+      {
+        "id": "p13",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านชาบู"
+      },
+      {
+        "id": "p14",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "แบรนด์ร้านกาแฟ"
+      },
+      {
+        "id": "p15",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านสุกี้หม่าล่า"
+      },
+      {
+        "id": "p16",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ"
+      },
+      {
+        "id": "p17",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "แบรนด์ร้านกาแฟ"
+      },
+      {
+        "id": "p18",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ปั๊มน้ำมัน"
+      },
+      {
+        "id": "p19",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารประเภทโจ๊ก"
+      },
+      {
+        "id": "p20",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผมบาร์เบอร์"
+      },
+      {
+        "id": "p21",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกเสริมความงามหรือรักษา"
+      },
+      {
+        "id": "p22",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารอีสาน"
+      },
+      {
+        "id": "p23",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน"
+      },
+      {
+        "id": "p24",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ธนาคารบริการการเงิน"
+      },
+      {
+        "id": "p25",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ"
+      },
+      {
+        "id": "p26",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ"
+      },
+      {
+        "id": "p27",
+        "group": "education",
+        "confidence": "high",
+        "reason": "คณะในมหาวิทยาลัย"
+      },
+      {
+        "id": "p28",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารสำนักงานในมหาวิทยาลัย"
+      },
+      {
+        "id": "p29",
+        "group": "education",
+        "confidence": "high",
+        "reason": "โรงเรียน"
+      },
+      {
+        "id": "p30",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ธนาคารบริการการเงิน"
+      },
+      {
+        "id": "p31",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านอาหารตามหมวดดิบ"
+      },
+      {
+        "id": "p32",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟคาเฟ่"
+      },
+      {
+        "id": "p33",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายอุปกรณ์ฮาร์ดแวร์"
+      },
+      {
+        "id": "p34",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านฮาร์ดแวร์ตามหมวดดิบ"
+      },
+      {
+        "id": "p35",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านฮาร์ดแวร์ตามหมวดดิบ"
+      },
+      {
+        "id": "p36",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านฮาร์ดแวร์ตามหมวดดิบ"
+      },
+      {
+        "id": "p37",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านฮาร์ดแวร์ตามหมวดดิบ"
+      },
+      {
+        "id": "p38",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ห้างซูเปอร์มาร์เก็ต"
+      },
+      {
+        "id": "p39",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p40",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p41",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p42",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p43",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p44",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p45",
+        "group": "market",
+        "confidence": "high",
+        "reason": "ตลาดสด ตลาดนัด"
+      },
+      {
+        "id": "p46",
+        "group": "market",
+        "confidence": "medium",
+        "reason": "พลาซ่าศูนย์การค้าหรือตลาด"
+      },
+      {
+        "id": "p47",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p48",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p49",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p50",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p51",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p52",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p53",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p54",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p55",
+        "group": "convenience",
+        "confidence": "medium",
+        "reason": "สาขาร้านสะดวกซื้อตามหมวดดิบ"
+      },
+      {
+        "id": "p56",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สวนสาธารณะ"
+      },
+      {
+        "id": "p57",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สวนสุขภาพ ที่ออกกำลังกาย"
+      },
+      {
+        "id": "p58",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ"
+      },
+      {
+        "id": "p59",
+        "group": "office",
+        "confidence": "high",
+        "reason": "สมาคม"
+      },
+      {
+        "id": "p60",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านฮาร์ดแวร์ตามหมวดดิบ"
+      },
+      {
+        "id": "p61",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหาร"
+      },
+      {
+        "id": "p62",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ"
+      },
+      {
+        "id": "p63",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ"
+      },
+      {
+        "id": "p64",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อมินิมาร์ท"
+      },
+      {
+        "id": "p65",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อมินิมาร์ท"
+      },
+      {
+        "id": "p66",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อซูเปอร์มาร์เก็ต"
+      },
+      {
+        "id": "p67",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารครัวเจ๊เล้ง"
+      },
+      {
+        "id": "p68",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านราเมง"
+      },
+      {
+        "id": "p69",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านราเมง"
+      },
+      {
+        "id": "p70",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารปากีสถาน"
+      },
+      {
+        "id": "p71",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านขายนมสดปั่นและเครื่องดื่มนม"
+      },
+      {
+        "id": "p72",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารไก่ทอดเกาหลี"
+      },
+      {
+        "id": "p73",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน"
+      },
+      {
+        "id": "p74",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สโมสรนักศึกษาในมหาวิทยาลัย"
+      },
+      {
+        "id": "p75",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านอาหารตามหมวดดิบ"
+      },
+      {
+        "id": "p76",
+        "group": "market",
+        "confidence": "high",
+        "reason": "ตลาดสด"
+      },
+      {
+        "id": "p77",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกรักษาสัตว์"
+      },
+      {
+        "id": "p78",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ห้องเรียนในโรงเรียน"
+      },
+      {
+        "id": "p79",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ผับและร้านคาราโอเกะบริการอาหาร"
+      },
+      {
+        "id": "p80",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สโมสรนักศึกษาในมหาวิทยาลัย"
+      }
+    ]
+  },
+  "createdAt": "2026-10-17T13:00:52.219Z"
+}

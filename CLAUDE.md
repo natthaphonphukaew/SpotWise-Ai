@@ -57,5 +57,7 @@ docs/                # SPEC, DESIGN
 - [x] หน้า `/` (ปก) และ `/map` (แผนที่ + นับสถานที่ในระยะเดิน + evidence)
 - [x] LLM adapter `lib/llm/` (cache ไฟล์ `llm-cache/` + โหมดเดโม + Gemini + zod) และ Business Profiler: หน้าแรกพิมพ์คอนเซ็ปต์ → การ์ดโปรไฟล์ที่แก้ได้ → แผนที่ใช้บทบาทคู่แข่ง/เกื้อหนุนตามโปรไฟล์
 - [x] ต่อ Gemini (`gemini-3.8-flash`) เรียกจริงผ่าน (17 ต.ค. 69) ผลแรกอยู่ใน `llm-cache/business-profile/` (ดู [docs/GEMINI_SETUP.md](docs/GEMINI_SETUP.md))
+- [x] POI Classifier: `npm run classify:poi` ให้ AI จัดหมวดสถานที่ในรัศมี 1.5 กม. (batch ละ 80, cache ใน `llm-cache/poi-classify/`) → `public/data/bangmod/poi_ai.json` แผนที่ใช้หมวดของ AI ทับกฎ และแสดงเหตุผลใน Evidence · วัดผลเทียบ CampusSpot: `npm run eval:poi` → `eval_poi.json`
 - [ ] เตรียมข้อความเดโมเพิ่ม (ร้านกาแฟ ฯลฯ) ให้มีผลใน `llm-cache/` ก่อนวันส่ง
+- [ ] ถ้ารัน data pipeline ใหม่ (`poi.geojson` เปลี่ยน) ต้องรัน `npm run classify:poi` ใหม่ด้วย
 - [ ] ลงพื้นที่สำรวจทำเลจริง 6–10 จุด + ค่าเช่า → แทน `data-pipeline/candidates.json`
