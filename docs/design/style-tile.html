@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpotWise Style Tile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Trirong:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* UI */
+  --paper:#F4F1EA; --paper-2:#EAE5D9; --ink:#1C1B18; --ink-2:#5F5D55; --ink-3:#8E8B80;
+  --rule:#D6D0C2; --accent:#E8620C;
+  /* Data — Thai comprehensive-plan semantics */
+  --pop-1:#F0D27A; --pop-2:#E9A35E; --pop-3:#9C6A3E;
+  --comp:#C2373D; --edu:#7C8A3A; --civic:#2F5D8C; --park:#8DBF7A;
+  /* Map */
+  --road:#DDD6C8; --road-2:#CFC7B6; --water:#C9D3D6;
+  /* Type */
+  --f-display:"Trirong","Noto Serif Thai",Georgia,serif;
+  --f-ui:"Anuphan",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono","Anuphan",ui-monospace,monospace;
+  --r:3px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:16px;line-height:1.7}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.label{font-family:var(--f-mono);font-size:11px;letter-spacing:0;text-transform:uppercase;color:var(--ink-3);line-height:1.4}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+
+/* Top bar */
+.bar{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--ink)}
+.bar .wrap{display:flex;gap:24px;align-items:center;justify-content:space-between;height:44px}
+.wordmark{font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:-.01em;white-space:nowrap}
+.wordmark sup{font-family:var(--f-mono);font-size:9px;font-weight:500;letter-spacing:.1em;margin-left:3px;vertical-align:6px}
+.coords{display:flex;gap:18px;font-family:var(--f-mono);font-size:11px;color:var(--ink-2);white-space:nowrap;overflow:hidden}
+.coords b{color:var(--ink);font-weight:500}
+.coords .conf b{color:var(--accent)}
+
+/* Cover */
+.cover{padding:72px 0 56px;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end}
+.cover h1{font-family:var(--f-display);font-weight:600;font-size:64px;line-height:1.25;margin:12px 0 0;letter-spacing:-.01em}
+.cover h1 em{font-style:normal;color:var(--ink-2);font-weight:400}
+.cover p{color:var(--ink-2);max-width:46ch;margin:20px 0 0}
+.prompt{border:1px solid var(--ink);background:#FBF9F4;border-radius:var(--r);padding:14px 16px}
+.prompt .q{font-size:18px;line-height:1.6;min-height:3.2em}
+.prompt .q .caret{display:inline-block;width:1px;height:1.1em;background:var(--ink);vertical-align:-3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.prompt .row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:12px}
+
+/* Sections */
+section.s{padding:56px 0;border-top:1px solid var(--rule)}
+.s-head{display:grid;grid-template-columns:120px 1fr;gap:24px;margin-bottom:32px;align-items:baseline}
+.s-head h2{font-family:var(--f-display);font-weight:600;font-size:28px;line-height:1.35;margin:0}
+.s-head p{margin:6px 0 0;color:var(--ink-2);max-width:62ch}
+
+/* Swatches */
+.sw-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0;border:1px solid var(--rule)}
+.sw{border-right:1px solid var(--rule)}
+.sw:last-child{border-right:0}
+.sw .chip{height:96px;border-bottom:1px solid var(--rule)}
+.sw .meta{padding:10px 12px}
+.sw .meta .n{font-size:14px;font-weight:500;line-height:1.5}
+.sw .meta .mono{font-size:11px;color:var(--ink-2);display:block}
+.data-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr;gap:16px;margin-top:24px}
+.dsw{border-top:1px solid var(--ink);padding-top:10px}
+.dsw .ramp{display:flex;height:40px}
+.dsw .ramp i{flex:1}
+.dsw .solo{height:40px}
+.dsw .n{font-size:14px;font-weight:500;margin-top:8px;line-height:1.5}
+.dsw .src{font-size:12px;color:var(--ink-2);line-height:1.5}
+
+/* Type */
+.type-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
+.spec{border-top:1px solid var(--ink);padding-top:14px}
+.spec .big{font-size:56px;line-height:1.3;margin:6px 0 10px}
+.spec .d{font-family:var(--f-display);font-weight:600}
+.spec .u{font-family:var(--f-ui);font-weight:500}
+.spec .m{font-family:var(--f-mono);font-weight:500;font-size:48px}
+.spec .why{font-size:14px;color:var(--ink-2)}
+.scale{margin-top:40px;border-top:1px solid var(--rule)}
+.scale div{display:grid;grid-template-columns:120px 1fr;align-items:baseline;border-bottom:1px solid var(--rule);padding:10px 0;gap:16px;overflow:hidden}
+.scale span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Certainty legend + bars */
+.cert{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.cert .k{display:flex;gap:12px;align-items:center}
+.cert .k i{display:block;width:56px;height:18px;border:1px solid var(--ink)}
+.cert .k b{font-weight:600;font-size:15px}
+.cert .k small{display:block;color:var(--ink-2);font-size:13px;line-height:1.5}
+.hatch{background:repeating-linear-gradient(-45deg,var(--ink) 0 1.5px,transparent 1.5px 6px)}
+.solid-open{background:var(--ink-3)}
+.solid-real{background:var(--ink)}
+
+/* Score card */
+.score-layout{display:grid;grid-template-columns:420px 1fr;gap:40px;align-items:start}
+.card{background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--r);padding:24px}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.card h3{font-family:var(--f-display);font-weight:600;font-size:22px;line-height:1.4;margin:4px 0 0}
+.total{display:flex;align-items:baseline;gap:8px;margin:18px 0 4px}
+.total .num{font-family:var(--f-display);font-weight:600;font-size:96px;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.total .of{font-family:var(--f-mono);font-size:14px;color:var(--ink-2)}
+.confline{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:12px;color:var(--ink-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:8px 0;margin:14px 0 18px}
+.confline b{color:var(--ink);font-weight:500;transition:color .3s}
+.confline b.up{color:var(--accent)}
+.dim{margin-bottom:16px}
+.dim-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:14px;line-height:1.5;margin-bottom:6px}
+.dim-h .w{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.dim-h .v{font-family:var(--f-mono);font-size:13px;font-weight:500}
+.fn{font-family:var(--f-mono);font-size:10px;color:var(--ink-2);vertical-align:super;line-height:0;margin-left:2px;cursor:pointer;text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--rule)}
+.fn:hover{color:var(--accent)}
+.ruler{position:relative;height:14px;border:1px solid var(--ink);background:
+  repeating-linear-gradient(to right,transparent 0 calc(10% - 1px),var(--rule) calc(10% - 1px) 10%)}
+.ruler .fill{position:absolute;inset:0 auto 0 0;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.ruler .fill .h{position:absolute;inset:0;background:repeating-linear-gradient(-45deg,var(--ink) 0 1.5px,transparent 1.5px 6px)}
+.ruler .fill .s{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);transition:transform .6s cubic-bezier(.2,.7,.2,1),background .3s}
+.ruler .fill[data-c="open"] .s{transform:scaleX(1);background:var(--ink-3)}
+.ruler .fill[data-c="real"] .s{transform:scaleX(1);background:var(--ink)}
+.dim-c{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);margin-top:4px;line-height:1.4}
+.card-actions{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+
+/* Controls */
+.btn{font-family:var(--f-ui);font-size:15px;font-weight:500;line-height:1;padding:11px 16px;border-radius:var(--r);border:1px solid var(--ink);cursor:pointer;background:transparent;color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.primary:hover{background:#000}
+.btn:hover{background:rgba(28,27,24,.06)}
+.btn.ghost{border-color:transparent;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--rule)}
+.btn:focus-visible,.fn:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.kbd{font-family:var(--f-mono);font-size:11px;border:1px solid var(--rule);padding:2px 6px;border-radius:2px;color:var(--ink-2)}
+.slider{margin-top:6px}
+.slider label{display:flex;justify-content:space-between;font-size:14px}
+input[type=range]{width:100%;accent-color:var(--ink);margin:8px 0 0}
+.note{font-size:14px;color:var(--ink-2);line-height:1.65}
+.note b{color:var(--ink);font-weight:600}
+
+/* Evidence drawer */
+.evidence{border:1px solid var(--ink);border-radius:var(--r);background:#FBF9F4;margin-top:24px}
+.evidence .eh{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--rule)}
+.evidence dl{display:grid;grid-template-columns:110px 1fr;margin:0;padding:12px 14px;gap:6px 12px;font-size:14px;line-height:1.55}
+.evidence dt{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
+.evidence dd{margin:0}
+
+/* Map */
+.map-layout{display:grid;grid-template-columns:1fr 240px;gap:32px;align-items:start}
+.map{border:1px solid var(--ink);background:var(--paper);border-radius:var(--r);overflow:hidden}
+.map svg{display:block;width:100%;height:auto}
+.map text{font-family:var(--f-ui)}
+.map .t-mono{font-family:var(--f-mono)}
+.legend h4{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 10px;font-weight:500}
+.legend ul{list-style:none;padding:0;margin:0 0 24px}
+.legend li{display:flex;gap:10px;align-items:center;font-size:14px;padding:5px 0;border-bottom:1px solid var(--rule);line-height:1.5}
+.legend li svg{flex:none}
+.pins-row{display:flex;gap:28px;align-items:flex-end;margin-top:20px;flex-wrap:wrap}
+.pins-row figure{margin:0;text-align:center}
+.pins-row figcaption{font-size:12px;color:var(--ink-2);margin-top:6px}
+
+/* Compare table */
+table.cmp{width:100%;border-collapse:collapse;font-size:15px}
+.cmp th,.cmp td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.cmp thead th{border-bottom:1px solid var(--ink);font-weight:500}
+.cmp thead th .label{display:block}
+.cmp td.n,.cmp th.n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.cmp td.best span{border-bottom:2px solid var(--accent);padding-bottom:1px}
+.cmp tfoot td{border-bottom:1px solid var(--ink);border-top:1px solid var(--ink);font-weight:600}
+.cmp tfoot td.n{font-family:var(--f-display);font-size:28px;font-weight:600}
+.cmp .est{color:var(--ink-3);font-size:12px}
+.tbl-scroll{overflow-x:auto}
+
+/* Cashflow */
+.cash{border-top:1px solid var(--ink);padding-top:16px}
+.cash svg{display:block;width:100%;height:auto}
+.cash text{font-family:var(--f-mono);font-size:11px;fill:var(--ink-2)}
+
+/* Advisor */
+.adv-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start}
+.adv .meta{display:flex;justify-content:space-between;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);padding:8px 0;margin-bottom:18px;gap:12px;flex-wrap:wrap}
+.adv h4{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin:20px 0 6px}
+.adv h4:first-of-type{margin-top:0}
+.adv p,.adv li{font-size:16px;line-height:1.75;margin:0}
+.adv ul{padding-left:20px;margin:0}
+.adv .assume{color:var(--ink-2)}
+.debate{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink);border-radius:var(--r)}
+.debate > div{padding:16px}
+.debate > div + div{border-left:1px solid var(--ink)}
+.debate h5{font-family:var(--f-display);font-size:18px;font-weight:600;margin:0 0 8px;line-height:1.4}
+.debate ol{margin:0;padding-left:18px;font-size:14px;line-height:1.65}
+.debate ol li{margin-bottom:6px}
+.verdict{grid-column:1/-1;border-top:1px solid var(--ink);padding:14px 16px;font-size:15px;line-height:1.65;background:var(--paper-2)}
+.verdict b{font-family:var(--f-display);font-weight:600}
+
+/* Field mode phone */
+.field-layout{display:grid;grid-template-columns:320px 1fr;gap:48px;align-items:center}
+.phone{width:300px;height:600px;border:10px solid var(--ink);border-radius:36px;background:var(--paper);display:flex;flex-direction:column;overflow:hidden;margin:0 auto}
+.phone .ph-top{display:flex;justify-content:space-between;padding:14px 18px 10px;border-bottom:1px solid var(--ink);font-family:var(--f-mono);font-size:11px}
+.phone .ph-mid{padding:14px 18px;flex:none}
+.phone .count{font-family:var(--f-mono);font-weight:600;font-size:88px;line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.phone .sub{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:12px;color:var(--ink-2);margin-top:8px}
+.phone .tap{flex:1;margin:0 14px 14px;border-radius:14px;background:var(--ink);color:var(--paper);border:0;font-family:var(--f-ui);font-size:20px;font-weight:500;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transition:transform .08s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.phone .tap small{font-family:var(--f-mono);font-size:11px;opacity:.6;letter-spacing:.08em}
+.phone .tap:active{transform:scale(.97)}
+.phone .tap.flash{background:#000}
+.phone .ph-bot{display:flex;border-top:1px solid var(--ink)}
+.phone .ph-bot span{flex:1;text-align:center;padding:10px 0;font-size:13px}
+.phone .ph-bot span + span{border-left:1px solid var(--ink)}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);margin-top:20px}
+.slots > div{padding:12px;border-right:1px solid var(--rule)}
+.slots > div:last-child{border-right:0}
+.slots .v{font-family:var(--f-mono);font-size:22px;font-weight:500}
+
+/* Do / Don't */
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.dd ul{list-style:none;padding:0;margin:0}
+.dd li{padding:8px 0;border-bottom:1px solid var(--rule);font-size:15px;line-height:1.6}
+.dd .no li{color:var(--ink-2);text-decoration:line-through;text-decoration-color:var(--comp)}
+
+footer{padding:40px 0 64px;border-top:1px solid var(--ink);margin-top:24px;font-size:13px;color:var(--ink-2)}
+
+@media (max-width:960px){
+  .cover,.score-layout,.map-layout,.adv-grid,.field-layout{grid-template-columns:1fr}
+  .type-grid{grid-template-columns:1fr}
+  .sw-grid{grid-template-columns:repeat(4,1fr)}
+  .sw:nth-child(4){border-right:0}
+  .sw:nth-child(-n+4){border-bottom:1px solid var(--rule)}
+  .data-grid{grid-template-columns:1fr 1fr}
+  .cover h1{font-size:44px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .coords span:not(.conf){display:none}
+  .s-head{grid-template-columns:1fr;gap:4px}
+  .sw-grid{grid-template-columns:repeat(2,1fr)}
+  .sw{border-bottom:1px solid var(--rule)}
+  .sw:nth-child(odd){border-right:1px solid var(--rule)}
+  .sw:nth-child(even){border-right:0}
+  .cert,.dd,.debate{grid-template-columns:1fr}
+  .debate > div + div{border-left:0;border-top:1px solid var(--ink)}
+  .cover{padding:40px 0 32px}
+  .cover h1{font-size:36px}
+  .total .num{font-size:80px}
+  .card{padding:18px}
+  .scale div{grid-template-columns:72px 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <div class="wordmark">SpotWise<sup>AI</sup></div>
+    <div class="coords">
+      <span>STYLE TILE <b>v1</b></span>
+      <span>LAT <b>13.6512</b></span>
+      <span>LON <b>100.4943</b></span>
+      <span>Z <b>15</b></span>
+      <span class="conf">CONF <b id="barConf">64%</b></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- Cover -->
+  <div class="cover">
+    <div>
+      <div class="label">รายงานสำรวจทำเล · No.001 · บางมด</div>
+      <h1>ทำเลไหนควรเปิดร้าน<br><em>และทำไม</em></h1>
+      <p>ทุกตัวเลขบอกที่มา ค่าไหนประมาณจะบอกว่าประมาณ และถ้าข้อมูลยังไม่พอ ระบบจะบอกว่าต้องไปเก็บอะไรเพิ่ม</p>
+    </div>
+    <div class="prompt">
+      <div class="label">คอนเซ็ปต์ร้าน</div>
+      <div class="q" id="typed"></div>
+      <div class="row">
+        <span class="kbd">ร้านชาไข่มุก · 40–60฿ · นักศึกษา</span>
+        <button class="btn primary">เริ่มสำรวจ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 Color -->
+  <section class="s">
+    <div class="s-head">
+      <div class="label">01 — สี</div>
+      <div>
+        <h2>กระดาษ หมึก และสีผังเมือง</h2>
+        <p>UI ใช้แค่กระดาษกับหมึก ส่วนสีมีไว้ให้ข้อมูลเท่านั้น และใช้ความหมายเดียวกับสีในผังเมืองรวม ส่วน accent สีส้มให้ใช้ไม่เกิน 1–2 จุดต่อจอ</p>
+      </div>
+    </div>
+    <div class="sw-grid">
+      <div class="sw"><div class="chip" style="background:var(--paper)"></div><div class="meta"><div class="n">paper</div><span class="mono">#F4F1EA</span><span class="mono">พื้นหลังหลัก</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--paper-2)"></div><div class="meta"><div class="n">paper-2</div><span class="mono">#EAE5D9</span><span class="mono">แผง/คอลัมน์</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ink)"></div><div class="meta"><div class="n">ink</div><span class="mono">#1C1B18</span><span class="mono">ตัวอักษร/ปุ่ม</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ink-2)"></div><div class="meta"><div class="n">ink-2</div><span class="mono">#5F5D55</span><span class="mono">ตัวอักษรรอง</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ink-3)"></div><div class="meta"><div class="n">ink-3</div><span class="mono">#8E8B80</span><span class="mono">label/พิกัด</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--rule)"></div><div class="meta"><div class="n">rule</div><span class="mono">#D6D0C2</span><span class="mono">เส้น 1px</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--accent)"></div><div class="meta"><div class="n">accent</div><span class="mono">#E8620C</span><span class="mono">ใช้น้อยมาก</span></div></div>
+    </div>
+    <div class="data-grid">
+      <div class="dsw"><div class="ramp"><i style="background:var(--pop-1)"></i><i style="background:var(--pop-2)"></i><i style="background:var(--pop-3)"></i></div><div class="n">ความหนาแน่นประชากร</div><div class="src mono">เหลือง→ส้ม→น้ำตาล<br>ผังเมือง: ที่อยู่อาศัย</div></div>
+      <div class="dsw"><div class="solo" style="background:var(--comp)"></div><div class="n">คู่แข่ง</div><div class="src mono">#C2373D<br>ผังเมือง: พาณิชยกรรม</div></div>
+      <div class="dsw"><div class="solo" style="background:var(--edu)"></div><div class="n">สถานศึกษา</div><div class="src mono">#7C8A3A<br>ผังเมือง: สถาบันการศึกษา</div></div>
+      <div class="dsw"><div class="solo" style="background:var(--civic)"></div><div class="n">ขนส่ง / ราชการ</div><div class="src mono">#2F5D8C<br>ผังเมือง: สถาบันราชการ</div></div>
+      <div class="dsw"><div class="solo" style="background:var(--park)"></div><div class="n">สวน / นันทนาการ</div><div class="src mono">#8DBF7A<br>ผังเมือง: นันทนาการ</div></div>
+    </div>
+  </section>
+
+  <!-- 02 Type -->
+  <section class="s">
+    <div class="s-head">
+      <div class="label">02 — ตัวอักษร</div>
+      <div>
+        <h2>สามตระกูล สามหน้าที่</h2>
+        <p>serif สำหรับสิ่งที่ต้องการน้ำหนักแบบรายงาน, sans สำหรับอ่าน, mono สำหรับตัวเลขและที่มา Anuphan กับ Plex Mono มีรากเดียวกันจาก IBM Plex จึงใช้คู่กันแล้วกลมกลืน</p>
+      </div>
+    </div>
+    <div class="type-grid">
+      <div class="spec">
+        <div class="label">Display · Trirong 600</div>
+        <div class="big d">ทำเลดี 79</div>
+        <div class="why">หัวข้อและตัวเลขคะแนนใหญ่ serif ไทยแบบมีหัว ให้อารมณ์สิ่งพิมพ์</div>
+      </div>
+      <div class="spec">
+        <div class="label">UI / Body · Anuphan 500</div>
+        <div class="big u">ใกล้หอพัก</div>
+        <div class="why">ตัวไม่มีหัว อ่านง่ายทั้งจอใหญ่และมือถือ ใช้ line-height 1.7 กับข้อความไทยเสมอ</div>
+      </div>
+      <div class="spec">
+        <div class="label">Data · IBM Plex Mono 500</div>
+        <div class="big m">180–260</div>
+        <div class="why">ตัวเลข พิกัด evidence ID และ label อังกฤษตัวพิมพ์ใหญ่ (ห้ามใส่ letter-spacing กับข้อความไทย)</div>
+      </div>
+    </div>
+    <div class="scale">
+      <div><span class="label">96 · display</span><span style="font-family:var(--f-display);font-weight:600;font-size:56px;line-height:1.2">79</span></div>
+      <div><span class="label">40 · h1</span><span style="font-family:var(--f-display);font-weight:600;font-size:40px;line-height:1.3">ทำเล B ตรงข้ามประตู มจธ.</span></div>
+      <div><span class="label">28 · h2</span><span style="font-family:var(--f-display);font-weight:600;font-size:28px;line-height:1.4">ความอิ่มตัวของตลาด</span></div>
+      <div><span class="label">20 · lead</span><span style="font-size:20px">ในระยะเดิน 5 นาที มีร้านชาไข่มุก 4 ร้าน</span></div>
+      <div><span class="label">16 · body</span><span>ค่าเช่า 9,500 บาท/เดือน คิดเป็น 7.9% ของรายได้คาดการณ์ ต่ำกว่าเกณฑ์ 10–15%</span></div>
+      <div><span class="label">12 · mono</span><span class="mono" style="font-size:12px;color:var(--ink-2)">SRC OVERTURE 2026-09 · FETCHED 17.10.69 · CDLA-P-2.0</span></div>
+    </div>
+  </section>
+
+  <!-- 03 Certainty -->
+  <section class="s">
+    <div class="s-head">
+      <div class="label">03 — ลายเซ็น</div>
+      <div>
+        <h2>ความไม่แน่นอนต้องมองเห็นได้</h2>
+        <p>ทั้งแอปใช้ภาษาภาพชุดเดียว ทั้งบนแผนที่ แท่งคะแนน และตาราง ลายทแยงในแอปนี้มีความหมายเดียวคือ "ค่าประมาณ" ห้ามใช้ลายทแยงเพื่อความสวยงาม</p>
+      </div>
+    </div>
+    <div class="cert">
+      <div class="k"><i class="hatch"></i><div><b>ประมาณการ</b><small>คำนวณจากโมเดล/สมมติฐาน ยังไม่มีใครไปดู</small></div></div>
+      <div class="k"><i class="solid-open"></i><div><b>ข้อมูลเปิด</b><small>Overture · OSM · WorldPop มีที่มาแต่ไม่ได้ยืนยันหน้างาน</small></div></div>
+      <div class="k"><i class="solid-real"></i><div><b>สำรวจจริง</b><small>นับ/ถ่าย/ถามเองจาก Field Mode</small></div></div>
+    </div>
+  </section>
+
+  <!-- 04 Score card -->
+  <section class="s">
+    <div class="s-head">
+      <div class="label">04 — การ์ดคะแนน</div>
+      <div>
+        <h2>คะแนนที่เปิดดูไส้ในได้</h2>
+        <p>ลองลากค่าเช่า แล้วกด "จำลอง Field Mode" ดูว่า Confidence เพิ่มขึ้นได้ แต่คะแนนอาจลดลง เพราะเจอคู่แข่งที่ข้อมูลเปิดไม่มี ระบบที่ซื่อตรงต้องเป็นแบบนี้</p>
+      </div>
+    </div>
+    <div class="score-layout">
+      <div class="card" id="card">
+        <div class="card-top">
+          <div>
+            <div class="label">ทำเล B · ข้อมูลตัวอย่าง</div>
+            <h3>ตรงข้ามประตู มจธ.</h3>
+          </div>
+          <svg width="30" height="44" viewBox="-4 -40 30 44" aria-hidden="true"><use href="#pin-sel"/></svg>
+        </div>
+        <div class="total"><span class="num" id="total">79</span><span class="of">/100 · LOC-SCORE</span></div>
+        <div class="confline"><span>CONFIDENCE <b id="conf">64%</b></span><span id="srcCount">14 แหล่งอ้างอิง</span></div>
+        <div id="dims"></div>
+        <div class="card-actions">
+          <button class="btn primary" id="fieldBtn">จำลอง Field Mode</button>
+          <button class="btn ghost" id="resetBtn">รีเซ็ต</button>
+        </div>
+      </div>
+      <div>
+        <div class="slider">
+          <label><span>ค่าเช่าต่อเดือน</span><span class="mono" id="rentOut">฿9,500</span></label>
+          <input type="range" id="rent" min="6000" max="30000" step="500" value="9500" aria-label="ค่าเช่าต่อเดือน">
+          <div class="mono" style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-3)"><span>6,000</span><span>30,000</span></div>
+        </div>
+        <p class="note" style="margin-top:20px" id="rentNote"></p>
+        <div class="evidence" id="ev">
+          <div class="eh"><span class="label">Evidence [2]</span><span class="mono" style="font-size:11px;color:var(--ink-3)">คลิกเชิงอรรถในการ์ดเพื่อเปลี่ยน</span></div>
+          <dl id="evBody"></dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Map + pins -->
+  <section class="s">
+    <div class="s-head">
+      <div class="label">05 — แผนที่และหมุด</div>
+      <div>
+        <h2>หมุดสำรวจ ไม่ใช่หมุด Google</h2>
+        <p>แผนที่จำลอง (ไม่ใช่ภูมิศาสตร์จริง) เพื่อทดสอบสีบนพื้นกระดาษ basemap จริงจะใช้ Protomaps/OpenFreeMap แล้วปรับสีชุดเดียวกันนี้</p>
+      </div>
+    </div>
+    <div class="map-layout">
+      <div class="map">
+        <svg viewBox="0 0 640 440" role="img" aria-label="แผนที่จำลองรอบทำเล B">
+          <defs>
+            <pattern id="hatchLight" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="7" stroke="#1C1B18" stroke-width="1" opacity=".22"/>
+            </pattern>
+            <pattern id="hatchEdu" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="6" stroke="#7C8A3A" stroke-width="1.2" opacity=".5"/>
+            </pattern>
+          </defs>
+          <rect width="640" height="440" fill="#F4F1EA"/>
+          <!-- population cells -->
+          <g opacity=".42">
+            <rect x="440" y="180" width="40" height="40" fill="#F0D27A"/><rect x="480" y="180" width="40" height="40" fill="#E9A35E"/>
+            <rect x="520" y="180" width="40" height="40" fill="#9C6A3E"/><rect x="480" y="220" width="40" height="40" fill="#E9A35E"/>
+            <rect x="520" y="220" width="40" height="40" fill="#E9A35E"/><rect x="560" y="180" width="40" height="40" fill="#E9A35E"/>
+            <rect x="440" y="220" width="40" height="40" fill="#F0D27A"/><rect x="560" y="220" width="40" height="40" fill="#F0D27A"/>
+            <rect x="320" y="230" width="40" height="40" fill="#F0D27A"/><rect x="360" y="230" width="40" height="40" fill="#E9A35E"/>
+          </g>
+          <!-- park -->
+          <path d="M40 360 L130 352 L138 420 L46 428 Z" fill="#8DBF7A" opacity=".45"/>
+          <!-- canal -->
+          <path d="M-10 335 C120 315 260 350 380 322 S560 300 650 310" fill="none" stroke="#C9D3D6" stroke-width="12"/>
+          <!-- roads -->
+          <g fill="none" stroke-linecap="round">
+            <path d="M-10 205 L650 178" stroke="#CFC7B6" stroke-width="16"/>
+            <path d="M-10 205 L650 178" stroke="#E7E1D4" stroke-width="10"/>
+            <path d="M185 -10 L172 450" stroke="#DDD6C8" stroke-width="8"/>
+            <path d="M425 -10 L440 450" stroke="#DDD6C8" stroke-width="8"/>
+            <path d="M300 197 L312 450" stroke="#DDD6C8" stroke-width="4"/>
+            <path d="M80 210 L70 330" stroke="#DDD6C8" stroke-width="4"/>
+            <path d="M360 195 L372 20" stroke="#DDD6C8" stroke-width="4"/>
+            <path d="M440 260 L640 250" stroke="#DDD6C8" stroke-width="4"/>
+            <path d="M178 120 L425 110" stroke="#DDD6C8" stroke-width="4"/>
+          </g>
+          <!-- buildings -->
+          <g fill="none" stroke="#CFC7B6" stroke-width="1">
+            <rect x="200" y="140" width="26" height="18"/><rect x="232" y="138" width="20" height="22"/><rect x="262" y="142" width="30" height="16"/>
+            <rect x="200" y="222" width="22" height="30"/><rect x="232" y="225" width="30" height="20"/><rect x="330" y="140" width="22" height="22"/>
+            <rect x="100" y="230" width="34" height="22"/><rect x="100" y="262" width="26" height="20"/><rect x="330" y="290" width="24" height="18"/>
+            <rect x="200" y="60" width="40" height="30"/><rect x="260" y="56" width="30" height="34"/><rect x="380" y="270" width="30" height="22"/>
+          </g>
+          <!-- campus -->
+          <path d="M455 22 L628 18 L630 160 L462 168 Z" fill="url(#hatchEdu)" stroke="#7C8A3A" stroke-width="1.2"/>
+          <path d="M455 22 L628 18 L630 160 L462 168 Z" fill="#7C8A3A" opacity=".1"/>
+          <!-- catchment for B -->
+          <path d="M300 150 L350 128 L420 135 L470 160 L478 215 L455 262 L400 290 L330 282 L292 245 L285 196 Z" fill="url(#hatchLight)" stroke="#1C1B18" stroke-width="1.3" stroke-dasharray="5 4"/>
+          <!-- labels -->
+          <text x="545" y="98" text-anchor="middle" font-size="15" font-weight="600" fill="#5A6526">มจธ.</text>
+          <text x="545" y="116" text-anchor="middle" font-size="10" fill="#5A6526" class="t-mono">KMUTT · 18,000 นศ.</text>
+          <text x="40" y="196" font-size="12" fill="#5F5D55" transform="rotate(-2.3 40 196)">ถ.ประชาอุทิศ</text>
+          <text x="110" y="336" font-size="11" fill="#6E8389" transform="rotate(-3 110 336)">คลองบางมด</text>
+          <text x="473" y="282" font-size="10" fill="#1C1B18" class="t-mono" opacity=".7">เดิน 5 นาที</text>
+          <!-- competitors -->
+          <g fill="#C2373D" stroke="#F4F1EA" stroke-width="2">
+            <circle cx="330" cy="240" r="6"/><circle cx="405" cy="168" r="6"/><circle cx="355" cy="272" r="6"/>
+            <circle cx="160" cy="195" r="6"/><circle cx="222" cy="292" r="6"/><circle cx="525" cy="200" r="6"/>
+          </g>
+          <!-- education / transit -->
+          <g stroke="#F4F1EA" stroke-width="2">
+            <rect x="534" y="128" width="12" height="12" fill="#7C8A3A"/>
+            <rect x="84" y="114" width="12" height="12" fill="#7C8A3A"/>
+            <rect x="234" y="188" width="11" height="11" fill="#2F5D8C"/>
+            <rect x="468" y="175" width="11" height="11" fill="#2F5D8C"/>
+          </g>
+          <!-- pins -->
+          <use href="#pin" x="150" y="172"/>
+          <use href="#pin" x="250" y="335"/>
+          <use href="#pin-sel" x="380" y="214"/>
+          <text x="161" y="146" text-anchor="middle" class="t-mono" font-size="11" font-weight="600" fill="#F4F1EA">A</text>
+          <text x="261" y="309" text-anchor="middle" class="t-mono" font-size="11" font-weight="600" fill="#F4F1EA">C</text>
+          <!-- callout -->
+          <path d="M386 224 L470 372 L620 372" fill="none" stroke="#1C1B18" stroke-width="1"/>
+          <circle cx="470" cy="372" r="2" fill="#1C1B18"/>
+          <text x="476" y="364" class="t-mono" font-size="11" fill="#1C1B18" font-weight="600">B · 79/100</text>
+          <text x="476" y="388" class="t-mono" font-size="10" fill="#5F5D55">CONF 64% · 4 คู่แข่ง</text>
+          <!-- scale + north -->
+          <g class="t-mono" font-size="10" fill="#5F5D55">
+            <path d="M24 412 L24 418 L124 418 L124 412" fill="none" stroke="#1C1B18" stroke-width="1"/>
+            <path d="M74 415 L74 418" stroke="#1C1B18"/>
+            <text x="24" y="406">0</text><text x="112" y="406">200 ม.</text>
+          </g>
+          <g transform="translate(608 404)"><path d="M0 -16 L6 4 L0 0 L-6 4 Z" fill="#1C1B18"/><text y="18" text-anchor="middle" class="t-mono" font-size="10" fill="#1C1B18">N</text></g>
+          <text x="632" y="434" text-anchor="end" class="t-mono" font-size="8" fill="#8E8B80">© OpenStreetMap contributors · Overture Maps</text>
+        </svg>
+      </div>
+      <div class="legend">
+        <h4>สัญลักษณ์</h4>
+        <ul>
+          <li><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#C2373D"/></svg>คู่แข่งตรง</li>
+          <li><svg width="14" height="14"><rect x="1" y="1" width="12" height="12" fill="#7C8A3A"/></svg>สถานศึกษา</li>
+          <li><svg width="14" height="14"><rect x="1" y="1" width="12" height="12" fill="#2F5D8C"/></svg>ป้ายรถ / วิน</li>
+          <li><svg width="24" height="12"><rect x=".5" y=".5" width="23" height="11" fill="url(#hatchLegend)" stroke="#1C1B18" stroke-dasharray="3 2"/></svg>พื้นที่เดินถึง (ประมาณ)</li>
+          <li><svg width="24" height="12"><rect width="8" height="12" fill="#F0D27A"/><rect x="8" width="8" height="12" fill="#E9A35E"/><rect x="16" width="8" height="12" fill="#9C6A3E"/></svg>ประชากรต่อกริด</li>
+        </ul>
+        <h4>หมุดทำเล</h4>
+        <div class="pins-row">
+          <figure><svg width="34" height="48" viewBox="-6 -42 34 48"><use href="#pin"/><text x="11" y="-25.5" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="#F4F1EA">A</text></svg><figcaption>ปกติ</figcaption></figure>
+          <figure><svg width="34" height="48" viewBox="-6 -42 34 48"><use href="#pin-sel"/></svg><figcaption>เลือกอยู่</figcaption></figure>
+          <figure><svg width="34" height="48" viewBox="-6 -42 34 48"><use href="#pin-draft"/></svg><figcaption>ปักเอง</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Compare -->
+  <section class="s">
+    <div class="s-head">
+      <div class="label">06 — เปรียบเทียบ</div>
+      <div>
+        <h2>ตารางแบบสิ่งพิมพ์</h2>
+        <p>ใช้เส้นบางและตัวเลข tabular ค่าที่ดีที่สุดในแต่ละแถวขีดเส้นใต้ด้วย accent ไม่ต้องมีการ์ด ไม่ต้องมีสีพื้น</p>
+      </div>
+    </div>
+    <div class="tbl-scroll">
+    <table class="cmp">
+      <thead>
+        <tr><th>มิติ <span class="label">น้ำหนัก</span></th><th class="n">A<span class="label">ซ.ประชาอุทิศ 45</span></th><th class="n">B<span class="label">ตรงข้าม มจธ.</span></th><th class="n">C<span class="label">ใกล้ตลาด</span></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>กลุ่มเป้าหมาย <span class="mono est">25%</span></td><td class="n">72</td><td class="n best"><span>85</span></td><td class="n">64</td></tr>
+        <tr><td>การเข้าถึง <span class="mono est">20%</span></td><td class="n best"><span>88</span></td><td class="n">80</td><td class="n">70</td></tr>
+        <tr><td>ความอิ่มตัวตลาด <span class="mono est">20%</span></td><td class="n">52</td><td class="n">65</td><td class="n best"><span>78</span></td></tr>
+        <tr><td>ค่าเช่า <span class="mono est">20%</span></td><td class="n">60</td><td class="n best"><span>90</span></td><td class="n">85</td></tr>
+        <tr><td>สถานที่เกื้อหนุน <span class="mono est">15%</span></td><td class="n best"><span>82</span></td><td class="n">70</td><td class="n">55</td></tr>
+        <tr><td>ลูกค้า/วัน <span class="mono est">ประมาณ</span></td><td class="n">210–300</td><td class="n">160–240</td><td class="n">120–190</td></tr>
+        <tr><td>ค่าเช่า/เดือน</td><td class="n">22,000</td><td class="n">9,500</td><td class="n">11,000</td></tr>
+        <tr><td>คืนทุน <span class="mono est">ประมาณ</span></td><td class="n">14 ด.</td><td class="n best"><span>9 ด.</span></td><td class="n">12 ด.</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Loc-Score</td><td class="n">70</td><td class="n">79</td><td class="n">71</td></tr>
+      </tfoot>
+    </table>
+    </div>
+  </section>
+
+  <!-- 07 Cashflow -->
+  <section class="s">
+    <div class="s-head">
+      <div class="label">07 — เงินสด 12 เดือน</div>
+      <div>
+        <h2>หลุมปิดเทอมต้องเห็นตั้งแต่แวบแรก</h2>
+        <p>ทั้งกราฟเป็นค่าประมาณ จึงบอกไว้ที่หัวกราฟครั้งเดียว ไม่ต้องใช้ลายทแยงทุกแท่ง เดือนที่ขาดทุนใช้แท่งโปร่งแบบตัวเลขในวงเล็บของงานบัญชี</p>
+      </div>
+    </div>
+    <div class="cash">
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+        <span class="label">กระแสเงินสดสุทธิ · ทำเล B · หน่วย พันบาท · ประมาณการ</span>
+        <span class="label">ปิดภาค: มิ.ย.–ก.ค. (ต้องตรวจกับปฏิทิน มจธ.)</span>
+      </div>
+      <svg id="cashSvg" viewBox="0 0 900 260" role="img" aria-label="กราฟกระแสเงินสด 12 เดือน"></svg>
+      <p class="note" style="margin-top:12px"><b>ข้อสังเกต:</b> ช่วงปิดภาค 2 เดือนติดลบรวม ≈ 16,000 บาท ต้องมีเงินสำรองอย่างน้อย 2 เดือนของค่าเช่าก่อนเปิดร้านในเดือน พ.ค.</p>
+    </div>
+  </section>
+
+  <!-- 08 Advisor -->
+  <section class="s">
+    <div class="s-head">
+      <div class="label">08 — ผลจาก AI</div>
+      <div>
+        <h2>เขียนเหมือนรายงาน ไม่ใช่เหมือนแชตบอต</h2>
+        <p>แยกข้อเท็จจริง สมมติฐาน และข้อเสนอแนะออกจากกัน ทุกประโยคที่เป็นข้อเท็จจริงต้องมีเชิงอรรถ ไม่มีไอคอนประกายหรือฟองแชต</p>
+      </div>
+    </div>
+    <div class="adv-grid">
+      <div class="adv">
+        <div class="meta"><span class="label">วิเคราะห์จาก 14 แหล่งอ้างอิง</span><span class="label">17.10.69 · 14:02</span></div>
+        <h4>ข้อเท็จจริง</h4>
+        <ul>
+          <li>ในระยะเดิน 5 นาที มีร้านชาไข่มุก 4 ร้าน<span class="fn">[2]</span> และป้ายรถเมล์ 1 จุด<span class="fn">[5]</span></li>
+          <li>ทำเลอยู่ห่างประตูหลัก มจธ. ประมาณ 140 เมตร<span class="fn">[3]</span></li>
+        </ul>
+        <h4>สมมติฐาน</h4>
+        <ul class="assume">
+          <li>นักศึกษา 1 ใน 15 คนซื้อเครื่องดื่มต่อวัน (ยังไม่ยืนยัน)</li>
+          <li>ช่วงปิดภาคลูกค้าลดลง 60% (ควรถามร้านแถวนั้น 2–3 ร้าน)</li>
+        </ul>
+        <h4>ข้อเสนอแนะ</h4>
+        <ul>
+          <li>คู่แข่งทั้ง 4 ร้านเปิด 10:00 ขึ้นไป<span class="fn">[2]</span> ควรทดสอบเปิด 7:30 รับคนเข้าเรียนเช้า</li>
+          <li>ก่อนเซ็นสัญญา: นับคนหน้าร้านช่วง 11:30–13:00 อย่างน้อย 2 วัน</li>
+        </ul>
+      </div>
+      <div class="debate">
+        <div>
+          <div class="label">ฝ่ายหนุน</div>
+          <h5>ค่าเช่าต่ำ ใกล้ประตู</h5>
+          <ol><li>ค่าเช่า 7.9% ของรายได้<span class="fn">[1]</span></li><li>อยู่บนทางเดินเข้า-ออกหลัก<span class="fn">[3]</span></li></ol>
+        </div>
+        <div>
+          <div class="label">ฝ่ายค้าน</div>
+          <h5>ปิดเทอมเงินขาด</h5>
+          <ol><li>มิ.ย.–ก.ค. ติดลบ<span class="fn">[7]</span></li><li>ร้านคู่แข่งอยู่ห่างไม่ถึง 60 ม.<span class="fn">[2]</span></li></ol>
+        </div>
+        <div class="verdict"><b>คำตัดสิน: เปิดได้ ถ้า</b> มีเงินสำรอง 2 เดือน และผลนับคนจริงไม่ต่ำกว่า 4 คน/นาทีช่วงเที่ยง · <span class="mono" style="font-size:12px;color:var(--ink-2)">จะเปลี่ยนใจถ้าค่าเช่าเกิน 14,000</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 Field mode -->
+  <section class="s">
+    <div class="s-head">
+      <div class="label">09 — Field Mode</div>
+      <div>
+        <h2>เครื่องมือ ไม่ใช่หน้าเว็บ</h2>
+        <p>ใช้กลางแดด มือเดียว ปุ่มกินพื้นที่เกินครึ่งจอ ตัวเลข mono ใหญ่ สั่นทุกครั้งที่กด ได้แรงบันดาลใจจากฮาร์ดแวร์ของ Teenage Engineering ลองกดปุ่มดำในมือถือจำลองได้เลย</p>
+      </div>
+    </div>
+    <div class="field-layout">
+      <div class="phone">
+        <div class="ph-top"><span>FIELD · ทำเล B</span><span id="clock">12:04</span></div>
+        <div class="ph-mid">
+          <div class="label">คนเดินผ่าน</div>
+          <div class="count" id="count">047</div>
+          <div class="sub"><span id="timer">07:32 / 10:00</span><span id="rate">≈ 6.2 คน/นาที</span></div>
+        </div>
+        <button class="tap" id="tap" aria-label="นับคนเดินผ่านเพิ่ม 1">แตะเมื่อมีคนเดินผ่าน<small>TAP +1</small></button>
+        <div class="ph-bot"><span>ถ่ายหน้าร้าน</span><span>ค่าเช่า</span><span>เสร็จ</span></div>
+      </div>
+      <div>
+        <div class="label">ช่วงเวลาที่ต้องนับ</div>
+        <div class="slots">
+          <div><div class="label">เช้า 07–09</div><div class="v">5.1<small class="mono" style="font-size:12px;color:var(--ink-3)"> /นาที</small></div></div>
+          <div><div class="label">เที่ยง 11–13</div><div class="v" style="color:var(--accent)">6.2<small class="mono" style="font-size:12px;color:var(--ink-3)"> /นาที</small></div></div>
+          <div><div class="label">เย็น 16–18</div><div class="v" style="color:var(--ink-3)">—</div></div>
+        </div>
+        <p class="note" style="margin-top:20px">เมื่อส่งผลนับ มิติ "การเข้าถึง" จะเปลี่ยนจากข้อมูลเปิดเป็น <b>สำรวจจริง</b> แท่งในการ์ดคะแนนจะเติมเป็นสีทึบ และ Confidence บนแถบด้านบนจะขยับขึ้นเป็นสีส้ม ซึ่งเป็นการใช้ accent เพียงจุดเดียวของจอ</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 Do / Don't -->
+  <section class="s">
+    <div class="s-head">
+      <div class="label">10 — กันสลอป</div>
+      <div><h2>ทำ / ไม่ทำ</h2></div>
+    </div>
+    <div class="dd">
+      <div><div class="label" style="margin-bottom:8px">ทำ</div><ul>
+        <li>ตัวเลขทุกตัวมีหน่วย ที่มา และบอกว่าจริงหรือประมาณ</li>
+        <li>เส้นบาง 1px · มุมมน 2–4px · ไม่มีเงา</li>
+        <li>คอลัมน์รายงานวางข้างแผนที่</li>
+        <li>เชิงอรรถ [n] ที่คลิกดูแหล่งได้</li>
+        <li>ข้อความไทยไม่ใส่ letter-spacing · line-height ≥ 1.6</li>
+      </ul></div>
+      <div class="no"><div class="label" style="margin-bottom:8px">ไม่ทำ</div><ul>
+        <li>gradient ม่วงฟ้า · glassmorphism · glow</li>
+        <li>emoji และไอคอนประกายของ AI</li>
+        <li>การ์ดมุมมนพร้อมเงาเรียงเป็นกริด</li>
+        <li>gauge / donut chart</li>
+        <li>Inter · Poppins · Kanit · Prompt</li>
+      </ul></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <span>SpotWise AI · Style Tile v1 · 17 ต.ค. 2569 · ข้อมูลทั้งหมดในหน้านี้เป็นตัวอย่าง</span>
+    <span class="mono">REF: FELT · PUNCHUP · WEVIS · THE PUDDING · TEENAGE ENGINEERING · ผังเมืองรวม</span>
+  </div>
+</footer>
+
+<!-- Shared SVG symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="hatchLegend" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="5" stroke="#1C1B18" stroke-width="1" opacity=".35"/>
+    </pattern>
+    <symbol id="pin" overflow="visible">
+      <ellipse cx="0" cy="0" rx="4" ry="1.6" fill="#1C1B18" opacity=".25"/>
+      <line x1="0" y1="0" x2="0" y2="-38" stroke="#1C1B18" stroke-width="1.6"/>
+      <rect x="0" y="-38" width="22" height="18" fill="#1C1B18"/>
+    </symbol>
+    <symbol id="pin-sel" overflow="visible">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#E8620C" stroke-width="1.2"/>
+      <ellipse cx="0" cy="0" rx="4" ry="1.6" fill="#1C1B18" opacity=".25"/>
+      <line x1="0" y1="0" x2="0" y2="-38" stroke="#1C1B18" stroke-width="1.6"/>
+      <rect x="0" y="-38" width="22" height="18" fill="#E8620C"/>
+      <text x="11" y="-25.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="#1C1B18">B</text>
+    </symbol>
+    <symbol id="pin-draft" overflow="visible">
+      <ellipse cx="0" cy="0" rx="4" ry="1.6" fill="#1C1B18" opacity=".25"/>
+      <line x1="0" y1="0" x2="0" y2="-38" stroke="#1C1B18" stroke-width="1.6" stroke-dasharray="3 2"/>
+      <rect x=".8" y="-37.2" width="20.4" height="16.4" fill="#F4F1EA" stroke="#1C1B18" stroke-width="1.6"/>
+      <text x="11" y="-25.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="#1C1B18">+</text>
+    </symbol>
+  </defs>
+</svg>
+
+<script>
+(() => {
+  // ---------- typed prompt ----------
+  const phrase = "ร้านชาไข่มุก ราคา 40–60 บาท เน้นนักศึกษา มจธ. งบเปิดร้าน 300,000";
+  const typed = document.getElementById("typed");
+  let i = 0;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const chars = Array.from(phrase);
+  const tick = () => {
+    typed.innerHTML = chars.slice(0, i).join("") + '<span class="caret"></span>';
+    if (i++ < chars.length) setTimeout(tick, 45);
+  };
+  if (reduce) { i = chars.length; } tick();
+
+  // ---------- score card ----------
+  const REVENUE = 120000; // est. monthly revenue (THB), demo value
+  const base = [
+    { id:"target", name:"กลุ่มเป้าหมาย",    w:.25, v:85, c:"est",  conf:45, fn:1 },
+    { id:"access", name:"การเข้าถึง",        w:.20, v:80, c:"open", conf:70, fn:5 },
+    { id:"market", name:"ความอิ่มตัวตลาด",   w:.20, v:65, c:"est",  conf:40, fn:2 },
+    { id:"rent",   name:"ความคุ้มค่าค่าเช่า", w:.20, v:90, c:"real", conf:95, fn:4 },
+    { id:"syn",    name:"สถานที่เกื้อหนุน",  w:.15, v:70, c:"open", conf:80, fn:3 },
+  ];
+  const fieldPatch = {
+    target:{ conf:60 },
+    access:{ v:84, c:"real", conf:92 },
+    market:{ v:58, c:"real", conf:78 },   // found 2 unlisted competitors on site
+  };
+  const cLabel = { est:"ประมาณการ", open:"ข้อมูลเปิด", real:"สำรวจจริง" };
+  const evidence = {
+    1:{ t:"ประชากรและนักศึกษาในพื้นที่เดินถึง", src:"WorldPop 2025 (100 ม.) + จำนวนนักศึกษา มจธ.", date:"ดึงข้อมูล 17.10.69", lic:"CC BY 4.0", lim:"ไม่รู้ว่าใครอยู่จริงช่วงปิดภาค · อัตราซื้อเป็นสมมติฐาน" },
+    2:{ t:"ร้านชาไข่มุกในระยะเดิน 5 นาที: 4 ร้าน", src:"Overture Maps Places 2026-09 + LLM จัดประเภท", date:"ดึงข้อมูล 17.10.69", lic:"CDLA-Permissive-2.0", lim:"ร้านรถเข็น/ร้านเปิดใหม่อาจตกหล่น" },
+    3:{ t:"ห่างประตูหลัก มจธ. ≈ 140 ม.", src:"OpenStreetMap (เครือข่ายทางเดิน)", date:"ดึงข้อมูล 17.10.69", lic:"ODbL", lim:"ไม่รวมทางลัดที่ไม่มีในแผนที่" },
+    4:{ t:"ค่าเช่า 9,500 บาท/เดือน", src:"สำรวจหน้างาน + โทรถามเจ้าของ", date:"สำรวจ 15.10.69", lic:"ข้อมูลของผู้ใช้", lim:"ยังไม่รวมค่ามัดจำ/ค่าส่วนกลาง" },
+    5:{ t:"ป้ายรถเมล์ 1 จุด · วินมอไซค์ 1 จุด", src:"OpenStreetMap", date:"ดึงข้อมูล 17.10.69", lic:"ODbL", lim:"ไม่มีข้อมูลจำนวนผู้โดยสารรายป้าย" },
+  };
+  let state = base.map(d => ({ ...d }));
+  let rent = 9500;
+
+  const rentScore = r => Math.max(0, Math.min(100, Math.round(100 - Math.max(0, r / REVENUE - 0.06) * 500)));
+  const total = () => Math.round(state.reduce((s, d) => s + d.v * d.w, 0));
+  const conf  = () => Math.round(state.reduce((s, d) => s + d.conf * d.w, 0));
+
+  const dimsEl = document.getElementById("dims");
+  dimsEl.innerHTML = state.map(d => `
+    <div class="dim" data-id="${d.id}">
+      <div class="dim-h"><span>${d.name}<a class="fn" tabindex="0" data-fn="${d.fn}">[${d.fn}]</a> <span class="w">${Math.round(d.w*100)}%</span></span><span class="v"></span></div>
+      <div class="ruler"><div class="fill"><div class="h"></div><div class="s"></div></div></div>
+      <div class="dim-c"></div>
+    </div>`).join("");
+
+  const animateNum = (el, to, suffix = "") => {
+    const from = parseInt(el.textContent, 10) || 0;
+    if (from === to || reduce) { el.textContent = to + suffix; return; }
+    const t0 = performance.now(), dur = 420;
+    const step = t => {
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(from + (to - from) * e) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const render = () => {
+    state.forEach(d => {
+      const row = dimsEl.querySelector(`[data-id="${d.id}"]`);
+      row.querySelector(".v").textContent = d.v;
+      const fill = row.querySelector(".fill");
+      fill.style.width = d.v + "%";
+      fill.dataset.c = d.c;
+      row.querySelector(".dim-c").textContent = `${cLabel[d.c]} · CONF ${d.conf}%`;
+    });
+    animateNum(document.getElementById("total"), total());
+    const c = conf();
+    const confEl = document.getElementById("conf"), barEl = document.getElementById("barConf");
+    const up = c > 64;
+    confEl.classList.toggle("up", up);
+    animateNum(confEl, c, "%"); animateNum(barEl, c, "%");
+    const ratio = (rent / REVENUE * 100).toFixed(1);
+    document.getElementById("rentOut").textContent = "฿" + rent.toLocaleString("en-US");
+    document.getElementById("rentNote").innerHTML =
+      `ค่าเช่าคิดเป็น <b>${ratio}%</b> ของรายได้คาดการณ์ ≈ 120,000 บาท/เดือน ` +
+      (ratio <= 10 ? "อยู่ในเกณฑ์ปลอดภัย" : ratio <= 15 ? "เริ่มตึง (เกณฑ์ทั่วไป 10–15%)" : "<b>เกินเกณฑ์</b> ความเสี่ยงเงินสดสูง") +
+      `<span class="fn" data-fn="4">[4]</span>`;
+  };
+
+  document.getElementById("rent").addEventListener("input", e => {
+    rent = +e.target.value;
+    state.find(d => d.id === "rent").v = rentScore(rent);
+    render();
+  });
+  document.getElementById("fieldBtn").addEventListener("click", () => {
+    state = state.map(d => fieldPatch[d.id] ? { ...d, ...fieldPatch[d.id] } : d);
+    render();
+  });
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    state = base.map(d => ({ ...d })); rent = 9500;
+    document.getElementById("rent").value = 9500;
+    render();
+  });
+
+  // ---------- evidence ----------
+  const evBody = document.getElementById("evBody");
+  const showEv = n => {
+    const e = evidence[n]; if (!e) return;
+    document.querySelector("#ev .label").textContent = `Evidence [${n}]`;
+    evBody.innerHTML = `<dt>ข้อความ</dt><dd>${e.t}</dd><dt>แหล่ง</dt><dd>${e.src}</dd><dt>วันที่</dt><dd class="mono" style="font-size:13px">${e.date}</dd><dt>License</dt><dd class="mono" style="font-size:13px">${e.lic}</dd><dt>ข้อจำกัด</dt><dd style="color:var(--ink-2)">${e.lim}</dd>`;
+  };
+  document.addEventListener("click", e => { const f = e.target.closest("[data-fn]"); if (f) showEv(f.dataset.fn); });
+  document.addEventListener("keydown", e => { if (e.key === "Enter") { const f = e.target.closest("[data-fn]"); if (f) showEv(f.dataset.fn); } });
+  showEv(2);
+  render();
+
+  // ---------- cashflow ----------
+  const months = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+  const net = [14,16,15,6,3,-9,-7,12,17,15,16,8];
+  const svg = document.getElementById("cashSvg");
+  const W = 900, H = 260, L = 40, R = 10, T = 16, B = 34;
+  const max = 20, min = -12;
+  const y = v => T + (max - v) / (max - min) * (H - T - B);
+  const bw = (W - L - R) / 12;
+  let s = "";
+  s += `<rect x="${L + bw*5}" y="${T}" width="${bw*2}" height="${H-T-B}" fill="#EAE5D9"/>`;
+  s += `<text x="${L + bw*6}" y="${T + 14}" text-anchor="middle">ปิดภาค</text>`;
+  [-10,0,10,20].forEach(v => {
+    s += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${v===0?'#1C1B18':'#D6D0C2'}" stroke-width="1"/>`;
+    s += `<text x="${L-8}" y="${y(v)+4}" text-anchor="end">${v}</text>`;
+  });
+  net.forEach((v, k) => {
+    const x = L + bw*k + bw*.22, w = bw*.56;
+    if (v >= 0) s += `<rect x="${x}" y="${y(v)}" width="${w}" height="${y(0)-y(v)}" fill="#1C1B18"/>`;
+    else s += `<rect x="${x+.5}" y="${y(0)}" width="${w-1}" height="${y(v)-y(0)}" fill="#F4F1EA" stroke="#1C1B18" stroke-width="1"/>`;
+    s += `<text x="${x+w/2}" y="${v>=0 ? y(v)-6 : y(v)+14}" text-anchor="middle" fill="#1C1B18">${v>=0 ? v : "("+(-v)+")"}</text>`;
+    s += `<text x="${x+w/2}" y="${H-12}" text-anchor="middle">${months[k]}</text>`;
+  });
+  svg.innerHTML = s;
+
+  // ---------- field counter ----------
+  let n = 47, sec = 452;
+  const countEl = document.getElementById("count"), tap = document.getElementById("tap");
+  const fmt = t => String(Math.floor(t/60)).padStart(2,"0") + ":" + String(t%60).padStart(2,"0");
+  tap.addEventListener("click", () => {
+    n++; countEl.textContent = String(n).padStart(3, "0");
+    document.getElementById("rate").textContent = "≈ " + (n / (sec/60)).toFixed(1) + " คน/นาที";
+    tap.classList.add("flash"); setTimeout(() => tap.classList.remove("flash"), 90);
+    try { navigator.vibrate && navigator.vibrate(12); } catch (_) {}
+  });
+  setInterval(() => {
+    if (sec < 600) { sec++; document.getElementById("timer").textContent = fmt(sec) + " / 10:00"; }
+  }, 1000);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "A",
+    "label": "ตัวอย่าง A — ถ.ประชาอุทิศ ฝั่งตะวันตกของ มจธ.",
+    "lon": 100.4905,
+    "lat": 13.6508,
+    "rent_thb": null,
+    "placeholder": true
+  },
+  {
+    "id": "B",
+    "label": "ตัวอย่าง B — ใกล้ทางเข้า มจธ.",
+    "lon": 100.4938,
+    "lat": 13.6530,
+    "rent_thb": null,
+    "placeholder": true
+  },
+  {
+    "id": "C",
+    "label": "ตัวอย่าง C — ฝั่งใต้ของ มจธ.",
+    "lon": 100.4960,
+    "lat": 13.6468,
+    "rent_thb": null,
+    "placeholder": true
+  }
+]

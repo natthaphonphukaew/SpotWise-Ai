@@ -1,0 +1,8 @@
+overturemaps>=0.10
+duckdb>=1.1
+osmnx>=2.0
+geopandas>=1.0
+shapely>=2.0
+rasterio>=1.4
+requests>=2.32
+scipy>=1.13

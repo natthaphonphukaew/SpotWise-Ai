@@ -1,0 +1,90 @@
+{
+  "area": "bangmod",
+  "center": [
+    100.4943,
+    13.6512
+  ],
+  "bbox": [
+    100.4712,
+    13.6287,
+    100.5174,
+    13.6737
+  ],
+  "datasets": {
+    "overture_places": {
+      "file": "(intermediate)",
+      "source": "overture",
+      "fetched": "2026-10-17",
+      "count": 4069,
+      "release": "2026-09-23.1",
+      "raw_count": 4746,
+      "min_confidence": 0.35
+    },
+    "transit": {
+      "file": "transit.geojson",
+      "source": "osm",
+      "fetched": "2026-10-17",
+      "count": 55
+    },
+    "poi": {
+      "file": "poi.geojson",
+      "source": [
+        "overture",
+        "osm"
+      ],
+      "fetched": "2026-10-17",
+      "count": 4224,
+      "by_group": {
+        "other": 1207,
+        "food": 971,
+        "retail": 456,
+        "office": 289,
+        "coffee": 267,
+        "education": 262,
+        "dormitory": 249,
+        "convenience": 164,
+        "health": 123,
+        "leisure": 109,
+        "drink_dessert": 78,
+        "market": 30,
+        "bubble_tea": 19
+      },
+      "by_source": {
+        "overture": 4069,
+        "osm": 155
+      },
+      "classification": "rule-based (pre-LLM)"
+    },
+    "isochrones": {
+      "file": "isochrones.geojson",
+      "source": "osm",
+      "fetched": "2026-10-17",
+      "count": 6,
+      "walk_speed_m_per_min": 75,
+      "minutes": [
+        5,
+        10
+      ]
+    }
+  },
+  "sources": {
+    "overture": {
+      "name": "Overture Maps Places",
+      "url": "https://docs.overturemaps.org/guides/places",
+      "license": "CDLA-Permissive-2.0 / Apache-2.0 / CC0-1.0",
+      "limits": "ร้านเล็ก/ร้านรถเข็น/ร้านเปิดใหม่อาจตกหล่น หมวดหมู่ไม่สม่ำเสมอ"
+    },
+    "osm": {
+      "name": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/copyright",
+      "license": "ODbL-1.0 (© OpenStreetMap contributors)",
+      "limits": "ความครอบคลุมร้านค้าในไทยไม่สม่ำเสมอ ขึ้นกับอาสาสมัคร"
+    },
+    "worldpop": {
+      "name": "WorldPop 2025 constrained 100m (R2025A v1)",
+      "url": "https://hub.worldpop.org/geodata/summary?id=75663",
+      "license": "CC BY 4.0",
+      "limits": "เป็นค่าประมาณจากโมเดล (alpha) ไม่ได้นับจริง ไม่สะท้อนประชากรแฝง/นักศึกษาหอพัก"
+    }
+  }
+}
