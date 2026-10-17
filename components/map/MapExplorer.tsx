@@ -154,6 +154,7 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
       cancelAnimationFrame(raf);
       map.remove();
       mapRef.current = null;
+      setReady(false); // a re-created map must finish loading before other effects touch it
     };
   }, [manifest, hasPopulation]);
 

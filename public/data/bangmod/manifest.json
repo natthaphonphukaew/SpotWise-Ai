@@ -65,6 +65,15 @@
         5,
         10
       ]
+    },
+    "population": {
+      "file": "population.geojson",
+      "source": "worldpop",
+      "fetched": "2026-10-17",
+      "count": 2967,
+      "total_pop": 194510,
+      "cell_m": 100,
+      "year": 2025
     }
   },
   "sources": {
