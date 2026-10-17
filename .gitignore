@@ -47,3 +47,4 @@ __pycache__/
 
 # copied from node_modules by scripts/copy-maplibre-worker.mjs
 /public/vendor/
+!.env.example

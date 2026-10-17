@@ -30,6 +30,9 @@ import {
 } from "@/lib/data/bangmod";
 import { countByGroup, findIsochrone, type IsochroneFC, type PoiFC } from "@/lib/geo/catchment";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import Link from "next/link";
+import { rolesFor, type Role } from "@/lib/profile/schema";
+import { useStoredProfile } from "@/lib/profile/store";
 
 type Layers = { population: boolean; context: boolean; verifiedOnly: boolean };
 type Data = { poi: PoiFC; iso: IsochroneFC; transit: FeatureCollection<Point> };
@@ -37,13 +40,19 @@ type Data = { poi: PoiFC; iso: IsochroneFC; transit: FeatureCollection<Point> };
 const POI_ROLES = { "poi-context": "context", "poi-synergy": "synergy", "poi-comp-indirect": "comp-indirect", "poi-comp": "comp" } as const;
 const POI_LAYERS = Object.keys(POI_ROLES) as (keyof typeof POI_ROLES)[];
 
-const byRole = (role: string) =>
-  ["in", ["get", "group"], ["literal", Object.entries(GROUPS).filter(([, s]) => s.role === role).map(([g]) => g)]];
-const poiFilter = (role: string, verifiedOnly: boolean) =>
-  (verifiedOnly ? ["all", byRole(role), ["!=", ["get", "verification"], "unverified"]] : byRole(role)) as unknown as ExpressionSpecification;
+const DEFAULT_ROLES = rolesFor(null);
+const byRole = (role: Role, roles: Record<PoiGroup, Role>) =>
+  ["in", ["get", "group"], ["literal", (Object.keys(roles) as PoiGroup[]).filter((g) => roles[g] === role)]];
+const poiFilter = (role: Role, verifiedOnly: boolean, roles: Record<PoiGroup, Role> = DEFAULT_ROLES) =>
+  (verifiedOnly
+    ? ["all", byRole(role, roles), ["!=", ["get", "verification"], "unverified"]]
+    : byRole(role, roles)) as unknown as ExpressionSpecification;
 // Uncertainty stays visible: single-source (unverified) places are drawn faded.
 const certainty = ["case", ["==", ["get", "verification"], "unverified"], 0.4, 1] as unknown as ExpressionSpecification;
-const COUNT_ROWS: PoiGroup[] = ["bubble_tea", "coffee", "drink_dessert", "education", "dormitory", "office"];
+const DEFAULT_COUNT_ROWS: PoiGroup[] = ["bubble_tea", "coffee", "drink_dessert", "education", "dormitory", "office"];
+const SYNERGY_SWATCH: Partial<Record<PoiGroup, string>> = {
+  education: "bg-edu", dormitory: "bg-pop-2", office: "bg-civic", market: "bg-pop-3", leisure: "bg-park",
+};
 
 export function MapExplorer({ manifest, candidates }: { manifest: Manifest; candidates: Candidate[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -54,6 +63,17 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
   const [cand, setCand] = useState(candidates.find((c) => c.id === "B")?.id ?? candidates[0]?.id);
   const [poi, setPoi] = useState<PoiProps | null>(null);
   const [layers, setLayers] = useState<Layers>({ population: true, context: false, verifiedOnly: false });
+  const stored = useStoredProfile();
+  const profile = stored?.profile ?? null;
+  // The business profile (AI + user edits) decides which groups are competitors / synergy.
+  const roles = useMemo(() => rolesFor(profile), [profile]);
+  const countRows = useMemo<PoiGroup[]>(
+    () =>
+      profile
+        ? [...profile.direct_competitors, ...profile.indirect_competitors, ...profile.synergy.map((s) => s.group)].slice(0, 9)
+        : DEFAULT_COUNT_ROWS,
+    [profile],
+  );
   const [cursor, setCursor] = useState({ lng: manifest.center[0], lat: manifest.center[1], zoom: 15 });
 
   const hasPopulation = Boolean(manifest.datasets.population);
@@ -196,8 +216,8 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
     if (!map || !ready) return;
     if (hasPopulation) map.setLayoutProperty("population", "visibility", layers.population ? "visible" : "none");
     map.setLayoutProperty("poi-context", "visibility", layers.context ? "visible" : "none");
-    for (const id of POI_LAYERS) map.setFilter(id, poiFilter(POI_ROLES[id], layers.verifiedOnly));
-  }, [ready, layers, hasPopulation]);
+    for (const id of POI_LAYERS) map.setFilter(id, poiFilter(POI_ROLES[id], layers.verifiedOnly, roles));
+  }, [ready, layers, hasPopulation, roles]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -241,6 +261,20 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
         <aside className="order-2 lg:min-h-0 lg:overflow-y-auto border-ink bg-paper-2 px-4 py-6 sm:px-6 lg:order-1 lg:border-r">
           <div className="label">แผนที่ย่าน · No.001</div>
           <h1 className="mt-1 font-display text-[28px] leading-snug font-semibold">รอบ มจธ. บางมด</h1>
+          <p className="mt-1 text-sm">
+            {profile ? (
+              <>
+                วิเคราะห์สำหรับ <span className="font-medium">{profile.business_label}</span>{" "}
+                <span className="font-mono text-[11px] text-ink-3">{stored?.edited ? "AI + ผู้ใช้แก้" : "ตีความโดย AI"}</span> ·{" "}
+                <Link href="/" className="underline decoration-rule underline-offset-4 hover:decoration-ink">แก้โปรไฟล์</Link>
+              </>
+            ) : (
+              <>
+                ยังไม่มีโปรไฟล์ร้าน ใช้บทบาทเริ่มต้นของร้านชาไข่มุก ·{" "}
+                <Link href="/" className="underline decoration-rule underline-offset-4 hover:decoration-ink">ให้ AI ตีความคอนเซ็ปต์</Link>
+              </>
+            )}
+          </p>
           <p className="mt-2 text-sm text-ink-2">
             เลือกทำเลเพื่อดูว่าในระยะเดินมีอะไรบ้าง คลิกจุดบนแผนที่เพื่อดูที่มาของข้อมูล
           </p>
@@ -280,10 +314,10 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
                 </tr>
               </thead>
               <tbody>
-                {COUNT_ROWS.map((g) => (
+                {countRows.map((g) => (
                   <tr key={g} className="border-b border-rule">
                     <td className="py-1.5">
-                      <Swatch group={g} /> {GROUPS[g].label}
+                      <Swatch group={g} role={roles[g]} /> {GROUPS[g].label}
                     </td>
                     <td className="py-1.5 text-right font-mono tabular-nums">{counts ? (counts.five[g] ?? 0) : "–"}</td>
                     <td className="py-1.5 text-right font-mono tabular-nums text-ink-2">{counts ? (counts.ten[g] ?? 0) : "–"}</td>
@@ -358,12 +392,11 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
-function Swatch({ group }: { group: PoiGroup }) {
-  const s = GROUPS[group];
+function Swatch({ group, role }: { group: PoiGroup; role: Role }) {
   const cls =
-    s.role === "comp" ? "bg-comp" :
-    s.role === "comp-indirect" ? "border-[1.6px] border-comp" :
-    group === "education" ? "bg-edu" : group === "dormitory" ? "bg-pop-2" : "bg-civic";
+    role === "comp" ? "bg-comp" :
+    role === "comp-indirect" ? "border-[1.6px] border-comp" :
+    role === "synergy" ? (SYNERGY_SWATCH[group] ?? "bg-ink-3") : "bg-ink-3";
   return <span className={`mr-2 inline-block h-2.5 w-2.5 rounded-full align-middle ${cls}`} />;
 }
 
