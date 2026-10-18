@@ -57,6 +57,12 @@ export function demandCells(pop: PopulationFC): DemandCell[] {
 type Area = Feature<Polygon | MultiPolygon> | undefined;
 const inside = (pt: Feature<Point> | [number, number], area: Area) => (area ? booleanPointInPolygon(pt, area) : false);
 
+/** Places inside a candidate's 10-minute walk (the catchment the activity profile reads). */
+export function catchmentPlaces(cand: Candidate, poi: PoiFC, iso: IsochroneFC) {
+  const ten = findIsochrone(iso, cand.id, 10);
+  return ten ? poi.features.filter((f) => inside(f, ten)).map((f) => f.properties) : [];
+}
+
 /** Everything Loc-Score needs about one candidate, measured from the map data. Pure. */
 export function siteInputs(
   cand: Candidate,

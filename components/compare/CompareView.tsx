@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Readout, TopBar } from "@/components/TopBar";
+import { ActivityChart } from "@/components/compare/ActivityChart";
 import { CERTAINTY_LABEL, RulerBar } from "@/components/compare/RulerBar";
+import { footfallBySlot } from "@/lib/field/types";
+import { formatHourRanges, peakHourSet, TYPICAL_HOURS_BASIS } from "@/lib/scoring/activity";
 import { saveCompareInputs } from "@/lib/compare/store";
 import { useSiteScores } from "@/lib/compare/use-site-scores";
 import type { Candidate, Manifest } from "@/lib/data/bangmod";
@@ -21,7 +24,8 @@ const n = (v: number) => v.toLocaleString("en-US");
 
 export function CompareView({ manifest, candidates }: { manifest: Manifest; candidates: Candidate[] }) {
   const [focus, setFocus] = useState<{ cand: string; dim: WeightKey } | null>(null);
-  const { error, scores, profile, weights, assumptions, inputs } = useSiteScores(candidates);
+  const { error, scores, profile, weights, assumptions, inputs, fieldData, activity } = useSiteScores(candidates);
+  const peak = useMemo(() => peakHourSet(profile?.peak_hours ?? []), [profile]);
 
   const best = (pick: (s: SiteScore) => number | null) => {
     if (!scores) return null;
@@ -235,6 +239,8 @@ export function CompareView({ manifest, candidates }: { manifest: Manifest; cand
               </table>
             </div>
 
+            {activity && <ActivitySection candidates={candidates} activity={activity} peak={peak} peaks={profile?.peak_hours ?? []} fieldData={fieldData} />}
+
             {/* Assumptions */}
             <section className="mt-10 grid gap-6 border-t border-ink pt-4 md:grid-cols-2">
               <div>
@@ -305,6 +311,102 @@ export function CompareView({ manifest, candidates }: { manifest: Manifest; cand
         </p>
       </main>
     </>
+  );
+}
+
+/** SPEC §6 Should: activity profile by time of day, one mirror chart per site on shared scales. */
+function ActivitySection({
+  candidates,
+  activity,
+  peak,
+  peaks,
+  fieldData,
+}: {
+  candidates: Candidate[];
+  activity: NonNullable<ReturnType<typeof useSiteScores>["activity"]>;
+  peak: Set<number>;
+  peaks: { from: string; to: string; reason: string }[];
+  fieldData: ReturnType<typeof useSiteScores>["fieldData"];
+}) {
+  const all = Object.values(activity);
+  const scale = {
+    synergy: Math.max(1, ...all.flatMap((a) => a.profile.rows.map((r) => r.synergy))),
+    comp: Math.max(1, ...all.flatMap((a) => a.profile.rows.map((r) => r.comp + r.indirect))),
+  };
+  const places = all.reduce((s, a) => s + a.profile.places, 0);
+  const withHours = all.reduce((s, a) => s + a.profile.withHours, 0);
+  const avg = (v: number) => (v >= 10 ? Math.round(v).toString() : v.toFixed(1));
+
+  return (
+    <section className="mt-10 border-t border-ink pt-4">
+      <h2 className="label">จังหวะทั้งวัน · วันธรรมดา 06–24 น.</h2>
+      <p className="mt-2 max-w-[75ch] text-sm text-ink-2">
+        จำนวนสถานที่ในระยะเดิน 10 นาทีที่น่าจะเปิดหรือมีคนในแต่ละชั่วโมง ด้านบนคือสถานที่เกื้อหนุน ด้านล่างคือคู่แข่ง (ทึบ = ตรง, เส้นขอบ = อ้อม)
+        {peaks.length > 0 ? (
+          <>
+            {" "}พื้นสีเข้มคือช่วงขายหลักจากโปรไฟล์ ({peaks.map((p) => `${p.from}–${p.to}`).join(", ")} น.)
+          </>
+        ) : (
+          <> · ยังไม่มีโปรไฟล์ร้าน จึงยังไม่มีช่วงขายหลักให้เทียบ</>
+        )}
+      </p>
+
+      <div className="mt-4 space-y-5">
+        {candidates.map((c) => {
+          const a = activity[c.id];
+          const s = a.summary;
+          return (
+            <div key={c.id} className="grid gap-x-4 md:grid-cols-[180px_1fr]">
+              <div className="text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="grid h-5 w-5 shrink-0 place-items-center bg-ink font-mono text-[11px] font-semibold text-paper">{c.id}</span>
+                  <span className="label">ทำเล {c.id}</span>
+                </div>
+                <dl className="mt-2 grid grid-cols-[1fr_auto] gap-x-3 font-mono text-[11px] text-ink-2">
+                  {s.peak ? (
+                    <>
+                      <dt>ช่วงขาย: เกื้อหนุน</dt>
+                      <dd className="text-right text-ink">{avg(s.peak.synergy)}</dd>
+                      <dt>ช่วงขาย: คู่แข่งตรง</dt>
+                      <dd className="text-right text-ink">{avg(s.peak.comp)}</dd>
+                      <dt>ช่วงขาย: คู่แข่งอ้อม</dt>
+                      <dd className="text-right text-ink">{avg(s.peak.indirect)}</dd>
+                    </>
+                  ) : (
+                    <>
+                      <dt>ทั้งวัน: เกื้อหนุน</dt>
+                      <dd className="text-right text-ink">{avg(s.allDay.synergy)}</dd>
+                      <dt>ทั้งวัน: คู่แข่งตรง</dt>
+                      <dd className="text-right text-ink">{avg(s.allDay.comp)}</dd>
+                    </>
+                  )}
+                </dl>
+                <p className="mt-1 font-mono text-[10px] text-ink-3">เฉลี่ยแห่ง/ชม.</p>
+              </div>
+              <div>
+                <ActivityChart
+                  profile={a.profile}
+                  peak={peak}
+                  gaps={s.gapHours}
+                  footfall={footfallBySlot(c.id, fieldData.sessions)}
+                  scale={scale}
+                  label={`จำนวนสถานที่ที่เปิดรายชั่วโมงรอบทำเล ${c.id}`}
+                />
+                <p className="mt-1 text-xs text-ink-2">
+                  <span className="mr-1.5 inline-block h-0.5 w-4 bg-accent align-middle" />
+                  ไม่มีคู่แข่งตรงเปิดแต่สถานที่เกื้อหนุนยังมีคน: <span className="font-mono">{formatHourRanges(s.gapHours)}</span>
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <p className="mt-4 text-xs text-ink-3">
+        ประมาณการ · มีเวลาทำการจริงจาก OSM {withHours} จาก {n(places)} แห่ง ที่เหลือใช้{TYPICAL_HOURS_BASIS} · นับเป็นจำนวนสถานที่ ไม่ใช่จำนวนคน ·
+        จุดสีส้มคือผลนับคนจริงจาก Field Mode ซึ่งเชื่อถือได้มากกว่ากราฟนี้
+      </p>
+    </section>
   );
 }
 

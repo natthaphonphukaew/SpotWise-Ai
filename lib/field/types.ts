@@ -51,6 +51,17 @@ export type FieldSummary = {
 
 const MIN_SECONDS = 120; // shorter counts are too noisy to use
 
+/** People per minute per time slot at one site, from usable counts only. */
+export function footfallBySlot(site: string, sessions: FootfallSession[]): Partial<Record<TimeSlot, { perMin: number; minutes: number }>> {
+  const out: Partial<Record<TimeSlot, { perMin: number; minutes: number }>> = {};
+  for (const slot of Object.keys(SLOT_LABEL) as TimeSlot[]) {
+    const s = sessions.filter((x) => x.site === site && x.slot === slot && x.seconds >= MIN_SECONDS);
+    const seconds = s.reduce((a, x) => a + x.seconds, 0);
+    if (seconds > 0) out[slot] = { perMin: s.reduce((a, x) => a + x.count, 0) / (seconds / 60), minutes: seconds / 60 };
+  }
+  return out;
+}
+
 export function summarizeField(site: string, sessions: FootfallSession[], storefront: Storefront | null): FieldSummary {
   const usable = sessions.filter((s) => s.site === site && s.seconds >= MIN_SECONDS);
   const seconds = usable.reduce((a, s) => a + s.seconds, 0);

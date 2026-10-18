@@ -1,7 +1,7 @@
 {
-  "ran": "2026-10-18T06:25:01.532Z",
-  "total": 54,
-  "passed": 54,
+  "ran": "2026-10-18T07:01:40.709Z",
+  "total": 67,
+  "passed": 67,
   "failed": 0,
   "files": [
     {
@@ -40,26 +40,6 @@
         {
           "suite": "groundingRate",
           "title": "is the share of grounded statements",
-          "status": "passed"
-        }
-      ]
-    },
-    {
-      "file": "lib/field/types.test.ts",
-      "tests": [
-        {
-          "suite": "summarizeField",
-          "title": "pools sessions per site into people per minute",
-          "status": "passed"
-        },
-        {
-          "suite": "summarizeField",
-          "title": "ignores counts shorter than two minutes",
-          "status": "passed"
-        },
-        {
-          "suite": "slotOf",
-          "title": "maps local clock time to survey slots",
           "status": "passed"
         }
       ]
@@ -150,6 +130,96 @@
         {
           "suite": "rolesFor",
           "title": "falls back to default roles without a profile",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "lib/field/types.test.ts",
+      "tests": [
+        {
+          "suite": "summarizeField",
+          "title": "pools sessions per site into people per minute",
+          "status": "passed"
+        },
+        {
+          "suite": "summarizeField",
+          "title": "ignores counts shorter than two minutes",
+          "status": "passed"
+        },
+        {
+          "suite": "slotOf",
+          "title": "maps local clock time to survey slots",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "lib/scoring/activity.test.ts",
+      "tests": [
+        {
+          "suite": "parseOpeningHours",
+          "title": "reads common OSM forms",
+          "status": "passed"
+        },
+        {
+          "suite": "parseOpeningHours",
+          "title": "cuts ranges past midnight at 24:00",
+          "status": "passed"
+        },
+        {
+          "suite": "parseOpeningHours",
+          "title": "returns null when it can't read the string",
+          "status": "passed"
+        },
+        {
+          "suite": "activityProfile",
+          "title": "covers 06:00–24:00 in hour buckets",
+          "status": "passed"
+        },
+        {
+          "suite": "activityProfile",
+          "title": "an anchor raises the count only in the hours it is active",
+          "status": "passed"
+        },
+        {
+          "suite": "activityProfile",
+          "title": "real opening hours override the group's typical hours",
+          "status": "passed"
+        },
+        {
+          "suite": "activityProfile",
+          "title": "splits roles and leaves context places out",
+          "status": "passed"
+        },
+        {
+          "suite": "summarizeActivity",
+          "title": "finds hours with anchors active and no direct competitor open",
+          "status": "passed"
+        },
+        {
+          "suite": "summarizeActivity",
+          "title": "more competitors never add gap hours (monotonic)",
+          "status": "passed"
+        },
+        {
+          "suite": "summarizeActivity",
+          "title": "averages only the peak hours",
+          "status": "passed"
+        },
+        {
+          "suite": "peakHourSet",
+          "title": "maps HH:MM ranges to overlapping hour buckets",
+          "status": "passed"
+        },
+        {
+          "suite": "peakHourSet",
+          "title": "wraps past midnight",
+          "status": "passed"
+        },
+        {
+          "suite": "formatHourRanges",
+          "title": "joins consecutive hours",
           "status": "passed"
         }
       ]

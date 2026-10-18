@@ -4,7 +4,14 @@ import { useEffect, useMemo, useState } from "react";
 import { useCompareInputs } from "@/lib/compare/store";
 import type { Candidate } from "@/lib/data/bangmod";
 import { loadBangmod, type BangmodData } from "@/lib/data/load";
-import { campusDemand, siteInputs } from "@/lib/geo/site";
+import { campusDemand, catchmentPlaces, siteInputs } from "@/lib/geo/site";
+import {
+  activityProfile,
+  peakHourSet,
+  summarizeActivity,
+  type ActivityProfile,
+  type ActivitySummary,
+} from "@/lib/scoring/activity";
 import { rolesFor, type WeightKey } from "@/lib/profile/schema";
 import { useStoredProfile } from "@/lib/profile/store";
 import { useFieldData } from "@/lib/field/store";
@@ -58,5 +65,17 @@ export function useSiteScores(candidates: Candidate[]) {
     ) as Record<string, SiteScore>;
   }, [data, profile, weights, assumptions, candidates, inputs.rents, field]);
 
-  return { data, error, scores, stored, profile, weights, assumptions, inputs, field };
+  const activity = useMemo(() => {
+    if (!data) return null;
+    const roles = rolesFor(profile);
+    const peak = peakHourSet(profile?.peak_hours ?? []);
+    return Object.fromEntries(
+      candidates.map((c) => {
+        const p = activityProfile(catchmentPlaces(c, data.poi, data.iso), roles);
+        return [c.id, { profile: p, summary: summarizeActivity(p, peak) }];
+      }),
+    ) as Record<string, { profile: ActivityProfile; summary: ActivitySummary }>;
+  }, [data, profile, candidates]);
+
+  return { data, error, scores, stored, profile, weights, assumptions, inputs, field, fieldData, activity };
 }
