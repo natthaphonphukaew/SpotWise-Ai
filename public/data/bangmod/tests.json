@@ -1,7 +1,7 @@
 {
-  "ran": "2026-10-18T07:01:40.709Z",
-  "total": 67,
-  "passed": 67,
+  "ran": "2026-10-18T08:44:31.075Z",
+  "total": 76,
+  "passed": 76,
   "failed": 0,
   "files": [
     {
@@ -60,6 +60,26 @@
         {
           "suite": "applyAiLabels",
           "title": "works without an AI file",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "lib/field/types.test.ts",
+      "tests": [
+        {
+          "suite": "summarizeField",
+          "title": "pools sessions per site into people per minute",
+          "status": "passed"
+        },
+        {
+          "suite": "summarizeField",
+          "title": "ignores counts shorter than two minutes",
+          "status": "passed"
+        },
+        {
+          "suite": "slotOf",
+          "title": "maps local clock time to survey slots",
           "status": "passed"
         }
       ]
@@ -130,26 +150,6 @@
         {
           "suite": "rolesFor",
           "title": "falls back to default roles without a profile",
-          "status": "passed"
-        }
-      ]
-    },
-    {
-      "file": "lib/field/types.test.ts",
-      "tests": [
-        {
-          "suite": "summarizeField",
-          "title": "pools sessions per site into people per minute",
-          "status": "passed"
-        },
-        {
-          "suite": "summarizeField",
-          "title": "ignores counts shorter than two minutes",
-          "status": "passed"
-        },
-        {
-          "suite": "slotOf",
-          "title": "maps local clock time to survey slots",
           "status": "passed"
         }
       ]
@@ -375,6 +375,56 @@
         {
           "suite": "fast Huff",
           "title": "precomputed competitor pull gives the same result as the direct formula",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "lib/sites/sites.test.ts",
+      "tests": [
+        {
+          "suite": "site selection",
+          "title": "defaults to the first surveyed candidates",
+          "status": "passed"
+        },
+        {
+          "suite": "site selection",
+          "title": "never selects more than MAX_SITES",
+          "status": "passed"
+        },
+        {
+          "suite": "site selection",
+          "title": "keeps at least one site when deselecting",
+          "status": "passed"
+        },
+        {
+          "suite": "site selection",
+          "title": "adds a pin to the comparison only when there is room",
+          "status": "passed"
+        },
+        {
+          "suite": "site selection",
+          "title": "removing a pin also drops it from the comparison",
+          "status": "passed"
+        },
+        {
+          "suite": "site selection",
+          "title": "does not reuse pin ids that still exist",
+          "status": "passed"
+        },
+        {
+          "suite": "checkPin",
+          "title": "refuses pins outside the data area or inside the campus",
+          "status": "passed"
+        },
+        {
+          "suite": "withSiteCatchments",
+          "title": "adds 5/10-minute radius circles only for sites without an isochrone",
+          "status": "passed"
+        },
+        {
+          "suite": "withSiteCatchments",
+          "title": "draws circles with the requested radius",
           "status": "passed"
         }
       ]

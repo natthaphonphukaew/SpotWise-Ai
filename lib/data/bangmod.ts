@@ -91,6 +91,8 @@ export type Candidate = {
   lat: number;
   rent_thb: number | null;
   placeholder?: boolean;
+  /** dropped by the user on the home page: straight-line catchments, not surveyed */
+  custom?: boolean;
 };
 
 /** Thai label + token used to colour each group on the map. Order = legend order. */

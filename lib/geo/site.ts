@@ -101,5 +101,6 @@ export function siteInputs(
   return {
     pop10, edu10, stops5, poi5, direct10, indirect10, synergy10,
     huffShare: h.share, huffCapturedPop: h.capturedPop, campusDemand, rentThb, field,
+    radii: five?.properties.radius_m && ten?.properties.radius_m ? [five.properties.radius_m, ten.properties.radius_m] : null,
   };
 }

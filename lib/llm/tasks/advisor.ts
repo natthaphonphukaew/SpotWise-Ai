@@ -10,7 +10,7 @@ const Cited = z.object({
 /** Grounded Advisor report (SPEC §2 #5) + Devil's Advocate (SPEC §5 W3). */
 export const AdvisorSchema = z.object({
   verdict: z.object({
-    best_site: z.string().describe("ทำเลที่แนะนำ (A/B/C) หรือ none ถ้าข้อมูลยังไม่พอ"),
+    best_site: z.string().describe("id ของทำเลที่แนะนำ เช่น A, B หรือ P1 หรือ none ถ้าข้อมูลยังไม่พอ"),
     headline: Cited.describe("คำตัดสินหนึ่งประโยค"),
     conditions: z.array(Cited).max(3).describe("เงื่อนไขที่ต้องเป็นจริงก่อนเปิด"),
     change_mind_if: z.array(Cited).max(2).describe("จะเปลี่ยนคำแนะนำถ้า…"),
@@ -41,7 +41,7 @@ const SYSTEM = `คุณคือที่ปรึกษาเลือกท�
 export function advisorTask(evidence: EvidenceRef[], focus: string | null): LlmTask<AdvisorReport> {
   return {
     name: "advisor",
-    version: 1,
+    version: 2, // v2: site ids may be pins (P1); evidence ids P1-3
     system: SYSTEM,
     prompt:
       `รายการหลักฐาน (id | หัวข้อ | ค่า หน่วย | ชนิด | แหล่ง):\n${evidenceLines(evidence)}\n\n` +

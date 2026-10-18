@@ -43,7 +43,13 @@ export type SiteInputs = {
   rentThb: number | null; // monthly, user-entered
   /** on-site observations from Field Mode, if any */
   field?: FieldSummary | null;
+  /** straight-line radii [5-min, 10-min] in metres when there is no walking isochrone (user pins) */
+  radii?: [number, number] | null;
 };
+
+/** "ในระยะเดิน 10 นาที", or the radius it stands for when the catchment is a straight-line circle. */
+export const reach = (inp: SiteInputs, min: 5 | 10) =>
+  inp.radii ? `ในรัศมี ${inp.radii[min === 5 ? 0 : 1]} ม. (เส้นตรง ≈ เดิน ${min} นาที)` : `ในระยะเดิน ${min} นาที`;
 
 export type Assumptions = {
   avgTicketThb: number;
@@ -90,14 +96,14 @@ export function customersPerDay(inp: SiteInputs, a: Assumptions) {
 function accessDimension(inp: SiteInputs, POI: string): Dimension {
   const base = 0.5 * saturate(inp.stops5, 3) + 0.5 * saturate(inp.poi5, 60);
   const evidence: EvidenceItem[] = [
-    { label: "ป้ายรถ/วินในระยะเดิน 5 นาที", value: inp.stops5, unit: "จุด", kind: "open", source: "OpenStreetMap" },
-    { label: "สถานที่ทั้งหมดในระยะเดิน 5 นาที", value: inp.poi5, unit: "แห่ง", kind: "open", source: POI },
+    { label: `ป้ายรถ/วิน${reach(inp, 5)}`, value: inp.stops5, unit: "จุด", kind: "open", source: "OpenStreetMap" },
+    { label: `สถานที่ทั้งหมด${reach(inp, 5)}`, value: inp.poi5, unit: "แห่ง", kind: "open", source: POI },
   ];
   const f = inp.field;
   if (!f || f.footfallPerMin == null) {
     return {
       key: "access", score: round(base), certainty: "open", confidence: CONFIDENCE.open, evidence,
-      how: "ป้ายรถ/วินในระยะเดิน 5 นาที (50%) + จำนวนสถานที่รอบตัว ซึ่งบอกว่าย่านคึกคักแค่ไหน (50%) · ยังไม่ได้นับคนหน้าร้านจริง",
+      how: `ป้ายรถ/วิน${reach(inp, 5)} (50%) + จำนวนสถานที่รอบตัว ซึ่งบอกว่าย่านคึกคักแค่ไหน (50%) · ยังไม่ได้นับคนหน้าร้านจริง`,
     };
   }
   let score = 0.4 * base + 0.6 * saturate(f.footfallPerMin, 6);
@@ -131,10 +137,10 @@ export function scoreSite(inp: SiteInputs, weights: Record<WeightKey, number>, a
       score: round(0.6 * saturate(inp.pop10, 6000) + 0.4 * saturate(inp.edu10, 30)),
       certainty: "estimated",
       confidence: CONFIDENCE.estimated,
-      how: "ประชากรในระยะเดิน 10 นาที (60%) + สถานศึกษาในระยะเดิน 10 นาที (40%)",
+      how: `ประชากร${reach(inp, 10)} (60%) + สถานศึกษา${reach(inp, 10)} (40%)`,
       evidence: [
-        { label: "ประชากรในระยะเดิน 10 นาที", value: round(inp.pop10), unit: "คน", kind: "estimated", source: WP },
-        { label: "สถานศึกษาในระยะเดิน 10 นาที", value: inp.edu10, unit: "แห่ง", kind: "open", source: POI },
+        { label: `ประชากร${reach(inp, 10)}`, value: round(inp.pop10), unit: "คน", kind: "estimated", source: WP },
+        { label: `สถานศึกษา${reach(inp, 10)}`, value: inp.edu10, unit: "แห่ง", kind: "open", source: POI },
       ],
     },
     accessDimension(inp, POI),
@@ -146,8 +152,8 @@ export function scoreSite(inp: SiteInputs, weights: Record<WeightKey, number>, a
       how: "ส่วนแบ่งลูกค้าที่ร้านเราน่าจะได้ในรัศมี 1.5 กม. ตาม Huff model (คู่แข่งตรงดึง 1 อ้อมดึง 0.2) ส่วนแบ่ง 2% ≈ 63 คะแนน 6% ≈ 95",
       evidence: [
         { label: "ส่วนแบ่งที่คาด (Huff)", value: Math.round(inp.huffShare * 1000) / 10, unit: "%", kind: "estimated", source: "Huff model จาก " + WP },
-        { label: "คู่แข่งตรงในระยะเดิน 10 นาที", value: inp.direct10, unit: "ร้าน", kind: "open", source: POI },
-        { label: "คู่แข่งอ้อมในระยะเดิน 10 นาที", value: inp.indirect10, unit: "ร้าน", kind: "open", source: POI },
+        { label: `คู่แข่งตรง${reach(inp, 10)}`, value: inp.direct10, unit: "ร้าน", kind: "open", source: POI },
+        { label: `คู่แข่งอ้อม${reach(inp, 10)}`, value: inp.indirect10, unit: "ร้าน", kind: "open", source: POI },
         { label: "คนใน มจธ. ระหว่างวัน (นับเป็นดีมานด์)", value: round(inp.campusDemand), unit: "คน", kind: "assumption", source: CAMPUS_STUDENTS_SOURCE },
       ],
     },
@@ -168,8 +174,8 @@ export function scoreSite(inp: SiteInputs, weights: Record<WeightKey, number>, a
       score: round(saturate(inp.synergy10, 40)),
       certainty: "open",
       confidence: CONFIDENCE.open,
-      how: "จำนวนสถานที่เกื้อหนุน (ตามโปรไฟล์ร้าน) ในระยะเดิน 10 นาที",
-      evidence: [{ label: "สถานที่เกื้อหนุนในระยะเดิน 10 นาที", value: inp.synergy10, unit: "แห่ง", kind: "open", source: POI }],
+      how: `จำนวนสถานที่เกื้อหนุน (ตามโปรไฟล์ร้าน) ${reach(inp, 10)}`,
+      evidence: [{ label: `สถานที่เกื้อหนุน${reach(inp, 10)}`, value: inp.synergy10, unit: "แห่ง", kind: "open", source: POI }],
     },
   ];
 

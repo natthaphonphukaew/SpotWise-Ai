@@ -14,6 +14,7 @@ import {
 } from "@/lib/scoring/activity";
 import { rolesFor, type WeightKey } from "@/lib/profile/schema";
 import { useStoredProfile } from "@/lib/profile/store";
+import { withSiteCatchments } from "@/lib/sites/sites";
 import { useFieldData } from "@/lib/field/store";
 import { summarizeField, type FieldSummary } from "@/lib/field/types";
 import { DEFAULT_ASSUMPTIONS, scoreSite, type SiteScore } from "@/lib/scoring/locscore";
@@ -23,7 +24,9 @@ export const DEFAULT_WEIGHTS: Record<WeightKey, number> = { target: 25, access: 
 
 /** Loc-Score for every candidate from the shared data, the stored profile and the user's inputs. */
 export function useSiteScores(candidates: Candidate[]) {
-  const [data, setData] = useState<BangmodData | null>(null);
+  const [raw, setData] = useState<BangmodData | null>(null);
+  // User pins have no walking isochrone: give them straight-line radius catchments.
+  const data = useMemo(() => raw && { ...raw, iso: withSiteCatchments(raw.iso, candidates) }, [raw, candidates]);
   const [error, setError] = useState<string | null>(null);
   const stored = useStoredProfile();
   const inputs = useCompareInputs();

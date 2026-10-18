@@ -108,6 +108,7 @@ export function pointInputs(at: LngLat, ctx: PointContext, exclude: Set<number> 
     huffCapturedPop: h.capturedPop,
     campusDemand: ctx.campusDemand,
     rentThb: null,
+    radii: [RADIUS_5_MIN, RADIUS_10_MIN],
   };
 }
 

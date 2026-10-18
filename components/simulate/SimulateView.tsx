@@ -16,11 +16,13 @@ import {
   type AcademicCalendar,
   type FinanceInputs,
 } from "@/lib/scoring/finance";
+import { useSites } from "@/lib/sites/store";
 
 const n = (v: number) => Math.round(v).toLocaleString("en-US");
 const money = (v: number) => (v < 0 ? `(${n(-v)})` : n(v));
 
-export function SimulateView({ candidates }: { candidates: Candidate[] }) {
+export function SimulateView({ candidates: baseSites }: { candidates: Candidate[] }) {
+  const { sites: candidates } = useSites(baseSites);
   const { error, scores, profile, assumptions, inputs: compareInputs } = useSiteScores(candidates);
   const sim = useSimulateInputs();
   const [cal, setCal] = useState<AcademicCalendar | null>(null);
@@ -31,7 +33,8 @@ export function SimulateView({ candidates }: { candidates: Candidate[] }) {
       .then(setCal, () => setCal(null));
   }, []);
 
-  const site = sim.site ?? candidates[1]?.id ?? candidates[0].id;
+  // a saved choice may point at a site no longer being compared
+  const site = sim.site && candidates.some((c) => c.id === sim.site) ? sim.site : (candidates[1]?.id ?? candidates[0].id);
   const cand = candidates.find((c) => c.id === site)!;
   const score = scores?.[site];
   const rent = compareInputs.rents[site] ?? cand.rent_thb ?? null;

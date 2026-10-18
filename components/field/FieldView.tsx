@@ -9,6 +9,7 @@ import { useSiteScores } from "@/lib/compare/use-site-scores";
 import type { Candidate } from "@/lib/data/bangmod";
 import { getFieldData, saveFieldData, useFieldData } from "@/lib/field/store";
 import { SLOT_LABEL } from "@/lib/field/types";
+import { useSites } from "@/lib/sites/store";
 
 type Tab = "count" | "photo" | "rent";
 const TABS: { key: Tab; label: string }[] = [
@@ -18,8 +19,10 @@ const TABS: { key: Tab; label: string }[] = [
 ];
 
 /** Field Mode (SPEC §5 W2): collect real data on site; Loc-Score confidence rises as it comes in. */
-export function FieldView({ candidates }: { candidates: Candidate[] }) {
-  const [site, setSite] = useState(candidates[1]?.id ?? candidates[0].id);
+export function FieldView({ candidates: base }: { candidates: Candidate[] }) {
+  const { sites: candidates } = useSites(base);
+  const [picked, setSite] = useState<string | null>(null);
+  const site = picked && candidates.some((c) => c.id === picked) ? picked : (candidates[1]?.id ?? candidates[0].id);
   const [tab, setTab] = useState<Tab>("count");
   const { scores, field } = useSiteScores(candidates);
   const fd = useFieldData();

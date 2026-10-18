@@ -12,6 +12,7 @@ import { useSiteScores } from "@/lib/compare/use-site-scores";
 import type { Candidate, Manifest } from "@/lib/data/bangmod";
 import { WEIGHT_KEYS, type WeightKey } from "@/lib/profile/schema";
 import { CAMPUS_STUDENTS_SOURCE, type EvidenceItem, type SiteScore } from "@/lib/scoring/locscore";
+import { useSites } from "@/lib/sites/store";
 
 const DIM_LABEL: Record<WeightKey, string> = {
   target: "กลุ่มเป้าหมาย",
@@ -22,7 +23,8 @@ const DIM_LABEL: Record<WeightKey, string> = {
 };
 const n = (v: number) => v.toLocaleString("en-US");
 
-export function CompareView({ manifest, candidates }: { manifest: Manifest; candidates: Candidate[] }) {
+export function CompareView({ manifest, candidates: base }: { manifest: Manifest; candidates: Candidate[] }) {
+  const { sites: candidates } = useSites(base);
   const [focus, setFocus] = useState<{ cand: string; dim: WeightKey } | null>(null);
   const { error, scores, profile, weights, assumptions, inputs, fieldData, activity } = useSiteScores(candidates);
   const peak = useMemo(() => peakHourSet(profile?.peak_hours ?? []), [profile]);
@@ -55,7 +57,7 @@ export function CompareView({ manifest, candidates }: { manifest: Manifest; cand
             <>ยังไม่มีโปรไฟล์ร้าน ใช้น้ำหนักเริ่มต้นของร้านชาไข่มุก · </>
           )}
           <Link href="/" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
-            แก้โปรไฟล์
+            แก้โปรไฟล์/เลือกทำเล
           </Link>{" "}
           ·{" "}
           <Link href="/map" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
@@ -341,7 +343,7 @@ function ActivitySection({
     <section className="mt-10 border-t border-ink pt-4">
       <h2 className="label">จังหวะทั้งวัน · วันธรรมดา 06–24 น.</h2>
       <p className="mt-2 max-w-[75ch] text-sm text-ink-2">
-        จำนวนสถานที่ในระยะเดิน 10 นาทีที่น่าจะเปิดหรือมีคนในแต่ละชั่วโมง ด้านบนคือสถานที่เกื้อหนุน ด้านล่างคือคู่แข่ง (ทึบ = ตรง, เส้นขอบ = อ้อม)
+        จำนวนสถานที่ในระยะเดิน 10 นาที (ทำเลที่ปักเองใช้รัศมี 600 ม.) ที่น่าจะเปิดหรือมีคนในแต่ละชั่วโมง ด้านบนคือสถานที่เกื้อหนุน ด้านล่างคือคู่แข่ง (ทึบ = ตรง, เส้นขอบ = อ้อม)
         {peaks.length > 0 ? (
           <>
             {" "}พื้นสีเข้มคือช่วงขายหลักจากโปรไฟล์ ({peaks.map((p) => `${p.from}–${p.to}`).join(", ")} น.)

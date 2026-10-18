@@ -8,6 +8,7 @@ import {
   ScaleControl,
   setWorkerUrl,
   type ExpressionSpecification,
+  type GeoJSONSource,
   type MapLayerMouseEvent,
 } from "maplibre-gl";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -38,6 +39,8 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
 import { rolesFor, type Role } from "@/lib/profile/schema";
 import { useStoredProfile } from "@/lib/profile/store";
+import { useSites } from "@/lib/sites/store";
+import { withSiteCatchments } from "@/lib/sites/sites";
 
 type Layers = { population: boolean; context: boolean; verifiedOnly: boolean; spots: boolean };
 
@@ -77,14 +80,16 @@ function whenStyleReady(map: MapLibreMap, fn: () => void) {
   }
 }
 
-export function MapExplorer({ manifest, candidates }: { manifest: Manifest; candidates: Candidate[] }) {
+export function MapExplorer({ manifest, candidates: base }: { manifest: Manifest; candidates: Candidate[] }) {
+  const { sites: candidates } = useSites(base);
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const markersRef = useRef<Marker[]>([]);
   const [ready, setReady] = useState(false);
   const [data, setData] = useState<BangmodData | null>(null);
   const [ai, setAi] = useState<PoiAiFile | null>(null);
-  const [cand, setCand] = useState(candidates.find((c) => c.id === "B")?.id ?? candidates[0]?.id);
+  const [picked, setCand] = useState<string | null>(null);
+  const cand = picked && candidates.some((c) => c.id === picked) ? picked : (candidates.find((c) => c.id === "B")?.id ?? candidates[0]?.id);
   const [poi, setPoi] = useState<PoiProps | null>(null);
   const [layers, setLayers] = useState<Layers>({ population: true, context: false, verifiedOnly: false, spots: false });
   const stored = useStoredProfile();
@@ -98,6 +103,8 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
         : DEFAULT_COUNT_ROWS,
     [profile],
   );
+  // walking isochrones + straight-line circles for sites the user pinned on the home page
+  const iso = useMemo(() => (data ? withSiteCatchments(data.iso, candidates) : null), [data, candidates]);
   const [cursor, setCursor] = useState({ lng: manifest.center[0], lat: manifest.center[1], zoom: 15 });
 
   const hasPopulation = Boolean(manifest.datasets.population);
@@ -234,11 +241,12 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
     });
     const is = (m: number) => ["all", ["==", ["get", "candidate"], cand ?? ""], ["==", ["get", "minutes"], m]] as unknown as ExpressionSpecification;
     whenStyleReady(map, () => {
+      if (iso) (map.getSource("iso") as GeoJSONSource | undefined)?.setData(iso);
       map.setFilter("iso-5", is(5));
       map.setFilter("iso-5-fill", is(5));
       map.setFilter("iso-10", is(10));
     });
-  }, [ready, cand, candidates]);
+  }, [ready, cand, candidates, iso]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -270,15 +278,15 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
   );
 
   const counts = useMemo(() => {
-    if (!data || !cand) return null;
+    if (!data || !iso || !cand) return null;
     const pool = layers.verifiedOnly
       ? { ...data.poi, features: data.poi.features.filter((f) => f.properties.verification !== "unverified") }
       : data.poi;
-    const five = findIsochrone(data.iso, cand, 5);
-    const ten = findIsochrone(data.iso, cand, 10);
+    const five = findIsochrone(iso, cand, 5);
+    const ten = findIsochrone(iso, cand, 10);
     const stops = (area: typeof five) => (area ? data.transit.features.filter((f) => booleanPointInPolygon(f, area)).length : 0);
     return { five: countByGroup(pool, five), ten: countByGroup(pool, ten), stops5: stops(five), stops10: stops(ten) };
-  }, [data, cand, layers.verifiedOnly]);
+  }, [data, iso, cand, layers.verifiedOnly]);
 
   const poiDs = manifest.datasets.poi;
   const selected = candidates.find((c) => c.id === cand);
@@ -340,23 +348,27 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
                     <span className="min-w-0 text-[15px] leading-snug">
                       {c.label}
                       {c.placeholder && <span className="mt-0.5 block font-mono text-[11px] text-ink-3">ตัวอย่าง · ยังไม่ได้สำรวจจริง</span>}
+                      {c.custom && <span className="mt-0.5 block font-mono text-[11px] text-ink-3">ปักเอง · รัศมีเส้นตรง</span>}
                     </span>
                   </button>
                 </li>
               ))}
             </ul>
             <ButtonLink href="/compare" variant="secondary" className="mt-3 w-full">
-              เปรียบเทียบคะแนน A/B/C
+              เปรียบเทียบคะแนน {candidates.map((c) => c.id).join("/")}
             </ButtonLink>
+            <Link href="/" className="mt-2 block text-center font-mono text-[11px] text-ink-2 underline decoration-rule underline-offset-4 hover:decoration-ink">
+              เลือกหรือปักทำเลเอง
+            </Link>
           </Section>
 
-          <Section title={`ในระยะเดิน · ทำเล ${selected?.id ?? ""}`}>
+          <Section title={`${selected?.custom ? "ในรัศมี" : "ในระยะเดิน"} · ทำเล ${selected?.id ?? ""}`}>
             <table className="w-full text-[15px]">
               <thead>
                 <tr className="border-b border-ink">
                   <th className="py-1.5 text-left font-medium" />
-                  <th className="py-1.5 text-right font-mono text-[11px] font-normal text-ink-3">5 นาที</th>
-                  <th className="py-1.5 text-right font-mono text-[11px] font-normal text-ink-3">10 นาที</th>
+                  <th className="py-1.5 text-right font-mono text-[11px] font-normal text-ink-3">{selected?.custom ? "300 ม." : "5 นาที"}</th>
+                  <th className="py-1.5 text-right font-mono text-[11px] font-normal text-ink-3">{selected?.custom ? "600 ม." : "10 นาที"}</th>
                 </tr>
               </thead>
               <tbody>
@@ -385,7 +397,11 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
                     ai.complete ? "" : ` (ได้แล้ว ${ai.count.toLocaleString("en-US")} จาก ${ai.total.toLocaleString("en-US")} จุด เพราะโควตาฟรีรายวันหมด)`
                   } ที่เหลือใช้กฎเบื้องต้น ·`
                 : "จัดกลุ่มด้วยกฎเบื้องต้น ยังไม่ผ่าน AI ·"}
-              พื้นที่เดินถึงเป็น<span className="font-medium text-ink-2">ค่าประมาณ</span> (เดิน 75 ม./นาที ตามเครือข่ายทางเดิน OSM)
+              {selected?.custom ? (
+                <>ทำเลที่ปักเองใช้<span className="font-medium text-ink-2">รัศมีเส้นตรง</span> 300/600 ม. แทนระยะเดิน 5/10 นาที (ประมาณ)</>
+              ) : (
+                <>พื้นที่เดินถึงเป็น<span className="font-medium text-ink-2">ค่าประมาณ</span> (เดิน 75 ม./นาที ตามเครือข่ายทางเดิน OSM)</>
+              )}
             </p>
           </Section>
 

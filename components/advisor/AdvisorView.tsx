@@ -12,6 +12,7 @@ import { useSiteScores } from "@/lib/compare/use-site-scores";
 import { DATA_BASE, type Candidate } from "@/lib/data/bangmod";
 import { lastReport } from "@/lib/advisor/store";
 import { summarize, type AcademicCalendar, type Summary } from "@/lib/scoring/finance";
+import { useSites } from "@/lib/sites/store";
 
 /** Cheap stable signature of the evidence, so a saved report is only shown for the same numbers. */
 function signature(ev: EvidenceRef[]) {
@@ -31,7 +32,8 @@ const KIND: Record<string, string> = {
   profile: "โปรไฟล์ร้าน",
 };
 
-export function AdvisorView({ candidates }: { candidates: Candidate[] }) {
+export function AdvisorView({ candidates: base }: { candidates: Candidate[] }) {
+  const { sites: candidates } = useSites(base);
   const { scores, profile, assumptions, inputs } = useSiteScores(candidates);
   const sim = useSimulateInputs();
   const { saved } = lastReport.use();

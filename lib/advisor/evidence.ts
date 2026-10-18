@@ -71,7 +71,7 @@ export function buildEvidence(
     const s = scores[c.id];
     if (!s) continue;
     let n = 0;
-    const add = (e: Omit<EvidenceRef, "id" | "site">) => out.push({ ...e, id: `${c.id}${++n}`, site: c.id });
+    const add = (e: Omit<EvidenceRef, "id" | "site">) => out.push({ ...e, id: `${c.id}${c.id.length > 1 ? "-" : ""}${++n}`, site: c.id });
     add({
       label: `ทำเล ${c.id}: ${c.label}`,
       value: c.placeholder ? "จุดตัวอย่าง ยังไม่ได้สำรวจ" : "สำรวจแล้ว",

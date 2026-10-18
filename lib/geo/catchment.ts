@@ -2,7 +2,8 @@ import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import type { Feature, FeatureCollection, MultiPolygon, Point, Polygon } from "geojson";
 import type { PoiGroup, PoiProps } from "@/lib/data/bangmod";
 
-export type IsochroneProps = { candidate: string; minutes: number; snap_m: number };
+/** `radius_m` set = a straight-line circle for a user pin, not a walking isochrone. */
+export type IsochroneProps = { candidate: string; minutes: number; snap_m: number; radius_m?: number };
 export type IsochroneFC = FeatureCollection<Polygon | MultiPolygon, IsochroneProps>;
 export type PoiFC = FeatureCollection<Point, PoiProps>;
 

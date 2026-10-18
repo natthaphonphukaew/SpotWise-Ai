@@ -1,7 +1,9 @@
 import { ConceptStudio } from "@/components/profile/ConceptStudio";
+import { SitePicker } from "@/components/sites/SitePicker";
 import { Readout, TopBar } from "@/components/TopBar";
+import candidates from "@/public/data/bangmod/candidates.json";
 import manifest from "@/public/data/bangmod/manifest.json";
-import { thaiShortDate, type Manifest } from "@/lib/data/bangmod";
+import { thaiShortDate, type Candidate, type Manifest } from "@/lib/data/bangmod";
 
 const m = manifest as unknown as Manifest;
 
@@ -40,6 +42,7 @@ export default function Cover() {
             </div>
           }
         />
+        <SitePicker candidates={candidates as Candidate[]} center={m.center} />
       </main>
     </>
   );
