@@ -66,6 +66,7 @@ docs/                # SPEC, DESIGN
 - [x] W1 Scenario Simulator `/simulate`: กระแสเงินสด 12 เดือนตามปฏิทินการศึกษา มจธ. 2569 ของจริง (`public/data/bangmod/academic_calendar.json`, เกินปีที่ประกาศใช้รูปแบบปีก่อน + ติดป้าย "คาด"), 3 สถานการณ์, เงินสำรอง, คืนทุน, จุดคุ้มทุน (`lib/scoring/finance.ts` + เทสต์)
 - [ ] รัน `npm run classify:poi` ต่อให้ครบ 25 batch (ได้ 18/25 — โควตาฟรีรีเซ็ตเที่ยงคืนเวลาแปซิฟิก ≈ 07:00 น. เวลาไทย)
 - [x] W2 Field Mode `/field` (มือถือ): นับคนหน้าร้าน 10 นาที (เก็บแยกช่วงเวลา), ถ่ายรูปหน้าร้าน → Vision AI (`/api/storefront`, cache ตาม hash รูป, ย่อรูป/ตัด EXIF ก่อนส่ง), ค่าเช่า/โน้ต · ผลนับคนเปลี่ยนมิติการเข้าถึงเป็น "ข้อมูลจริง" และดัน Confidence ขึ้น (ข้อมูลหน้างานเก็บใน localStorage ของเครื่องที่เก็บเท่านั้น)
+- [x] Grounded Advisor `/advisor` + Devil's Advocate (W3): ระบบสร้างรายการหลักฐานพร้อม id (`lib/advisor/evidence.ts`) → AI เขียนรายงานที่ทุกประโยคต้องอ้าง id → ตรวจ citation + ตัวเลขฝั่งเซิร์ฟเวอร์ (`lib/advisor/grounding.ts`) แสดงอัตราอ้างอิงถูกต้อง และขีดเส้นประโยคที่ตรวจไม่ผ่าน · ยังไม่ได้ทดสอบเรียกจริง (โควตาหมด)
 - [ ] เตรียมข้อความเดโมเพิ่ม (ร้านกาแฟ ฯลฯ) ให้มีผลใน `llm-cache/` ก่อนวันส่ง
 - [ ] ถ้ารัน data pipeline ใหม่ (`poi.geojson` เปลี่ยน) ต้องรัน `npm run classify:poi` ใหม่ด้วย
 - [ ] ลงพื้นที่สำรวจทำเลจริง 6–10 จุด + ค่าเช่า → แทน `data-pipeline/candidates.json`

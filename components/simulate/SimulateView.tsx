@@ -5,11 +5,11 @@ import { useEffect, useMemo, useState } from "react";
 import { CashflowChart, thMonth } from "@/components/simulate/CashflowChart";
 import { Readout, TopBar } from "@/components/TopBar";
 import { saveCompareInputs, saveSimulateInputs, useSimulateInputs, type SimulateInputs } from "@/lib/compare/store";
+import { financeInputs, nextMonth } from "@/lib/compare/finance-inputs";
 import { useSiteScores } from "@/lib/compare/use-site-scores";
 import { DATA_BASE, type Candidate } from "@/lib/data/bangmod";
 import {
   addMonths,
-  FINANCE_DEFAULTS,
   SCENARIOS,
   simulate,
   summarize,
@@ -19,12 +19,6 @@ import {
 
 const n = (v: number) => Math.round(v).toLocaleString("en-US");
 const money = (v: number) => (v < 0 ? `(${n(-v)})` : n(v));
-
-/** First month after today, as the default opening month. */
-function nextMonth(): string {
-  const d = new Date();
-  return addMonths(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`, 1);
-}
 
 export function SimulateView({ candidates }: { candidates: Candidate[] }) {
   const { error, scores, profile, assumptions, inputs: compareInputs } = useSiteScores(candidates);
@@ -43,22 +37,10 @@ export function SimulateView({ candidates }: { candidates: Candidate[] }) {
   const rent = compareInputs.rents[site] ?? cand.rent_thb ?? null;
   const set = (patch: Partial<SimulateInputs>) => saveSimulateInputs({ ...sim, ...patch });
 
-  const fin: FinanceInputs | null = useMemo(() => {
-    if (!score) return null;
-    return {
-      customersPerDay: sim.customersPerDay ?? score.customers.mid,
-      avgTicketThb: assumptions.avgTicketThb,
-      cogsShare: sim.cogsShare ?? FINANCE_DEFAULTS.cogsShare,
-      rentThb: rent ?? 0,
-      staffThb: sim.staffThb ?? FINANCE_DEFAULTS.staffThb,
-      otherFixedThb: sim.otherFixedThb ?? FINANCE_DEFAULTS.otherFixedThb,
-      setupThb: sim.setupThb ?? profile?.budget_thb ?? FINANCE_DEFAULTS.setupThb,
-      openDaysPerMonth: FINANCE_DEFAULTS.openDaysPerMonth,
-      breakFactor: sim.breakFactor ?? FINANCE_DEFAULTS.breakFactor,
-      specialFactor: sim.specialFactor ?? FINANCE_DEFAULTS.specialFactor,
-      startMonth: sim.startMonth ?? nextMonth(),
-    };
-  }, [score, sim, assumptions.avgTicketThb, rent, profile]);
+  const fin: FinanceInputs | null = useMemo(
+    () => (score ? financeInputs(score, sim, assumptions.avgTicketThb, rent, profile, nextMonth()) : null),
+    [score, sim, assumptions.avgTicketThb, rent, profile],
+  );
 
   const base = useMemo(() => (fin && cal ? simulate(fin, cal) : null), [fin, cal]);
   const scenarios = useMemo(

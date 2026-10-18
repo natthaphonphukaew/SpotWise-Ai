@@ -64,6 +64,10 @@ export function CompareView({ manifest, candidates }: { manifest: Manifest; cand
           ·{" "}
           <Link href="/field" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
             เก็บข้อมูลหน้างาน (มือถือ)
+          </Link>{" "}
+          ·{" "}
+          <Link href="/advisor" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
+            ให้ AI สรุปพร้อมอ้างอิง
           </Link>
         </p>
         {candidates.some((c) => c.placeholder) && (
