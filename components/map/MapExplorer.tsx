@@ -57,6 +57,24 @@ const SYNERGY_SWATCH: Partial<Record<PoiGroup, string>> = {
   education: "bg-edu", dormitory: "bg-pop-2", office: "bg-civic", market: "bg-pop-3", leisure: "bg-park",
 };
 
+/**
+ * Run a style mutation now, or — if MapLibre is mid style (re)load, which throws "Style is not done
+ * loading" (e.g. after Fast Refresh) — once the style has settled.
+ */
+function whenStyleReady(map: MapLibreMap, fn: () => void) {
+  try {
+    fn();
+  } catch {
+    map.once("idle", () => {
+      try {
+        fn();
+      } catch {
+        // map was removed meanwhile
+      }
+    });
+  }
+}
+
 export function MapExplorer({ manifest, candidates }: { manifest: Manifest; candidates: Candidate[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -210,23 +228,27 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
       return new Marker({ element: el, anchor: "bottom-left", offset: [-6, 6] }).setLngLat([c.lon, c.lat]).addTo(map);
     });
     const is = (m: number) => ["all", ["==", ["get", "candidate"], cand ?? ""], ["==", ["get", "minutes"], m]] as unknown as ExpressionSpecification;
-    map.setFilter("iso-5", is(5));
-    map.setFilter("iso-5-fill", is(5));
-    map.setFilter("iso-10", is(10));
+    whenStyleReady(map, () => {
+      map.setFilter("iso-5", is(5));
+      map.setFilter("iso-5-fill", is(5));
+      map.setFilter("iso-10", is(10));
+    });
   }, [ready, cand, candidates]);
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready) return;
-    if (hasPopulation) map.setLayoutProperty("population", "visibility", layers.population ? "visible" : "none");
-    map.setLayoutProperty("poi-context", "visibility", layers.context ? "visible" : "none");
-    for (const id of POI_LAYERS) map.setFilter(id, poiFilter(POI_ROLES[id], layers.verifiedOnly, roles));
+    whenStyleReady(map, () => {
+      if (hasPopulation) map.setLayoutProperty("population", "visibility", layers.population ? "visible" : "none");
+      map.setLayoutProperty("poi-context", "visibility", layers.context ? "visible" : "none");
+      for (const id of POI_LAYERS) map.setFilter(id, poiFilter(POI_ROLES[id], layers.verifiedOnly, roles));
+    });
   }, [ready, layers, hasPopulation, roles]);
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready) return;
-    map.setFilter("poi-selected", ["==", ["get", "id"], poi?.id ?? ""]);
+    whenStyleReady(map, () => map.setFilter("poi-selected", ["==", ["get", "id"], poi?.id ?? ""]));
   }, [ready, poi]);
 
   // --- counts inside the selected candidate's catchments (real data, rule-based grouping) ---

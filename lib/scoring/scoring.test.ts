@@ -71,6 +71,24 @@ describe("Loc-Score monotonicity", () => {
     expect(dim({ synergy10: 60 }, "synergy")).toBeGreaterThan(dim({ synergy10: 10 }, "synergy"));
   });
 
+  it("counting more people on site → higher access score, and higher confidence than open data", () => {
+    const field = (perMin: number) => ({ footfallPerMin: perMin, minutesCounted: 30, slots: ["noon" as const], storefront: null, lastAt: null });
+    expect(dim({ field: field(10) }, "access")).toBeGreaterThan(dim({ field: field(2) }, "access"));
+    const open = scoreSite(base, W);
+    const surveyed = scoreSite({ ...base, field: field(5) }, W);
+    expect(surveyed.confidence).toBeGreaterThan(open.confidence);
+    expect(surveyed.dims.find((d) => d.key === "access")!.certainty).toBe("surveyed");
+  });
+
+  it("better storefront visibility → higher access score", () => {
+    const sf = (v: number) => ({
+      visibility: v, frontage: "medium" as const, motorbike_parking: "yes" as const, sidewalk: "good" as const,
+      shade: "no" as const, signage_space: "yes" as const, obstacles: [], summary: "", cannot_judge: [],
+    });
+    const field = (v: number) => ({ footfallPerMin: 4, minutesCounted: 20, slots: ["noon" as const], storefront: sf(v), lastAt: null });
+    expect(dim({ field: field(5) }, "access")).toBeGreaterThan(dim({ field: field(1) }, "access"));
+  });
+
   it("more transit → higher access score", () => {
     expect(dim({ stops5: 5 }, "access")).toBeGreaterThan(dim({ stops5: 0 }, "access"));
   });

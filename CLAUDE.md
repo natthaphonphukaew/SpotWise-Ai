@@ -51,6 +51,9 @@ docs/                # SPEC, DESIGN
 
 ## สถานะ
 
+รายการที่รู้ว่าต้องปรับภายหลังอยู่ใน [docs/SPEC.md §13 Backlog](docs/SPEC.md) (ผู้ใช้ให้ทำงาน Must ให้ครบก่อน)
+
+
 - [x] วิเคราะห์ไอเดีย + ล็อกขอบเขต (17 ต.ค. 69)
 - [x] style tile + design tokens (`app/globals.css`)
 - [x] data pipeline ย่านบางมด: 4,183 สถานที่หลังตรวจพิกัด (ตัด 119 ที่ปักผิดย่าน ดู `data-pipeline/cache/rejected.csv`), รวมรายชื่อร้าน CampusSpot 632 ร้านที่ผู้ใช้คัดไว้, ป้ายรถ 55, รั้ว มจธ., isochrones
@@ -61,7 +64,8 @@ docs/                # SPEC, DESIGN
 - [x] POI Classifier: `npm run classify:poi` ให้ AI จัดหมวดสถานที่ในรัศมี 1.5 กม. (batch ละ 80, cache ใน `llm-cache/poi-classify/`) → `public/data/bangmod/poi_ai.json` แผนที่ใช้หมวดของ AI ทับกฎ และแสดงเหตุผลใน Evidence · วัดผลเทียบ CampusSpot: `npm run eval:poi` → `eval_poi.json`
 - [x] Loc-Score 5 มิติ + Huff model (`lib/scoring/`, เทสต์ monotonicity) และหน้า `/compare`: การ์ดคะแนน (แถบทึบ/ลายทแยงตามความแน่นอน), Evidence ต่อมิติ, ตาราง A/B/C, กรอกค่าเช่า, ปรับสมมติฐาน (อัตราซื้อ, คนใน มจธ. ระหว่างวัน)
 - [x] W1 Scenario Simulator `/simulate`: กระแสเงินสด 12 เดือนตามปฏิทินการศึกษา มจธ. 2569 ของจริง (`public/data/bangmod/academic_calendar.json`, เกินปีที่ประกาศใช้รูปแบบปีก่อน + ติดป้าย "คาด"), 3 สถานการณ์, เงินสำรอง, คืนทุน, จุดคุ้มทุน (`lib/scoring/finance.ts` + เทสต์)
-- [ ] รัน `npm run classify:poi` ต่อให้ครบ 25 batch (ได้ 18/25 — โควตาฟรีรีเซ็ตราว 14:00–15:00 น. เวลาไทย)
+- [ ] รัน `npm run classify:poi` ต่อให้ครบ 25 batch (ได้ 18/25 — โควตาฟรีรีเซ็ตเที่ยงคืนเวลาแปซิฟิก ≈ 07:00 น. เวลาไทย)
+- [x] W2 Field Mode `/field` (มือถือ): นับคนหน้าร้าน 10 นาที (เก็บแยกช่วงเวลา), ถ่ายรูปหน้าร้าน → Vision AI (`/api/storefront`, cache ตาม hash รูป, ย่อรูป/ตัด EXIF ก่อนส่ง), ค่าเช่า/โน้ต · ผลนับคนเปลี่ยนมิติการเข้าถึงเป็น "ข้อมูลจริง" และดัน Confidence ขึ้น (ข้อมูลหน้างานเก็บใน localStorage ของเครื่องที่เก็บเท่านั้น)
 - [ ] เตรียมข้อความเดโมเพิ่ม (ร้านกาแฟ ฯลฯ) ให้มีผลใน `llm-cache/` ก่อนวันส่ง
 - [ ] ถ้ารัน data pipeline ใหม่ (`poi.geojson` เปลี่ยน) ต้องรัน `npm run classify:poi` ใหม่ด้วย
 - [ ] ลงพื้นที่สำรวจทำเลจริง 6–10 จุด + ค่าเช่า → แทน `data-pipeline/candidates.json`

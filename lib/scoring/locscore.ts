@@ -4,6 +4,7 @@
  *
  * Scores are 0–100 "how favourable", NOT a probability of success (SPEC §4).
  */
+import type { FieldSummary } from "@/lib/field/types";
 import { normalizeWeights, WEIGHT_KEYS, type WeightKey } from "@/lib/profile/schema";
 
 /** How solid a number is — drives hatching in the UI (DESIGN.md §1). */
@@ -40,6 +41,8 @@ export type SiteInputs = {
   huffCapturedPop: number;
   campusDemand: number; // daytime campus population added as a demand point (assumption)
   rentThb: number | null; // monthly, user-entered
+  /** on-site observations from Field Mode, if any */
+  field?: FieldSummary | null;
 };
 
 export type Assumptions = {
@@ -80,6 +83,42 @@ export function customersPerDay(inp: SiteInputs, a: Assumptions) {
   return { low: mid * 0.5, mid, high: mid * 1.5 };
 }
 
+/**
+ * Access: open data only (transit + activity), or — once the user has counted people on site —
+ * mostly the real footfall, which is what access is meant to proxy. A storefront photo nudges it.
+ */
+function accessDimension(inp: SiteInputs, POI: string): Dimension {
+  const base = 0.5 * saturate(inp.stops5, 3) + 0.5 * saturate(inp.poi5, 60);
+  const evidence: EvidenceItem[] = [
+    { label: "ป้ายรถ/วินในระยะเดิน 5 นาที", value: inp.stops5, unit: "จุด", kind: "open", source: "OpenStreetMap" },
+    { label: "สถานที่ทั้งหมดในระยะเดิน 5 นาที", value: inp.poi5, unit: "แห่ง", kind: "open", source: POI },
+  ];
+  const f = inp.field;
+  if (!f || f.footfallPerMin == null) {
+    return {
+      key: "access", score: round(base), certainty: "open", confidence: CONFIDENCE.open, evidence,
+      how: "ป้ายรถ/วินในระยะเดิน 5 นาที (50%) + จำนวนสถานที่รอบตัว ซึ่งบอกว่าย่านคึกคักแค่ไหน (50%) · ยังไม่ได้นับคนหน้าร้านจริง",
+    };
+  }
+  let score = 0.4 * base + 0.6 * saturate(f.footfallPerMin, 6);
+  evidence.push({
+    label: `คนเดินผ่านหน้าร้าน (นับจริง ${Math.round(f.minutesCounted)} นาที)`,
+    value: Math.round(f.footfallPerMin * 10) / 10, unit: "คน/นาที", kind: "surveyed", source: "Field Mode",
+  });
+  if (f.storefront) {
+    score = 0.85 * score + 0.15 * ((f.storefront.visibility - 1) / 4) * 100;
+    evidence.push({ label: "การมองเห็นหน้าร้าน (AI ดูจากรูป)", value: f.storefront.visibility, unit: "/ 5", kind: "estimated", source: "Vision AI จากรูปที่ผู้ใช้ถ่าย" });
+  }
+  // More counted time and more time slots → closer to "surveyed" confidence.
+  const coverage = Math.min(1, f.minutesCounted / 30) * (0.6 + 0.4 * Math.min(1, f.slots.length / 3));
+  return {
+    key: "access", score: round(score), certainty: "surveyed",
+    confidence: CONFIDENCE.open + (CONFIDENCE.surveyed - CONFIDENCE.open) * coverage, evidence,
+    how: "คนเดินผ่านหน้าร้านที่นับจริง (60%) + ป้ายรถและความคึกคักจากข้อมูลเปิด (40%) · 6 คน/นาที ≈ 63 คะแนน" +
+      (f.storefront ? " · ปรับด้วยการมองเห็นหน้าร้าน 15%" : ""),
+  };
+}
+
 export function scoreSite(inp: SiteInputs, weights: Record<WeightKey, number>, a: Assumptions = DEFAULT_ASSUMPTIONS) {
   const cust = customersPerDay(inp, a);
   const revenueMonth = cust.mid * a.avgTicketThb * a.openDaysPerMonth;
@@ -98,17 +137,7 @@ export function scoreSite(inp: SiteInputs, weights: Record<WeightKey, number>, a
         { label: "สถานศึกษาในระยะเดิน 10 นาที", value: inp.edu10, unit: "แห่ง", kind: "open", source: POI },
       ],
     },
-    {
-      key: "access",
-      score: round(0.5 * saturate(inp.stops5, 3) + 0.5 * saturate(inp.poi5, 60)),
-      certainty: "open",
-      confidence: CONFIDENCE.open,
-      how: "ป้ายรถ/วินในระยะเดิน 5 นาที (50%) + จำนวนสถานที่รอบตัว ซึ่งบอกว่าย่านคึกคักแค่ไหน (50%)",
-      evidence: [
-        { label: "ป้ายรถ/วินในระยะเดิน 5 นาที", value: inp.stops5, unit: "จุด", kind: "open", source: "OpenStreetMap" },
-        { label: "สถานที่ทั้งหมดในระยะเดิน 5 นาที", value: inp.poi5, unit: "แห่ง", kind: "open", source: POI },
-      ],
-    },
+    accessDimension(inp, POI),
     {
       key: "market",
       score: round(saturate(inp.huffShare, 0.02)),

@@ -10,6 +10,8 @@ export type LlmTask<T> = {
   temperature?: number;
   /** Human-readable input stored next to the cached output (lets demo mode list what it has). */
   input: unknown;
+  /** Images sent with the prompt (vision tasks). Their hash must be part of `prompt` so the cache key differs. */
+  images?: { mimeType: string; data: string }[];
   /** Deterministic clean-up applied after validation (e.g. normalise weights). */
   postprocess?: (data: T) => T;
 };

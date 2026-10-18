@@ -55,7 +55,9 @@ export async function runTask<T>(task: LlmTask<T>, cfg: LlmConfig = llmConfig())
   let prompt = task.prompt;
   let lastError = "";
   for (let attempt = 0; attempt < 2; attempt++) {
-    const text = await cfg.generate({ model: cfg.model, system: task.system, prompt, jsonSchema, temperature: task.temperature });
+    const text = await cfg.generate({
+      model: cfg.model, system: task.system, prompt, jsonSchema, temperature: task.temperature, images: task.images,
+    });
     let parsed: unknown;
     try {
       parsed = JSON.parse(text);

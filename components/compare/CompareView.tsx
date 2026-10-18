@@ -60,6 +60,10 @@ export function CompareView({ manifest, candidates }: { manifest: Manifest; cand
           ·{" "}
           <Link href="/simulate" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
             จำลองการเงินช่วงปิดเทอม
+          </Link>{" "}
+          ·{" "}
+          <Link href="/field" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
+            เก็บข้อมูลหน้างาน (มือถือ)
           </Link>
         </p>
         {candidates.some((c) => c.placeholder) && (

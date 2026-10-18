@@ -1,6 +1,7 @@
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import type { Feature, FeatureCollection, MultiPolygon, Point, Polygon } from "geojson";
 import type { Candidate, PoiGroup } from "@/lib/data/bangmod";
+import type { FieldSummary } from "@/lib/field/types";
 import type { Role } from "@/lib/profile/schema";
 import { DEFAULT_HUFF, distanceM, huff, type DemandCell, type Store } from "@/lib/scoring/huff";
 import type { SiteInputs } from "@/lib/scoring/locscore";
@@ -44,6 +45,7 @@ export function siteInputs(
   rentThb: number | null,
   /** extra daytime demand points, e.g. the campus (people, not residents) */
   extraDemand: DemandCell[] = [],
+  field: FieldSummary | null = null,
 ): SiteInputs {
   const five = findIsochrone(data.iso, cand.id, 5);
   const ten = findIsochrone(data.iso, cand.id, 10);
@@ -72,6 +74,6 @@ export function siteInputs(
 
   return {
     pop10, edu10, stops5, poi5, direct10, indirect10, synergy10,
-    huffShare: h.share, huffCapturedPop: h.capturedPop, campusDemand, rentThb,
+    huffShare: h.share, huffCapturedPop: h.capturedPop, campusDemand, rentThb, field,
   };
 }

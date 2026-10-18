@@ -8,14 +8,15 @@ export type GenerateArgs = {
   prompt: string;
   jsonSchema: Record<string, unknown>;
   temperature?: number;
+  images?: { mimeType: string; data: string }[]; // base64
 };
 
 /** Gemini free tier via @google/genai, JSON output constrained by a JSON Schema. Returns raw text. */
-export async function geminiGenerate({ model, system, prompt, jsonSchema, temperature = 0.2 }: GenerateArgs): Promise<string> {
+export async function geminiGenerate({ model, system, prompt, jsonSchema, temperature = 0.2, images = [] }: GenerateArgs): Promise<string> {
   const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
   const res = await ai.models.generateContent({
     model,
-    contents: prompt,
+    contents: images.length ? [...images.map((i) => ({ inlineData: i })), { text: prompt }] : prompt,
     config: {
       systemInstruction: system,
       responseMimeType: "application/json",
