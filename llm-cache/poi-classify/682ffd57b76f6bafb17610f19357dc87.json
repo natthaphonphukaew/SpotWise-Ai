@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:c0fa9527-0fab-4cea-b32f-f07fe7ccf223"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านน้ำแข็งไส ของหวาน"
+      },
+      {
+        "id": "p2",
+        "group": "education",
+        "confidence": "high",
+        "reason": "โรงเรียนอนุบาล"
+      },
+      {
+        "id": "p3",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "อพาร์ทเม้นท์ ที่พักอาศัย"
+      },
+      {
+        "id": "p4",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายเครื่องสำอางและความงาม"
+      },
+      {
+        "id": "p5",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "บริการด้านอสังหาริมทรัพย์ สำนักงาน"
+      },
+      {
+        "id": "p6",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารคลีน"
+      },
+      {
+        "id": "p7",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "มีสนามเด็กเล่นและคาเฟ่"
+      },
+      {
+        "id": "p8",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ภาควิชาในมหาวิทยาลัย"
+      },
+      {
+        "id": "p9",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สระว่ายน้ำศูนย์กีฬา"
+      },
+      {
+        "id": "p10",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านอาหารตามชื่อและหมวด"
+      },
+      {
+        "id": "p11",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านเกี่ยวกับยานยนต์หรือซ่อมรถ"
+      },
+      {
+        "id": "p12",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หอพักหญิง ที่อยู่อาศัย"
+      },
+      {
+        "id": "p13",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเครื่องจักรกล สำนักงาน"
+      },
+      {
+        "id": "p14",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "โต๊ะพูล กิจกรรมสันทนาการ"
+      },
+      {
+        "id": "p15",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันกวดวิชา"
+      },
+      {
+        "id": "p16",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "โครงการทาวน์โฮม ที่อยู่อาศัย"
+      },
+      {
+        "id": "p17",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านค้าบริการตามหมวด shopping"
+      },
+      {
+        "id": "p18",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ คาเฟ่"
+      },
+      {
+        "id": "p19",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ฟิตเนส ออกกำลังกาย"
+      },
+      {
+        "id": "p20",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "อินเทอร์เน็ตคาเฟ่ ร้านบริการคอมพิวเตอร์"
+      },
+      {
+        "id": "p21",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ บิ๊กซีมินิ"
+      },
+      {
+        "id": "p22",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านนวดเพื่อสุขภาพ บริการเสริม"
+      },
+      {
+        "id": "p23",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ร้านขายยาเภสัชกรรม"
+      },
+      {
+        "id": "p24",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทจัดหางาน สำนักงาน"
+      },
+      {
+        "id": "p25",
+        "group": "education",
+        "confidence": "high",
+        "reason": "โรงเรียน สถานศึกษา"
+      },
+      {
+        "id": "p26",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านขายขนมเปี๊ยะ ของหวาน"
+      },
+      {
+        "id": "p27",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "โรงรับจำนำ ร้านบริการการเงิน/สินค้า"
+      },
+      {
+        "id": "p28",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ D'oro ในปั๊ม"
+      },
+      {
+        "id": "p29",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ คาเฟ่"
+      },
+      {
+        "id": "p30",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายอะไหล่รถบรรทุก"
+      },
+      {
+        "id": "p31",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายและบริการซ่อมแอร์"
+      },
+      {
+        "id": "p32",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านขายข้าวเหนียวมูน ของหวาน"
+      },
+      {
+        "id": "p33",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ปั๊มน้ำมัน ปตท."
+      },
+      {
+        "id": "p34",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายเฟอร์นิเจอร์"
+      },
+      {
+        "id": "p35",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายของเล่นเด็ก"
+      },
+      {
+        "id": "p36",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวต้มยำ"
+      },
+      {
+        "id": "p37",
+        "group": "office",
+        "confidence": "high",
+        "reason": "คลังสินค้า สำนักงานบริษัท"
+      },
+      {
+        "id": "p38",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "สาขาธนาคาร บริการการเงิน"
+      },
+      {
+        "id": "p39",
+        "group": "drink_dessert",
+        "confidence": "medium",
+        "reason": "ร้านขายนม เนย ปังปิ้ง ของหวาน"
+      },
+      {
+        "id": "p40",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายเสื้อผ้า ยูนิฟอร์ม"
+      },
+      {
+        "id": "p41",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ภาควิชาในมหาวิทยาลัย"
+      },
+      {
+        "id": "p42",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวเรือน้ำตก"
+      },
+      {
+        "id": "p43",
+        "group": "other",
+        "confidence": "high",
+        "reason": "สถานปฏิบัติธรรม ศาสนสถาน"
+      },
+      {
+        "id": "p44",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟสตาร์บัคส์"
+      },
+      {
+        "id": "p45",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านแต่งรถ ซ่อมรถยนต์"
+      },
+      {
+        "id": "p46",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายวัสดุก่อสร้าง"
+      },
+      {
+        "id": "p47",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวต้มยำ"
+      },
+      {
+        "id": "p48",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวเรือ"
+      },
+      {
+        "id": "p49",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านสเต็ก"
+      },
+      {
+        "id": "p50",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทวิศวกรรม สำนักงาน"
+      },
+      {
+        "id": "p51",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านค้าขายของทั่วไป"
+      },
+      {
+        "id": "p52",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทผู้ผลิต สำนักงานโรงงาน"
+      },
+      {
+        "id": "p53",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "คาเฟ่ ร้านกาแฟ"
+      },
+      {
+        "id": "p54",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "จุดบริการโอนเงินทางการเงิน"
+      },
+      {
+        "id": "p55",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านฟาสต์ฟู้ด เคเอฟซี"
+      },
+      {
+        "id": "p56",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านเสริมสวย สักคิ้ว ฝังสีปาก"
+      },
+      {
+        "id": "p57",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "โชว์รูมและศูนย์บริการรถยนต์"
+      },
+      {
+        "id": "p58",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ศูนย์กีฬา สถานที่ออกกำลังกาย"
+      },
+      {
+        "id": "p59",
+        "group": "office",
+        "confidence": "high",
+        "reason": "สหกรณ์ออมทรัพย์ หน่วยงานการเงิน"
+      },
+      {
+        "id": "p60",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านคาร์แคร์ ขัดเคลือบสีรถ"
+      },
+      {
+        "id": "p61",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อเซเว่นอีเลฟเว่น"
+      },
+      {
+        "id": "p62",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อเซเว่นอีเลฟเว่น"
+      },
+      {
+        "id": "p63",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "โครงการหมู่บ้านจัดสรร ที่อยู่อาศัย"
+      },
+      {
+        "id": "p64",
+        "group": "education",
+        "confidence": "high",
+        "reason": "โรงเรียนสอนภาษา สถาบันการเรียนรู้"
+      },
+      {
+        "id": "p65",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ข้อมูลไม่เพียงพอที่จะระบุประเภท"
+      },
+      {
+        "id": "p66",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันวิจัยและฝึกอบรมทางการศึกษา"
+      },
+      {
+        "id": "p67",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ชื่อสั้นเกินไป ไม่ระบุประเภทชัดเจน"
+      },
+      {
+        "id": "p68",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านซ่อมแอร์รถยนต์ บริการซ่อม"
+      },
+      {
+        "id": "p69",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านบุฟเฟต์อาหารทะเล"
+      },
+      {
+        "id": "p70",
+        "group": "office",
+        "confidence": "high",
+        "reason": "สำนักงานบริษัท"
+      },
+      {
+        "id": "p71",
+        "group": "market",
+        "confidence": "high",
+        "reason": "ตลาดสด ตลาดนัดพลาซ่า"
+      },
+      {
+        "id": "p72",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ศูนย์กีฬา สนามกีฬาเฉลิมพระเกียรติ"
+      },
+      {
+        "id": "p73",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "ร้านแบรนด์ชาและไอศกรีม Mixue"
+      },
+      {
+        "id": "p74",
+        "group": "food",
+        "confidence": "high",
+        "reason": "บาร์และร้านอาหาร บิสโทร"
+      },
+      {
+        "id": "p75",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารตามหมวดหมู่"
+      },
+      {
+        "id": "p76",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านนวดแผนไทย บริการนวด"
+      },
+      {
+        "id": "p77",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารญี่ปุ่น"
+      },
+      {
+        "id": "p78",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หอพัก อพาร์ตเมนต์ ที่อยู่อาศัย"
+      },
+      {
+        "id": "p79",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านขนมหวาน น้ำแข็งไส เช็งซิมอี๊"
+      },
+      {
+        "id": "p80",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านอาหารตามหมวดหมู่ดิบ"
+      }
+    ]
+  },
+  "createdAt": "2026-10-18T05:37:08.607Z"
+}

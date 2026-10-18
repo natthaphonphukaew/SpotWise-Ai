@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { createLocalStore } from "@/lib/local-store";
 
 /** Compare-page inputs kept per browser: rents the user typed and assumption overrides. */
 export type CompareInputs = {
@@ -9,48 +9,39 @@ export type CompareInputs = {
   campusPresence: number | null;
 };
 
-const KEY = "spotwise.compare.v1";
-const EMPTY: CompareInputs = { rents: {}, dailyPurchaseRate: null, campusPresence: null };
-const listeners = new Set<() => void>();
-let snapshot: { raw: string | null; value: CompareInputs } = { raw: null, value: EMPTY };
+const store = createLocalStore<CompareInputs>("spotwise.compare.v1", {
+  rents: {},
+  dailyPurchaseRate: null,
+  campusPresence: null,
+});
 
-function getSnapshot(): CompareInputs {
-  let raw: string | null = null;
-  try {
-    raw = localStorage.getItem(KEY);
-  } catch {
-    raw = null;
-  }
-  if (raw !== snapshot.raw) {
-    let value = EMPTY;
-    try {
-      value = raw ? { ...EMPTY, ...(JSON.parse(raw) as CompareInputs) } : EMPTY;
-    } catch {
-      value = EMPTY;
-    }
-    snapshot = { raw, value };
-  }
-  return snapshot.value;
-}
+export const useCompareInputs = store.use;
+export const saveCompareInputs = store.save;
 
-function subscribe(cb: () => void) {
-  listeners.add(cb);
-  window.addEventListener("storage", cb);
-  return () => {
-    listeners.delete(cb);
-    window.removeEventListener("storage", cb);
-  };
-}
+/** Simulator inputs; null = use the default / the value derived from Loc-Score. */
+export type SimulateInputs = {
+  site: string | null;
+  customersPerDay: number | null;
+  cogsShare: number | null;
+  staffThb: number | null;
+  otherFixedThb: number | null;
+  setupThb: number | null;
+  breakFactor: number | null;
+  specialFactor: number | null;
+  startMonth: string | null;
+};
 
-export function saveCompareInputs(next: CompareInputs): void {
-  try {
-    localStorage.setItem(KEY, JSON.stringify(next));
-  } catch {
-    // storage unavailable: values live only until reload
-  }
-  listeners.forEach((l) => l());
-}
+const sim = createLocalStore<SimulateInputs>("spotwise.simulate.v1", {
+  site: null,
+  customersPerDay: null,
+  cogsShare: null,
+  staffThb: null,
+  otherFixedThb: null,
+  setupThb: null,
+  breakFactor: null,
+  specialFactor: null,
+  startMonth: null,
+});
 
-export function useCompareInputs(): CompareInputs {
-  return useSyncExternalStore(subscribe, getSnapshot, () => EMPTY);
-}
+export const useSimulateInputs = sim.use;
+export const saveSimulateInputs = sim.save;

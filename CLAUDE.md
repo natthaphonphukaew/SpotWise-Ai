@@ -60,7 +60,8 @@ docs/                # SPEC, DESIGN
 - [x] ต่อ Gemini (`gemini-3.8-flash`) เรียกจริงผ่าน (17 ต.ค. 69) ผลแรกอยู่ใน `llm-cache/business-profile/` (ดู [docs/GEMINI_SETUP.md](docs/GEMINI_SETUP.md))
 - [x] POI Classifier: `npm run classify:poi` ให้ AI จัดหมวดสถานที่ในรัศมี 1.5 กม. (batch ละ 80, cache ใน `llm-cache/poi-classify/`) → `public/data/bangmod/poi_ai.json` แผนที่ใช้หมวดของ AI ทับกฎ และแสดงเหตุผลใน Evidence · วัดผลเทียบ CampusSpot: `npm run eval:poi` → `eval_poi.json`
 - [x] Loc-Score 5 มิติ + Huff model (`lib/scoring/`, เทสต์ monotonicity) และหน้า `/compare`: การ์ดคะแนน (แถบทึบ/ลายทแยงตามความแน่นอน), Evidence ต่อมิติ, ตาราง A/B/C, กรอกค่าเช่า, ปรับสมมติฐาน (อัตราซื้อ, คนใน มจธ. ระหว่างวัน)
-- [ ] รัน `npm run classify:poi` ต่อให้ครบ 25 batch (ค้าง 8 batch เพราะโควตาฟรี 20 ครั้ง/วัน)
+- [x] W1 Scenario Simulator `/simulate`: กระแสเงินสด 12 เดือนตามปฏิทินการศึกษา มจธ. 2569 ของจริง (`public/data/bangmod/academic_calendar.json`, เกินปีที่ประกาศใช้รูปแบบปีก่อน + ติดป้าย "คาด"), 3 สถานการณ์, เงินสำรอง, คืนทุน, จุดคุ้มทุน (`lib/scoring/finance.ts` + เทสต์)
+- [ ] รัน `npm run classify:poi` ต่อให้ครบ 25 batch (ได้ 18/25 — โควตาฟรีรีเซ็ตราว 14:00–15:00 น. เวลาไทย)
 - [ ] เตรียมข้อความเดโมเพิ่ม (ร้านกาแฟ ฯลฯ) ให้มีผลใน `llm-cache/` ก่อนวันส่ง
 - [ ] ถ้ารัน data pipeline ใหม่ (`poi.geojson` เปลี่ยน) ต้องรัน `npm run classify:poi` ใหม่ด้วย
 - [ ] ลงพื้นที่สำรวจทำเลจริง 6–10 จุด + ค่าเช่า → แทน `data-pipeline/candidates.json`

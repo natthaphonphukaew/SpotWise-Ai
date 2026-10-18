@@ -1,16 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { Readout, TopBar } from "@/components/TopBar";
 import { CERTAINTY_LABEL, RulerBar } from "@/components/compare/RulerBar";
-import { saveCompareInputs, useCompareInputs } from "@/lib/compare/store";
+import { saveCompareInputs } from "@/lib/compare/store";
+import { useSiteScores } from "@/lib/compare/use-site-scores";
 import type { Candidate, Manifest } from "@/lib/data/bangmod";
-import { loadBangmod, type BangmodData } from "@/lib/data/load";
-import { centreOf, siteInputs } from "@/lib/geo/site";
-import { rolesFor, WEIGHT_KEYS, type WeightKey } from "@/lib/profile/schema";
-import { useStoredProfile } from "@/lib/profile/store";
-import { CAMPUS_STUDENTS_SOURCE, DEFAULT_ASSUMPTIONS, scoreSite, type EvidenceItem, type SiteScore } from "@/lib/scoring/locscore";
+import { WEIGHT_KEYS, type WeightKey } from "@/lib/profile/schema";
+import { CAMPUS_STUDENTS_SOURCE, type EvidenceItem, type SiteScore } from "@/lib/scoring/locscore";
 
 const DIM_LABEL: Record<WeightKey, string> = {
   target: "กลุ่มเป้าหมาย",
@@ -19,47 +17,11 @@ const DIM_LABEL: Record<WeightKey, string> = {
   rent: "ความคุ้มค่าค่าเช่า",
   synergy: "สถานที่เกื้อหนุน",
 };
-// SPEC §4 defaults, used until the user has an AI profile
-const DEFAULT_WEIGHTS: Record<WeightKey, number> = { target: 25, access: 20, market: 20, rent: 20, synergy: 15 };
-
 const n = (v: number) => v.toLocaleString("en-US");
 
 export function CompareView({ manifest, candidates }: { manifest: Manifest; candidates: Candidate[] }) {
-  const [data, setData] = useState<BangmodData | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [focus, setFocus] = useState<{ cand: string; dim: WeightKey } | null>(null);
-  const stored = useStoredProfile();
-  const inputs = useCompareInputs();
-
-  useEffect(() => {
-    loadBangmod().then(setData, (e: Error) => setError(e.message));
-  }, []);
-
-  const profile = stored?.profile ?? null;
-  const weights = profile?.weights ?? DEFAULT_WEIGHTS;
-  const assumptions = useMemo(
-    () => ({
-      ...DEFAULT_ASSUMPTIONS,
-      avgTicketThb: profile?.avg_ticket_thb ?? DEFAULT_ASSUMPTIONS.avgTicketThb,
-      dailyPurchaseRate: inputs.dailyPurchaseRate ?? DEFAULT_ASSUMPTIONS.dailyPurchaseRate,
-      campusPresence: inputs.campusPresence ?? DEFAULT_ASSUMPTIONS.campusPresence,
-    }),
-    [profile, inputs.dailyPurchaseRate, inputs.campusPresence],
-  );
-
-  const scores = useMemo(() => {
-    if (!data) return null;
-    const roles = rolesFor(profile);
-    // Students and staff are on campus by day but not in WorldPop's residential counts.
-    const centre = centreOf(data.campus);
-    const campus = centre ? [{ at: centre, pop: assumptions.campusStudents * assumptions.campusPresence }] : [];
-    return Object.fromEntries(
-      candidates.map((c) => {
-        const rent = inputs.rents[c.id] ?? c.rent_thb ?? null;
-        return [c.id, scoreSite(siteInputs(c, data, roles, rent, campus), weights, assumptions)];
-      }),
-    ) as Record<string, SiteScore>;
-  }, [data, profile, weights, assumptions, candidates, inputs.rents]);
+  const { error, scores, profile, weights, assumptions, inputs } = useSiteScores(candidates);
 
   const best = (pick: (s: SiteScore) => number | null) => {
     if (!scores) return null;
@@ -94,6 +56,10 @@ export function CompareView({ manifest, candidates }: { manifest: Manifest; cand
           ·{" "}
           <Link href="/map" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
             ดูบนแผนที่
+          </Link>{" "}
+          ·{" "}
+          <Link href="/simulate" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
+            จำลองการเงินช่วงปิดเทอม
           </Link>
         </p>
         {candidates.some((c) => c.placeholder) && (
