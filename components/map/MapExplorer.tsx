@@ -10,7 +10,6 @@ import {
   type ExpressionSpecification,
   type MapLayerMouseEvent,
 } from "maplibre-gl";
-import type { FeatureCollection, Point } from "geojson";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Readout, TopBar } from "@/components/TopBar";
 import { BASEMAP_STYLE, hatchImage, restyleBasemap, squareImage } from "@/components/map/basemap";
@@ -28,16 +27,19 @@ import {
   type PoiProps,
   VERIFICATION,
 } from "@/lib/data/bangmod";
-import { loadBangmod } from "@/lib/data/load";
-import { countByGroup, findIsochrone, type IsochroneFC, type PoiFC } from "@/lib/geo/catchment";
+import { loadBangmod, type BangmodData } from "@/lib/data/load";
+import { addSpotLayers, SPOT_RADIUS_M, useSpotFinder } from "@/components/map/spot-finder";
+import { useCompareInputs } from "@/lib/compare/store";
+import { DEFAULT_WEIGHTS } from "@/lib/compare/use-site-scores";
+import { DEFAULT_ASSUMPTIONS } from "@/lib/scoring/locscore";
+import { countByGroup, findIsochrone } from "@/lib/geo/catchment";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
 import { rolesFor, type Role } from "@/lib/profile/schema";
 import { useStoredProfile } from "@/lib/profile/store";
 
-type Layers = { population: boolean; context: boolean; verifiedOnly: boolean };
-type Data = { poi: PoiFC; iso: IsochroneFC; transit: FeatureCollection<Point> };
+type Layers = { population: boolean; context: boolean; verifiedOnly: boolean; spots: boolean };
 
 const POI_ROLES = { "poi-context": "context", "poi-synergy": "synergy", "poi-comp-indirect": "comp-indirect", "poi-comp": "comp" } as const;
 const POI_LAYERS = Object.keys(POI_ROLES) as (keyof typeof POI_ROLES)[];
@@ -80,11 +82,11 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
   const mapRef = useRef<MapLibreMap | null>(null);
   const markersRef = useRef<Marker[]>([]);
   const [ready, setReady] = useState(false);
-  const [data, setData] = useState<Data | null>(null);
+  const [data, setData] = useState<BangmodData | null>(null);
   const [ai, setAi] = useState<PoiAiFile | null>(null);
   const [cand, setCand] = useState(candidates.find((c) => c.id === "B")?.id ?? candidates[0]?.id);
   const [poi, setPoi] = useState<PoiProps | null>(null);
-  const [layers, setLayers] = useState<Layers>({ population: true, context: false, verifiedOnly: false });
+  const [layers, setLayers] = useState<Layers>({ population: true, context: false, verifiedOnly: false, spots: false });
   const stored = useStoredProfile();
   const profile = stored?.profile ?? null;
   // The business profile (AI + user edits) decides which groups are competitors / synergy.
@@ -126,7 +128,8 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
 
     // style.load (not load): add our layers as soon as the style is parsed, without waiting for every tile.
     map.once("style.load", async () => {
-      const { poi: poiFc, iso: isoFc, transit: transitFc, campus: campusFc, population, ai: aiFile } = await dataP;
+      const all = await dataP;
+      const { poi: poiFc, iso: isoFc, transit: transitFc, campus: campusFc, population, ai: aiFile } = all;
       setAi(aiFile);
       restyleBasemap(map);
 
@@ -158,6 +161,8 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
       map.addSource("campus", { type: "geojson", data: campusFc });
       map.addLayer({ id: "campus-fill", type: "fill", source: "campus", paint: { "fill-color": edu, "fill-opacity": 0.08 } });
       map.addLayer({ id: "campus-line", type: "line", source: "campus", paint: { "line-color": edu, "line-width": 1.2 } });
+
+      addSpotLayers(map, "campus-line");
 
       map.addSource("iso", { type: "geojson", data: isoFc });
       map.addLayer({ id: "iso-10", type: "line", source: "iso", paint: { "line-color": ink3, "line-width": 1.2, "line-dasharray": [3, 3] } });
@@ -195,7 +200,7 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
         map.on("mouseleave", id, () => (map.getCanvas().style.cursor = ""));
       }
 
-      setData({ poi: poiFc, iso: isoFc, transit: transitFc });
+      setData(all);
       setReady(true);
     });
 
@@ -252,6 +257,18 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
   }, [ready, poi]);
 
   // --- counts inside the selected candidate's catchments (real data, rule-based grouping) ---
+  const compareInputs = useCompareInputs();
+  const spotResult = useSpotFinder(
+    mapRef,
+    ready,
+    data,
+    manifest.center,
+    roles,
+    profile?.weights ?? DEFAULT_WEIGHTS,
+    compareInputs.campusPresence ?? DEFAULT_ASSUMPTIONS.campusPresence,
+    layers.spots,
+  );
+
   const counts = useMemo(() => {
     if (!data || !cand) return null;
     const pool = layers.verifiedOnly
@@ -384,12 +401,44 @@ export function MapExplorer({ manifest, candidates }: { manifest: Manifest; cand
               <Toggle checked={layers.context} onChange={(v) => setLayers((l) => ({ ...l, context: v }))}>
                 สถานที่อื่นๆ (ร้านอาหาร ร้านค้า ฯลฯ)
               </Toggle>
+              <Toggle checked={layers.spots} onChange={(v) => setLayers((l) => ({ ...l, spots: v }))}>
+                Spot Finder: ไล่ประเมินทั้งย่าน <span className="font-mono text-[11px] text-ink-3">กริด 100 ม.</span>
+              </Toggle>
               <Toggle checked={layers.verifiedOnly} onChange={(v) => setLayers((l) => ({ ...l, verifiedOnly: v }))}>
                 แสดงเฉพาะที่ยืนยันแล้ว <span className="font-mono text-[11px] text-ink-3">ตัวเลขในตารางเปลี่ยนตาม</span>
               </Toggle>
             </div>
             {poiDs && <QualityNote ds={poiDs} />}
           </Section>
+
+          {layers.spots && spotResult && (
+            <Section title="Spot Finder · จุดที่คะแนนสูงสุด">
+              <ol className="divide-y divide-rule border-y border-rule text-sm">
+                {spotResult.top.map((t) => (
+                  <li key={t.rank}>
+                    <button
+                      onClick={() => mapRef.current?.flyTo({ center: t.at, zoom: 16.5, duration: 1200 })}
+                      className="flex w-full items-baseline gap-3 py-2 text-left hover:bg-ink/5"
+                    >
+                      <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full border-2 border-accent font-mono text-[11px] font-semibold">
+                        {t.rank}
+                      </span>
+                      <span className="font-mono tabular-nums">{t.total}/100</span>
+                      <span className="text-ink-2">≈ {Math.round(t.customers)} คน/วัน</span>
+                      <span className="ml-auto font-mono text-[11px] text-ink-3">
+                        {t.at[1].toFixed(4)}, {t.at[0].toFixed(4)}
+                      </span>
+                    </button>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-2 text-xs leading-relaxed text-ink-3">
+                ประเมิน {spotResult.spots.length.toLocaleString("en-US")} จุดในรัศมี {SPOT_RADIUS_M / 1000} กม. ด้วย Loc-Score เดียวกัน
+                (ไม่รวมค่าเช่า) ใช้ระยะเส้นตรงแทนทางเดินจริง จึงเป็น<span className="font-medium text-ink-2">ค่าประมาณ</span>{" "}
+                ใช้หาย่านที่น่าไปเดินดูต่อ ไม่ใช่ตัดสินทำเล
+              </p>
+            </Section>
+          )}
 
           <Section title="สัญลักษณ์">
             <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">

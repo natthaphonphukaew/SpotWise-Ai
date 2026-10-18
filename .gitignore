@@ -48,3 +48,6 @@ __pycache__/
 # copied from node_modules by scripts/copy-maplibre-worker.mjs
 /public/vendor/
 !.env.example
+
+# vitest raw json (scripts/test-report.ts turns it into public/data/bangmod/tests.json)
+/.vitest-report.json

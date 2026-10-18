@@ -127,3 +127,13 @@ describe("Loc-Score bookkeeping", () => {
     expect(rentScore(0.3)).toBe(0);
   });
 });
+
+describe("fast Huff", () => {
+  it("precomputed competitor pull gives the same result as the direct formula", async () => {
+    const { competitorPull, huffWithPull } = await import("./huff");
+    const comps = [shop(0.003), shop(-0.002, 0.2)];
+    const direct = huff(site, cells, comps);
+    const fast = huffWithPull(site, cells, competitorPull(cells, comps));
+    expect(fast.share).toBeCloseTo(direct.share, 12);
+  });
+});

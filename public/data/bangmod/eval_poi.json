@@ -1,31 +1,35 @@
 {
-  "created": "2026-10-17T13:12:21.468Z",
+  "created": "2026-10-18T06:27:17.098Z",
   "model": "gemini-3.8-flash",
-  "n": 351,
-  "rule_accuracy": 0.949,
-  "ai_accuracy": 0.866,
-  "rule_accuracy_lenient": 0.957,
-  "ai_accuracy_lenient": 0.903,
-  "ai_labeled": "1360/1931",
+  "n": 368,
+  "rule_accuracy": 0.948,
+  "ai_accuracy": 0.861,
+  "rule_accuracy_lenient": 0.959,
+  "ai_accuracy_lenient": 0.905,
+  "ai_labeled": "1440/1931",
+  "bubble_tea_found": {
+    "rule": 9,
+    "ai": 27
+  },
   "fixed_by_ai": 6,
-  "broken_by_ai": 35,
+  "broken_by_ai": 38,
   "confusion": {
     "rule": {
-      "food→food": 291,
-      "food→drink": 14,
-      "drink→drink": 37,
+      "food→food": 304,
+      "food→drink": 15,
+      "drink→drink": 40,
       "service→other": 3,
       "service→service": 5,
       "food→other": 1
     },
     "ai": {
+      "food→food": 272,
       "food→other": 15,
-      "food→drink": 26,
-      "food→food": 262,
-      "drink→drink": 34,
+      "food→drink": 29,
+      "drink→drink": 37,
       "service→service": 8,
       "drink→service": 1,
-      "food→service": 3,
+      "food→service": 4,
       "drink→other": 1,
       "drink→food": 1
     }

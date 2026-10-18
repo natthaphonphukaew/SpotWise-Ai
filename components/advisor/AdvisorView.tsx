@@ -10,15 +10,8 @@ import { financeInputs, nextMonth } from "@/lib/compare/finance-inputs";
 import { useSimulateInputs } from "@/lib/compare/store";
 import { useSiteScores } from "@/lib/compare/use-site-scores";
 import { DATA_BASE, type Candidate } from "@/lib/data/bangmod";
-import type { LlmMeta } from "@/lib/llm/types";
-import type { AdvisorReport } from "@/lib/llm/tasks/advisor";
-import { createLocalStore } from "@/lib/local-store";
+import { lastReport } from "@/lib/advisor/store";
 import { summarize, type AcademicCalendar, type Summary } from "@/lib/scoring/finance";
-
-type Grounding = { ok: number; total: number; rate: number; checks: { ok: boolean; problems: string[] }[] };
-type Saved = { sig: string; report: AdvisorReport; meta: LlmMeta; grounding: Grounding } | null;
-
-const lastReport = createLocalStore<{ saved: Saved }>("spotwise.advisor.v1", { saved: null });
 
 /** Cheap stable signature of the evidence, so a saved report is only shown for the same numbers. */
 function signature(ev: EvidenceRef[]) {

@@ -24,6 +24,26 @@ export function centreOf(fc: FeatureCollection): [number, number] | null {
   return [pts.reduce((s, p) => s + p[0], 0) / pts.length, pts.reduce((s, p) => s + p[1], 0) / pts.length];
 }
 
+/**
+ * Daytime campus population as demand spread evenly over the campus (100 m grid inside the
+ * outline), not one point — a single point would make whatever sits on it look like a gold mine.
+ */
+export function campusDemand(campus: FeatureCollection, pop: number, stepM = 100): DemandCell[] {
+  const c = centreOf(campus);
+  if (!c || pop <= 0) return [];
+  const pts: [number, number][] = [];
+  const dLat = stepM / 110_540;
+  const dLon = stepM / (111_320 * Math.cos((c[1] * Math.PI) / 180));
+  for (let i = -20; i <= 20; i++) {
+    for (let j = -20; j <= 20; j++) {
+      const p: [number, number] = [c[0] + j * dLon, c[1] + i * dLat];
+      if (campus.features.some((f) => (f.geometry.type === "Polygon" || f.geometry.type === "MultiPolygon") && booleanPointInPolygon(p, f as Feature<Polygon | MultiPolygon>))) pts.push(p);
+    }
+  }
+  if (!pts.length) return [{ at: c, pop }];
+  return pts.map((at) => ({ at, pop: pop / pts.length }));
+}
+
 /** WorldPop grid as demand points (cell centres). */
 export function demandCells(pop: PopulationFC): DemandCell[] {
   return pop.features.map((f) => {

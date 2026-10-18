@@ -12,7 +12,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "classify:poi": "tsx scripts/classify-poi.ts",
-    "eval:poi": "tsx scripts/eval-poi.ts"
+    "eval:poi": "tsx scripts/eval-poi.ts",
+    "backtest": "tsx scripts/backtest.ts",
+    "test:report": "vitest run --reporter=json --outputFile=.vitest-report.json && tsx scripts/test-report.ts",
+    "eval:labels": "tsx scripts/eval-labels.ts"
   },
   "dependencies": {
     "@google/genai": "^2.30.0",

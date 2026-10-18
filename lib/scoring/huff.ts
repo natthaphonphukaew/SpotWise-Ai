@@ -35,17 +35,34 @@ export type HuffResult = {
   share: number;
 };
 
-export function huff(candidate: LngLat, cells: DemandCell[], competitors: Store[], p: HuffParams = DEFAULT_HUFF): HuffResult {
+const pull = (from: LngLat, to: LngLat, a: number, p: HuffParams) => a / Math.max(p.minDistM, distanceM(from, to)) ** p.lambda;
+
+/**
+ * Σ competitor pull felt in each demand cell. It does not depend on the candidate, so scoring many
+ * candidates (Spot Finder grid, backtest) computes it once: O(cells × competitors) instead of per point.
+ */
+export function competitorPull(cells: DemandCell[], competitors: Store[], p: HuffParams = DEFAULT_HUFF): Float64Array {
+  const out = new Float64Array(cells.length);
+  cells.forEach((cell, i) => {
+    let s = 0;
+    for (const c of competitors) s += pull(cell.at, c.at, c.attractiveness, p);
+    out[i] = s;
+  });
+  return out;
+}
+
+export function huffWithPull(candidate: LngLat, cells: DemandCell[], compPull: Float64Array, p: HuffParams = DEFAULT_HUFF): HuffResult {
   let captured = 0;
   let reach = 0;
-  const pull = (from: LngLat, to: LngLat, a: number) => a / Math.max(p.minDistM, distanceM(from, to)) ** p.lambda;
-  for (const cell of cells) {
-    if (cell.pop <= 0 || distanceM(candidate, cell.at) > p.radiusM) continue;
-    const ours = pull(cell.at, candidate, 1);
-    let total = ours;
-    for (const s of competitors) total += pull(cell.at, s.at, s.attractiveness);
-    captured += cell.pop * (ours / total);
+  cells.forEach((cell, i) => {
+    if (cell.pop <= 0 || distanceM(candidate, cell.at) > p.radiusM) return;
+    const ours = pull(cell.at, candidate, 1, p);
+    captured += cell.pop * (ours / (ours + compPull[i]));
     reach += cell.pop;
-  }
+  });
   return { capturedPop: captured, reachPop: reach, share: reach > 0 ? captured / reach : 0 };
+}
+
+export function huff(candidate: LngLat, cells: DemandCell[], competitors: Store[], p: HuffParams = DEFAULT_HUFF): HuffResult {
+  return huffWithPull(candidate, cells, competitorPull(cells, competitors, p), p);
 }

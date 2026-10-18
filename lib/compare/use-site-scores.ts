@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useCompareInputs } from "@/lib/compare/store";
 import type { Candidate } from "@/lib/data/bangmod";
 import { loadBangmod, type BangmodData } from "@/lib/data/load";
-import { centreOf, siteInputs } from "@/lib/geo/site";
+import { campusDemand, siteInputs } from "@/lib/geo/site";
 import { rolesFor, type WeightKey } from "@/lib/profile/schema";
 import { useStoredProfile } from "@/lib/profile/store";
 import { useFieldData } from "@/lib/field/store";
@@ -49,8 +49,7 @@ export function useSiteScores(candidates: Candidate[]) {
     if (!data) return null;
     const roles = rolesFor(profile);
     // Students and staff are on campus by day but not in WorldPop's residential counts.
-    const centre = centreOf(data.campus);
-    const campus = centre ? [{ at: centre, pop: assumptions.campusStudents * assumptions.campusPresence }] : [];
+    const campus = campusDemand(data.campus, assumptions.campusStudents * assumptions.campusPresence);
     return Object.fromEntries(
       candidates.map((c) => {
         const rent = inputs.rents[c.id] ?? c.rent_thb ?? null;
