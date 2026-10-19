@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:e7806053-b6a0-4291-a7c7-10711ff8aebc"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "food",
+        "confidence": "low",
+        "reason": "ชื่อสั้น หมวดระบุ restaurant"
+      },
+      {
+        "id": "p2",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุผัดไทยหอยทอด อาหารชัดเจน"
+      },
+      {
+        "id": "p3",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุบ่อตกกุ้งและร้านอาหาร"
+      },
+      {
+        "id": "p4",
+        "group": "health",
+        "confidence": "medium",
+        "reason": "EMS หน่วยกู้ชีพฉุกเฉิน"
+      },
+      {
+        "id": "p5",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านจำหน่ายอุปกรณ์งานเชื่อมตัด"
+      },
+      {
+        "id": "p6",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ชื่อระบุสถานีบริการน้ำมันปั๊ม ปตท"
+      },
+      {
+        "id": "p7",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านของทะเลสดและหมวด restaurant"
+      },
+      {
+        "id": "p8",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ชื่อไม่ชัดเจน ไม่มีหมวดหมู่ระบุ"
+      },
+      {
+        "id": "p9",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นหมู่บ้านที่อยู่อาศัย"
+      },
+      {
+        "id": "p10",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัทจำกัด"
+      },
+      {
+        "id": "p11",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารปฏิบัติการทางวิทยาศาสตร์"
+      },
+      {
+        "id": "p12",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านจำหน่ายเหล็กและวัสดุสตีล"
+      },
+      {
+        "id": "p13",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านซ่อมไดนาโมยานยนต์"
+      },
+      {
+        "id": "p14",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัทจำกัด"
+      },
+      {
+        "id": "p15",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดระบุอาหารและเครื่องดื่ม"
+      },
+      {
+        "id": "p16",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านหม่าล่าทัง"
+      },
+      {
+        "id": "p17",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายรถยนต์มือสอง"
+      },
+      {
+        "id": "p18",
+        "group": "office",
+        "confidence": "low",
+        "reason": "ศูนย์ชุมชนหรือพื้นที่กิจกรรม"
+      },
+      {
+        "id": "p19",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านแว่นตาทัศนมาตร"
+      },
+      {
+        "id": "p20",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุก๋วยเตี๋ยวน้ำตก"
+      },
+      {
+        "id": "p21",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการนวดแผนไทย"
+      },
+      {
+        "id": "p22",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "แบรนด์ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p23",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นมูลนิธิ"
+      },
+      {
+        "id": "p24",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการทำเล็บเสริมสวย"
+      },
+      {
+        "id": "p25",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านยำแซ่บ"
+      },
+      {
+        "id": "p26",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัทจำกัด"
+      },
+      {
+        "id": "p27",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "สถาบันการเงินและบริการธนาคาร"
+      },
+      {
+        "id": "p28",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ตัวแทนจำหน่ายรถยนต์ Isuzu"
+      },
+      {
+        "id": "p29",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุหอพักอพาร์ทเม้นท์"
+      },
+      {
+        "id": "p30",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุอพาร์ทเม้นท์"
+      },
+      {
+        "id": "p31",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "แบรนด์ร้านกาแฟ Café Amazon"
+      },
+      {
+        "id": "p32",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชื่อระบุโรงเรียนกวดวิชา"
+      },
+      {
+        "id": "p33",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุหม้อไฟชาบู"
+      },
+      {
+        "id": "p34",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุคลินิกทันตกรรม"
+      },
+      {
+        "id": "p35",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นชื่อซอยถนน"
+      },
+      {
+        "id": "p36",
+        "group": "education",
+        "confidence": "high",
+        "reason": "หน่วยงานรับเข้าศึกษามหาวิทยาลัย"
+      },
+      {
+        "id": "p37",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านอาหารอีสานฮาลาล"
+      },
+      {
+        "id": "p38",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นโฮมออฟฟิศ"
+      },
+      {
+        "id": "p39",
+        "group": "food",
+        "confidence": "high",
+        "reason": "แบรนด์ร้านอาหารฟาสต์ฟู้ด KFC"
+      },
+      {
+        "id": "p40",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุนู้ดเดิ้ลก๋วยเตี๋ยว"
+      },
+      {
+        "id": "p41",
+        "group": "leisure",
+        "confidence": "medium",
+        "reason": "ลานกิจกรรมหรือสนาม Ant Field"
+      },
+      {
+        "id": "p42",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุกะเพราและหอยทอด"
+      },
+      {
+        "id": "p43",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ชื่อระบุคลินิกเวชกรรม"
+      },
+      {
+        "id": "p44",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายและตัดแว่นตา"
+      },
+      {
+        "id": "p45",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการพ่นสีทำสีรถยนต์"
+      },
+      {
+        "id": "p46",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุ Coffee Bar และคาเฟ่"
+      },
+      {
+        "id": "p47",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุหอพักชัดเจน"
+      },
+      {
+        "id": "p48",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุข้าวหมูแดงหมูกรอบ"
+      },
+      {
+        "id": "p49",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านเบอร์เกอร์"
+      },
+      {
+        "id": "p50",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ศูนย์นวัตกรรม มจธ."
+      },
+      {
+        "id": "p51",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อโลตัสเอ็กซ์เพรส"
+      },
+      {
+        "id": "p52",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นร้านคาเฟ่ Cafe"
+      },
+      {
+        "id": "p53",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ Tesco Lotus Express"
+      },
+      {
+        "id": "p54",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ชุมนุมภาควิชาวิศวะคอม มจธ."
+      },
+      {
+        "id": "p55",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านจำหน่ายอุปกรณ์เครื่องมือฮาร์ดแวร์"
+      },
+      {
+        "id": "p56",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟอินทนินคอฟฟี่"
+      },
+      {
+        "id": "p57",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัทจำกัด"
+      },
+      {
+        "id": "p58",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านส้มตำ"
+      },
+      {
+        "id": "p59",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุครัวซีฟู๊ดอาหารทะเล"
+      },
+      {
+        "id": "p60",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายเครื่องเขียนอุปกรณ์สำนักงาน"
+      },
+      {
+        "id": "p61",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ชื่ออาหารผัดคั่ว"
+      },
+      {
+        "id": "p62",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายเตียงโซฟาเฟอร์นิเจอร์"
+      },
+      {
+        "id": "p63",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "เพจจำหน่ายสารเคมีการเกษตร"
+      },
+      {
+        "id": "p64",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านบริการทำเล็บและต่อขนตา"
+      },
+      {
+        "id": "p65",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัทจำกัด"
+      },
+      {
+        "id": "p66",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านข้าวต้มปลา"
+      },
+      {
+        "id": "p67",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านอาหารตามสั่ง"
+      },
+      {
+        "id": "p68",
+        "group": "office",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นบริษัทจำกัด"
+      },
+      {
+        "id": "p69",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ที่พักอาศัย Daisy House"
+      },
+      {
+        "id": "p70",
+        "group": "food",
+        "confidence": "high",
+        "reason": "แบรนด์ร้านอาหารฟาสต์ฟู้ด Burger King"
+      },
+      {
+        "id": "p71",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านอาหารตามสั่ง"
+      },
+      {
+        "id": "p72",
+        "group": "coffee",
+        "confidence": "medium",
+        "reason": "ชื่อระบุร้านชากาแฟ"
+      },
+      {
+        "id": "p73",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารเรียนรวม CB5 มหาวิทยาลัย มจธ."
+      },
+      {
+        "id": "p74",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านก๋วยเตี๋ยวหมู"
+      },
+      {
+        "id": "p75",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อระบุหอพักนักศึกษาหญิงชัดเจน"
+      },
+      {
+        "id": "p76",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำเล็บ Nail Studio"
+      },
+      {
+        "id": "p77",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ชื่อไม่ชัดเจนเกี่ยวกับประเภทสถานที่"
+      },
+      {
+        "id": "p78",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ชื่อระบุเป็นชื่อซอยประชาอุทิศ 40"
+      },
+      {
+        "id": "p79",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ชื่อระบุร้านชาบูชาบู"
+      },
+      {
+        "id": "p80",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "โนบิชา แบรนด์ร้านชานมไข่มุก"
+      }
+    ]
+  },
+  "createdAt": "2026-10-19T08:15:52.161Z"
+}

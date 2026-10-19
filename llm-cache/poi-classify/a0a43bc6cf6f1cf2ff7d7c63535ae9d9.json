@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:fa56dca9-6101-4733-b7fd-cc215824e240"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ปั๊มน้ำมัน ปตท."
+      },
+      {
+        "id": "p2",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านนมสด ขนมปัง ของหวาน"
+      },
+      {
+        "id": "p3",
+        "group": "dormitory",
+        "confidence": "medium",
+        "reason": "ชื่ออาคาร พี.เอส.เฮ้าส์ ที่พักอาศัย"
+      },
+      {
+        "id": "p4",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารตามสั่ง"
+      },
+      {
+        "id": "p5",
+        "group": "coffee",
+        "confidence": "medium",
+        "reason": "หมวด coffee_shop คาเฟ่"
+      },
+      {
+        "id": "p6",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "บริการล้างซ่อมแอร์"
+      },
+      {
+        "id": "p7",
+        "group": "education",
+        "confidence": "high",
+        "reason": "โรงเรียนระดับประถม"
+      },
+      {
+        "id": "p8",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "ร้านชานมไข่มุก Dek-Cha"
+      },
+      {
+        "id": "p9",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านสเต็ก"
+      },
+      {
+        "id": "p10",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดร้านอาหาร"
+      },
+      {
+        "id": "p11",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "โรงแรม ที่พัก Heliconia House"
+      },
+      {
+        "id": "p12",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p13",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p14",
+        "group": "office",
+        "confidence": "low",
+        "reason": "บริษัท COTCO ข้อมูลจำกัด"
+      },
+      {
+        "id": "p15",
+        "group": "coffee",
+        "confidence": "medium",
+        "reason": "ร้านคาเฟ่ มอร์"
+      },
+      {
+        "id": "p16",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านสปากระเป๋า บริการดูแลรักษา"
+      },
+      {
+        "id": "p17",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทจำกัด สำนักงาน"
+      },
+      {
+        "id": "p18",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "ร้านชา ชาซูฮก"
+      },
+      {
+        "id": "p19",
+        "group": "health",
+        "confidence": "medium",
+        "reason": "หมวดบริการทางการแพทย์"
+      },
+      {
+        "id": "p20",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านนวดเพื่อสุขภาพ บริการเสริม"
+      },
+      {
+        "id": "p21",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "สตูดิโอบริการ"
+      },
+      {
+        "id": "p22",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "อพาร์ตเมนต์ ที่พักอาศัย"
+      },
+      {
+        "id": "p23",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำผม เสริมสวย"
+      },
+      {
+        "id": "p24",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p25",
+        "group": "other",
+        "confidence": "high",
+        "reason": "พุทธสถาน สถานที่ทางศาสนา"
+      },
+      {
+        "id": "p26",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านแต่งรถ ซ่อมรถยนต์"
+      },
+      {
+        "id": "p27",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารสุขภาพ เทมเป้"
+      },
+      {
+        "id": "p28",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านสเต็ก"
+      },
+      {
+        "id": "p29",
+        "group": "health",
+        "confidence": "high",
+        "reason": "หน่วยบริการสุขภาพ Health Care Unit"
+      },
+      {
+        "id": "p30",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านซ่อมแอร์รถยนต์ บริการยานยนต์"
+      },
+      {
+        "id": "p31",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันการเรียนรู้ของมหาวิทยาลัย"
+      },
+      {
+        "id": "p32",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารประเภทยำ"
+      },
+      {
+        "id": "p33",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ศูนย์วิศวกรรม หน่วยงานหรือสำนักงาน"
+      },
+      {
+        "id": "p34",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านนวดเพื่อสุขภาพ บริการ"
+      },
+      {
+        "id": "p35",
+        "group": "education",
+        "confidence": "high",
+        "reason": "คณะศิลปศาสตร์ สถาบันอุดมศึกษา"
+      },
+      {
+        "id": "p36",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารประเภทยำ"
+      },
+      {
+        "id": "p37",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารติ่มซำและหม่าล่า"
+      },
+      {
+        "id": "p38",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ธนาคารกรุงศรี สาขาประชาอุทิศ"
+      },
+      {
+        "id": "p39",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "แม็คโคร ฟูดเซอร์วิส ค้าปลีกส่งอาหาร"
+      },
+      {
+        "id": "p40",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านสักหนังศีรษะ บริการเสริมความงาม"
+      },
+      {
+        "id": "p41",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำเล็บ บริการเสริมความงาม"
+      },
+      {
+        "id": "p42",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านข้าวต้มปลา อาหาร"
+      },
+      {
+        "id": "p43",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน สำนักงาน"
+      },
+      {
+        "id": "p44",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารหม่าล่า"
+      },
+      {
+        "id": "p45",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกตรวจรักษาโรค"
+      },
+      {
+        "id": "p46",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารขายเกี๊ยวซ่า"
+      },
+      {
+        "id": "p47",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านโรตี คาเฟ่ของหวาน"
+      },
+      {
+        "id": "p48",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านนวดเพื่อสุขภาพ บริการ"
+      },
+      {
+        "id": "p49",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันการเรียนรู้ สถานศึกษา"
+      },
+      {
+        "id": "p50",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ศูนย์กีฬาเฉลิมพระเกียรติ ออกกำลังกาย"
+      },
+      {
+        "id": "p51",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารโภชนา"
+      },
+      {
+        "id": "p52",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "หมวดร้านอาหาร"
+      },
+      {
+        "id": "p53",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านลาบเป็ด อาหารอีสาน"
+      },
+      {
+        "id": "p54",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านปิ้งย่างหมูกระทะ ติดมันส์"
+      },
+      {
+        "id": "p55",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p56",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ปั๊มน้ำมัน Susco"
+      },
+      {
+        "id": "p57",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหาร สุกี้ตี๋น้อย"
+      },
+      {
+        "id": "p58",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านฟาสต์ฟู้ด KFC"
+      },
+      {
+        "id": "p59",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ Starbucks"
+      },
+      {
+        "id": "p60",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารญี่ปุ่น ราเมน"
+      },
+      {
+        "id": "p61",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p62",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารเรียน LX ในมหาวิทยาลัย"
+      },
+      {
+        "id": "p63",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p64",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ CJ More"
+      },
+      {
+        "id": "p65",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "อาคารอพาร์ตเมนต์ ที่พักอาศัย"
+      },
+      {
+        "id": "p66",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "คอนโดมิเนียม ที่พักอาศัย"
+      },
+      {
+        "id": "p67",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ศูนย์อาหาร ลานปูน"
+      },
+      {
+        "id": "p68",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p69",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ศูนย์อาหาร ศูนย์รวมร้านอาหาร"
+      },
+      {
+        "id": "p70",
+        "group": "other",
+        "confidence": "high",
+        "reason": "สถาบันการเงิน ธนาคารกรุงเทพ"
+      },
+      {
+        "id": "p71",
+        "group": "dormitory",
+        "confidence": "medium",
+        "reason": "อาคารอพาร์ตเมนต์ ที่พักอาศัย"
+      },
+      {
+        "id": "p72",
+        "group": "dormitory",
+        "confidence": "medium",
+        "reason": "อาคารอพาร์ตเมนต์ ที่พักอาศัย"
+      },
+      {
+        "id": "p73",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ห้างค้าปลีกส่งสินค้าอุปโภคบริโภค"
+      },
+      {
+        "id": "p74",
+        "group": "dormitory",
+        "confidence": "medium",
+        "reason": "อาคารอพาร์ตเมนต์ ที่พักอาศัย"
+      },
+      {
+        "id": "p75",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "โชว์รูมตัวแทนจำหน่ายรถยนต์ โตโยต้า"
+      },
+      {
+        "id": "p76",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ศูนย์บริการซ่อมรถยนต์ โตโยต้า"
+      },
+      {
+        "id": "p77",
+        "group": "education",
+        "confidence": "high",
+        "reason": "คณะเทคโนโลยีสารสนเทศ มหาวิทยาลัย"
+      },
+      {
+        "id": "p78",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สวนสาธารณะ สวนธนบุรีรมย์"
+      },
+      {
+        "id": "p79",
+        "group": "education",
+        "confidence": "high",
+        "reason": "หอสมุด แหล่งเรียนรู้"
+      },
+      {
+        "id": "p80",
+        "group": "food",
+        "confidence": "high",
+        "reason": "โรงอาหาร Canteen ขายอาหาร"
+      }
+    ]
+  },
+  "createdAt": "2026-10-19T08:16:47.778Z"
+}

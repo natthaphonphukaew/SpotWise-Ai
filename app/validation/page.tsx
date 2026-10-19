@@ -15,6 +15,7 @@ export const metadata: Metadata = { title: "ผลการทดสอบ — S
 
 const pct = (x: number | null | undefined) => (x == null ? "—" : `${Math.round(x * 1000) / 10}%`);
 const n = (x: number) => x.toLocaleString("en-US");
+const range = (a: number, b: number) => `${Math.min(a, b).toFixed(2)}–${Math.max(a, b).toFixed(2)}`;
 
 type Bt = {
   branches: number;
@@ -166,8 +167,8 @@ export default function ValidationPage() {
             </tbody>
           </table>
           <p className="mt-3 text-sm text-ink-2">
-            อ่านผล: 0.5 = เดาสุ่ม · คะแนนแยก &quot;ทำเลค้าขาย&quot; ออกจากจุดทั่วไปได้ชัด (≈0.8)
-            แต่แยกสาขาเชนออกจากร้านทั่วไปได้น้อย (0.53–0.61) แปลว่าตอนนี้คะแนนบอกได้ว่าย่านไหนน่าค้าขาย
+            อ่านผล: 0.5 = เดาสุ่ม · คะแนนแยก &quot;ทำเลค้าขาย&quot; ออกจากจุดทั่วไปได้ชัด ({range(bt.bubble_tea.auc_vs_random_points, bt.coffee.auc_vs_random_points)})
+            แต่แยกสาขาเชนออกจากร้านทั่วไปได้น้อย ({range(bt.bubble_tea.auc_vs_ordinary_shops, bt.coffee.auc_vs_ordinary_shops)}) แปลว่าตอนนี้คะแนนบอกได้ว่าย่านไหนน่าค้าขาย
             แต่ยังไม่ละเอียดพอจะบอกว่าจุดไหนในย่านดีกว่ากัน ซึ่งเป็นเหตุผลที่ต้องมีข้อมูลหน้างาน
           </p>
           <ul className="mt-2 list-disc pl-5 text-xs text-ink-3">

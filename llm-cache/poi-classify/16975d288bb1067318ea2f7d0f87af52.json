@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:f0040caa-4108-42b4-85cf-83e48fc55a77"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "อู่ซ่อมรถจัดเป็นหมวดบริการค้าปลีกและซ่อมบำรุง"
+      },
+      {
+        "id": "p2",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "เป็นทั้งคาเฟ่และร้านอาหาร มีคำว่า Restaurant ชัดเจน"
+      },
+      {
+        "id": "p3",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ปั๊มน้ำมันจัดเป็นหมวด other"
+      },
+      {
+        "id": "p4",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านหมูกระทะ จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p5",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารฟาสต์ฟู้ด KFC"
+      },
+      {
+        "id": "p6",
+        "group": "coffee",
+        "confidence": "low",
+        "reason": "ชื่อร้าน อาริกาโตะ ข้อมูลไม่ชัดเจน คงกลุ่ม other/เดาตามแบรนด์กาแฟ"
+      },
+      {
+        "id": "p7",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ขายขนมปังและนม จัดเป็นของหวาน"
+      },
+      {
+        "id": "p8",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายข้าวหมูทอดกะเพรา จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p9",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านเบเกอรี่และกาแฟ จัดเป็นหมวดกาแฟ"
+      },
+      {
+        "id": "p10",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายอะไหล่หรือรถมอเตอร์ไซค์ จัดเป็นค้าปลีก"
+      },
+      {
+        "id": "p11",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านค้าวัสดุ/งานศิลป์ จัดเป็นค้าปลีก"
+      },
+      {
+        "id": "p12",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p13",
+        "group": "office",
+        "confidence": "medium",
+        "reason": "ระบุ Co, Ltd บริษัท จัดเป็นสำนักงาน"
+      },
+      {
+        "id": "p14",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านรับพิมพ์งานและขายเครื่องเขียน จัดเป็นค้าปลีก"
+      },
+      {
+        "id": "p15",
+        "group": "leisure",
+        "confidence": "medium",
+        "reason": "คณะเต้น/ศิลปะการแสดง จัดเป็นนันทนาการและบันเทิง"
+      },
+      {
+        "id": "p16",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "โต๊ะสนุกเกอร์ จัดเป็นสถานที่นันทนาการ/กีฬา"
+      },
+      {
+        "id": "p17",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านขายไอติม จัดเป็นหมวดของหวาน"
+      },
+      {
+        "id": "p18",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผม จัดเป็นหมวดบริการเสริมสวย/ค้าปลีก"
+      },
+      {
+        "id": "p19",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ตึกสถาบันฟีโบ้ในมหาวิทยาลัย มจธ."
+      },
+      {
+        "id": "p20",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวไก่ตุ๋น จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p21",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ 94 Coffee"
+      },
+      {
+        "id": "p22",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวและอาหารเจ จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p23",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านชาบู จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p24",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สนามกีฬาและสวนสาธารณะ จัดเป็นนันทนาการ"
+      },
+      {
+        "id": "p25",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้าน Coffee and Tea จัดเป็นร้านกาแฟ"
+      },
+      {
+        "id": "p26",
+        "group": "food",
+        "confidence": "low",
+        "reason": "ชื่อระบุเพียงซอยประชาอุทิศ27 ข้อมูลไม่ชัดเจน คง food"
+      },
+      {
+        "id": "p27",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านกดสิวนวดหน้า จัดเป็นบริการเสริมความงาม"
+      },
+      {
+        "id": "p28",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หมู่บ้านที่อยู่อาศัย"
+      },
+      {
+        "id": "p29",
+        "group": "dormitory",
+        "confidence": "medium",
+        "reason": "หมู่บ้านสุขนิเวศน์ จัดเป็นที่อยู่อาศัย"
+      },
+      {
+        "id": "p30",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ศูนย์การเรียนรู้วิทยาศาสตร์ จัดเป็นการศึกษา"
+      },
+      {
+        "id": "p31",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สระว่ายน้ำ จัดเป็นสถานที่ออกกำลังกาย/นันทนาการ"
+      },
+      {
+        "id": "p32",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารตามสั่ง"
+      },
+      {
+        "id": "p33",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารตามสั่ง"
+      },
+      {
+        "id": "p34",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ปาท่องโก๋ เฉาก๊วย จัดเป็นของหวาน"
+      },
+      {
+        "id": "p35",
+        "group": "convenience",
+        "confidence": "high",
+        "reason": "ร้านสะดวกซื้อ 7-Eleven"
+      },
+      {
+        "id": "p36",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัท จัดเป็นหมวดสำนักงาน"
+      },
+      {
+        "id": "p37",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายอุปกรณ์กีฬา จัดเป็นค้าปลีก"
+      },
+      {
+        "id": "p38",
+        "group": "education",
+        "confidence": "high",
+        "reason": "โรงเรียนกีฬากรุงเทพมหานคร"
+      },
+      {
+        "id": "p39",
+        "group": "education",
+        "confidence": "high",
+        "reason": "โรงเรียนฝึกอาชีพกรุงเทพมหานคร"
+      },
+      {
+        "id": "p40",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ภาควิชาวิศวกรรมสิ่งแวดล้อม มจธ. จัดเป็นการศึกษา"
+      },
+      {
+        "id": "p41",
+        "group": "education",
+        "confidence": "medium",
+        "reason": "ห้องแล็บในสถานศึกษา จัดเป็นการศึกษา"
+      },
+      {
+        "id": "p42",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารครัวบ้านเจ้อ้อย"
+      },
+      {
+        "id": "p43",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้าน/บริษัทจำหน่ายที่นอน จัดเป็นร้านค้าปลีก"
+      },
+      {
+        "id": "p44",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผม Barber จัดเป็นบริการเสริมสวย"
+      },
+      {
+        "id": "p45",
+        "group": "food",
+        "confidence": "low",
+        "reason": "หมวดระบุ restaurant จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p46",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผม บาร์เบอร์ จัดเป็นบริการเสริมสวย"
+      },
+      {
+        "id": "p47",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายกระดาษ ปลีก-ส่ง"
+      },
+      {
+        "id": "p48",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายปลาทูนึ่งและอาหาร"
+      },
+      {
+        "id": "p49",
+        "group": "food",
+        "confidence": "low",
+        "reason": "ชื่อเป็นชื่อถนนแต่หมวดเดิมคือ fast food คง food"
+      },
+      {
+        "id": "p50",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านค้าขายเสื้อผ้ากีฬา ห้างหุ้นส่วนจำกัด"
+      },
+      {
+        "id": "p51",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านสัก Tattoo จัดเป็นบริการเสริมความงาม/ค้าปลีก"
+      },
+      {
+        "id": "p52",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านสักคิ้วเสริมความงาม จัดเป็นค้าปลีก/บริการ"
+      },
+      {
+        "id": "p53",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านพิซซ่าโฮมเมด จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p54",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "โต๊ะสนุกเกอร์ จัดเป็นสถานที่นันทนาการ"
+      },
+      {
+        "id": "p55",
+        "group": "market",
+        "confidence": "high",
+        "reason": "ตลาดนัด จัดเป็นหมวดตลาด"
+      },
+      {
+        "id": "p56",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายตุ๊กตา จัดเป็นร้านค้าปลีก"
+      },
+      {
+        "id": "p57",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านดอกไม้และคาเฟ่ จัดเป็นคาเฟ่/กาแฟ"
+      },
+      {
+        "id": "p58",
+        "group": "food",
+        "confidence": "low",
+        "reason": "หมวดระบุ restaurant จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p59",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายข้าวหมกไก่ จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p60",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "จำหน่ายอะไหล่การเกษตร-อุตสาหกรรม จัดเป็นค้าปลีก"
+      },
+      {
+        "id": "p61",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หมู่บ้านที่อยู่อาศัย จัดเป็นที่พักอาศัย"
+      },
+      {
+        "id": "p62",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิก จัดเป็นหมวดสุขภาพ"
+      },
+      {
+        "id": "p63",
+        "group": "education",
+        "confidence": "high",
+        "reason": "บัณฑิตวิทยาลัย สถาบันการศึกษา"
+      },
+      {
+        "id": "p64",
+        "group": "other",
+        "confidence": "low",
+        "reason": "ข้อมูลไม่เพียงพอที่จะระบุประเภท"
+      },
+      {
+        "id": "p65",
+        "group": "dormitory",
+        "confidence": "low",
+        "reason": "ชื่อเป็นชื่อซอยแต่หมวดระบุโรงแรม คงกลุ่มที่อยู่อาศัย"
+      },
+      {
+        "id": "p66",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารซีฟู้ด จัดเป็นร้านอาหาร"
+      },
+      {
+        "id": "p67",
+        "group": "market",
+        "confidence": "medium",
+        "reason": "ไนท์พลาซ่า ลานค้าตลาดนัดกลางคืน"
+      },
+      {
+        "id": "p68",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านค้าขายข้าวสาร จัดเป็นร้านค้าปลีก"
+      },
+      {
+        "id": "p69",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ จัดเป็นหมวด coffee"
+      },
+      {
+        "id": "p70",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หอพัก จัดเป็นหมวดที่พักอาศัย"
+      },
+      {
+        "id": "p71",
+        "group": "leisure",
+        "confidence": "medium",
+        "reason": "สนามแบดมินตัน/อุปกรณ์กีฬา จัดเป็นนันทนาการ"
+      },
+      {
+        "id": "p72",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านขายอาหารในตลาดสด"
+      },
+      {
+        "id": "p73",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารจอดรถภายในมหาวิทยาลัย มจธ."
+      },
+      {
+        "id": "p74",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารครัวพี่ต๊อด"
+      },
+      {
+        "id": "p75",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านนวดแผนไทย จัดเป็นหมวดบริการเสริมสุขภาพ/ค้าปลีก"
+      },
+      {
+        "id": "p76",
+        "group": "health",
+        "confidence": "high",
+        "reason": "ร้านขายยา วิริยะฟาร์มาซี"
+      },
+      {
+        "id": "p77",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ร้านขายขนมไทย จัดเป็นของหวาน"
+      },
+      {
+        "id": "p78",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกทันตกรรม จัดเป็นหมวดสุขภาพ"
+      },
+      {
+        "id": "p79",
+        "group": "office",
+        "confidence": "high",
+        "reason": "มูลนิธิ จัดเป็นหน่วยงานสำนักงาน/องค์กร"
+      },
+      {
+        "id": "p80",
+        "group": "education",
+        "confidence": "medium",
+        "reason": "สถานที่จัดเวิร์กช็อป/การเรียนรู้"
+      }
+    ]
+  },
+  "createdAt": "2026-10-19T08:16:25.541Z"
+}

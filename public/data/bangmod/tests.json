@@ -1,5 +1,5 @@
 {
-  "ran": "2026-10-18T08:44:31.075Z",
+  "ran": "2026-10-19T08:17:13.988Z",
   "total": 76,
   "passed": 76,
   "failed": 0,
@@ -65,26 +65,6 @@
       ]
     },
     {
-      "file": "lib/field/types.test.ts",
-      "tests": [
-        {
-          "suite": "summarizeField",
-          "title": "pools sessions per site into people per minute",
-          "status": "passed"
-        },
-        {
-          "suite": "summarizeField",
-          "title": "ignores counts shorter than two minutes",
-          "status": "passed"
-        },
-        {
-          "suite": "slotOf",
-          "title": "maps local clock time to survey slots",
-          "status": "passed"
-        }
-      ]
-    },
-    {
       "file": "lib/llm/index.test.ts",
       "tests": [
         {
@@ -115,6 +95,26 @@
         {
           "suite": "runTask",
           "title": "keys the cache by model, so another model is not served stale output",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "file": "lib/field/types.test.ts",
+      "tests": [
+        {
+          "suite": "summarizeField",
+          "title": "pools sessions per site into people per minute",
+          "status": "passed"
+        },
+        {
+          "suite": "summarizeField",
+          "title": "ignores counts shorter than two minutes",
+          "status": "passed"
+        },
+        {
+          "suite": "slotOf",
+          "title": "maps local clock time to survey slots",
           "status": "passed"
         }
       ]

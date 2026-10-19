@@ -1,33 +1,33 @@
 {
-  "created": "2026-10-18T06:27:17.098Z",
+  "created": "2026-10-19T08:17:07.243Z",
   "model": "gemini-3.8-flash",
-  "n": 368,
-  "rule_accuracy": 0.948,
-  "ai_accuracy": 0.861,
-  "rule_accuracy_lenient": 0.959,
-  "ai_accuracy_lenient": 0.905,
-  "ai_labeled": "1440/1931",
+  "n": 497,
+  "rule_accuracy": 0.934,
+  "ai_accuracy": 0.869,
+  "rule_accuracy_lenient": 0.948,
+  "ai_accuracy_lenient": 0.911,
+  "ai_labeled": "1931/1931",
   "bubble_tea_found": {
-    "rule": 9,
-    "ai": 27
+    "rule": 11,
+    "ai": 35
   },
-  "fixed_by_ai": 6,
-  "broken_by_ai": 38,
+  "fixed_by_ai": 14,
+  "broken_by_ai": 46,
   "confusion": {
     "rule": {
-      "food→food": 304,
-      "food→drink": 15,
-      "drink→drink": 40,
-      "service→other": 3,
+      "food→food": 408,
+      "food→drink": 24,
+      "drink→drink": 51,
+      "service→other": 6,
       "service→service": 5,
-      "food→other": 1
+      "food→other": 3
     },
     "ai": {
-      "food→food": 272,
-      "food→other": 15,
-      "food→drink": 29,
-      "drink→drink": 37,
-      "service→service": 8,
+      "food→food": 373,
+      "food→other": 21,
+      "food→drink": 37,
+      "drink→drink": 48,
+      "service→service": 11,
       "drink→service": 1,
       "food→service": 4,
       "drink→other": 1,
@@ -43,11 +43,32 @@
       "reason": "ร้านบริการซักอบรีด"
     },
     {
+      "name": "Tigers Print & Stationary",
+      "truth": "service",
+      "rule": "other",
+      "ai": "service",
+      "reason": "ร้านรับพิมพ์งานและขายเครื่องเขียน จัดเป็นค้าปลีก"
+    },
+    {
       "name": "Cafe & Restaurant",
       "truth": "food",
       "rule": "drink",
       "ai": "food",
       "reason": "ร้านอาหาร"
+    },
+    {
+      "name": "G&K Digital Printing Center",
+      "truth": "service",
+      "rule": "other",
+      "ai": "service",
+      "reason": "ร้านบริการงานพิมพ์และถ่ายเอกสาร"
+    },
+    {
+      "name": "ครัวนายพันสวนธน ข้าวแกงปักษ์ใต้&ขนมจีนเส้นสด",
+      "truth": "food",
+      "rule": "drink",
+      "ai": "food",
+      "reason": "ร้านข้าวแกงปักษ์ใต้และขนมจีน"
     },
     {
       "name": "Whitehouse DryClean Basket",
@@ -71,11 +92,46 @@
       "reason": "ร้านอาหารขนมจีนและข้าวซอย"
     },
     {
+      "name": "R-manah เตี๋ยวเรือ&กาแฟโบราณ",
+      "truth": "food",
+      "rule": "drink",
+      "ai": "food",
+      "reason": "ร้านก๋วยเตี๋ยวเรือ"
+    },
+    {
+      "name": "แว่นบะหมี่ & ขนมปังสังขยา",
+      "truth": "food",
+      "rule": "drink",
+      "ai": "food",
+      "reason": "ร้านบะหมี่และขนมปัง"
+    },
+    {
       "name": "The Road Burger x Masha Cafe",
       "truth": "food",
       "rule": "drink",
       "ai": "food",
       "reason": "ร้านเบอร์เกอร์และคาเฟ่"
+    },
+    {
+      "name": "ร้านเครื่องเขียนเอก / Ake Stationary and Office Supplies Shop",
+      "truth": "service",
+      "rule": "other",
+      "ai": "service",
+      "reason": "ร้านจำหน่ายเครื่องเขียนอุปกรณ์สำนักงาน"
+    },
+    {
+      "name": "Cai Salad and Tea Cafe",
+      "truth": "food",
+      "rule": "drink",
+      "ai": "food",
+      "reason": "ร้านสลัดและอาหาร"
+    },
+    {
+      "name": "Rickshaw Shabu Cafe",
+      "truth": "food",
+      "rule": "drink",
+      "ai": "food",
+      "reason": "ร้านชาบู"
     }
   ],
   "examples_broken": [
@@ -86,6 +142,14 @@
       "ai": "other",
       "aiGroup": "health",
       "reason": "ชื่อ Help Health เกี่ยวข้องกับสุขภาพ"
+    },
+    {
+      "name": "โกดังนมสด พุทธบูชา",
+      "truth": "food",
+      "rule": "food",
+      "ai": "drink",
+      "aiGroup": "drink_dessert",
+      "reason": "ร้านขายนมสดและของหวาน"
     },
     {
       "name": "SK-Secret Nail Salon",
@@ -102,6 +166,14 @@
       "ai": "service",
       "aiGroup": "retail",
       "reason": "ร้านขายผลไม้สด"
+    },
+    {
+      "name": "โลตัสเอ๊กเพรส หมู่บ้านสวนธนฯ",
+      "truth": "food",
+      "rule": "food",
+      "ai": "other",
+      "aiGroup": "convenience",
+      "reason": "ร้านสะดวกซื้อโลตัสเอ็กซ์เพรส"
     },
     {
       "name": "กล้วยปิ้งลิงเกาะ บาย มาดามอ้น",
@@ -136,6 +208,14 @@
       "reason": "ชื่อสื่อถึงหน่วยงานหรือสำนักงาน"
     },
     {
+      "name": "โอ้โหโตเกียว บางมด",
+      "truth": "food",
+      "rule": "food",
+      "ai": "drink",
+      "aiGroup": "drink_dessert",
+      "reason": "ร้านขายขนมโตเกียว ของหวาน"
+    },
+    {
       "name": "ละม น เดอ คาเฟ",
       "truth": "food",
       "rule": "food",
@@ -152,6 +232,14 @@
       "reason": "ชื่อเป็นชื่อทำเลข้อมูลไม่ชัดเจน"
     },
     {
+      "name": "ปั๊ม ปตท วัดพุทธ",
+      "truth": "food",
+      "rule": "food",
+      "ai": "other",
+      "aiGroup": "other",
+      "reason": "ชื่อระบุสถานีบริการน้ำมันปั๊ม ปตท"
+    },
+    {
       "name": "หมู่บ้านสวนกล้วยไม้ ซอยพุทธบูชา39",
       "truth": "food",
       "rule": "food",
@@ -166,38 +254,6 @@
       "ai": "drink",
       "aiGroup": "drink_dessert",
       "reason": "ชื่อระบุร้านบัวลอยไข่หวาน ขนมหวาน"
-    },
-    {
-      "name": "PM Powder Coat",
-      "truth": "food",
-      "rule": "food",
-      "ai": "service",
-      "aiGroup": "retail",
-      "reason": "บริการพ่นสีเพาเดอร์โค้ท"
-    },
-    {
-      "name": "สวนหมาก",
-      "truth": "food",
-      "rule": "food",
-      "ai": "other",
-      "aiGroup": "market",
-      "reason": "สวนหมาก ศูนย์อาหารและตลาดนัด"
-    },
-    {
-      "name": "โบรา โคเรียน มาร์ท Bora Korean Mart สาขาบางมด",
-      "truth": "food",
-      "rule": "food",
-      "ai": "other",
-      "aiGroup": "convenience",
-      "reason": "ร้านมินิมาร์ทสินค้าเกาหลี"
-    },
-    {
-      "name": "สำนักงานทนายความสมุทร โพธิ์ไทย",
-      "truth": "food",
-      "rule": "food",
-      "ai": "other",
-      "aiGroup": "office",
-      "reason": "สำนักงานทนายความ"
     }
   ],
   "caveat": "ความจริงอ้างอิงคือหมวดใน CampusSpot (คาเฟ่/อาหาร/บริการ) ซึ่งคัดจากหมวดของ Overture เอง จึงเอนเข้าหาวิธีกฎ (กฎก็อ่านหมวด Overture) และไม่มีหมวดของหวาน ใช้เป็นตัวชี้วัดคร่าวๆ เท่านั้น ต้องมีชุดที่ label ด้วยมือ (SPEC §9.2) จึงจะสรุปได้"

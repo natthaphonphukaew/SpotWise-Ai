@@ -1,0 +1,495 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 80,
+    "first": "ov:ca36d865-766f-4d49-b0ac-a47c6294fe6d"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารตามหมวดดิบ"
+      },
+      {
+        "id": "p2",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดผมชาย"
+      },
+      {
+        "id": "p3",
+        "group": "education",
+        "confidence": "high",
+        "reason": "คณะเทคโนโลยีสารสนเทศ มจธ."
+      },
+      {
+        "id": "p4",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "ชื่อเฮ้าส์และหมวดที่พัก"
+      },
+      {
+        "id": "p5",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านซาลอน เสริมสวย"
+      },
+      {
+        "id": "p6",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านข้าวมันไก่"
+      },
+      {
+        "id": "p7",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "ร้านชา Malongtea"
+      },
+      {
+        "id": "p8",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านผัดไทย"
+      },
+      {
+        "id": "p9",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดและเช่าชุดครุย"
+      },
+      {
+        "id": "p10",
+        "group": "leisure",
+        "confidence": "medium",
+        "reason": "สวนพักผ่อนหย่อนใจ"
+      },
+      {
+        "id": "p11",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ห้องสมุดเพื่อการเรียนรู้"
+      },
+      {
+        "id": "p12",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารปักษ์ใต้"
+      },
+      {
+        "id": "p13",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านยำลูกชิ้น"
+      },
+      {
+        "id": "p14",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "สถานตรวจสภาพรถเอกชน (ตรอ.)"
+      },
+      {
+        "id": "p15",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันการเรียนรู้"
+      },
+      {
+        "id": "p16",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ภาควิชาวิศวกรรมชีวภาพ มจธ."
+      },
+      {
+        "id": "p17",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านกาแฟ คอฟฟี่พาร์ค"
+      },
+      {
+        "id": "p18",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ธนาคารพาณิชย์"
+      },
+      {
+        "id": "p19",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "หมู่บ้านจัดสรรที่อยู่อาศัย"
+      },
+      {
+        "id": "p20",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารตามสั่ง"
+      },
+      {
+        "id": "p21",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ชื่อซอยไม่ใช่สถานที่เฉพาะ"
+      },
+      {
+        "id": "p22",
+        "group": "education",
+        "confidence": "high",
+        "reason": "โรงเรียนกวดวิชา"
+      },
+      {
+        "id": "p23",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายและซ่อมมือถือ"
+      },
+      {
+        "id": "p24",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารมุสลิม"
+      },
+      {
+        "id": "p25",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านตัดเสื้อสูท"
+      },
+      {
+        "id": "p26",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านคอหมูย่าง"
+      },
+      {
+        "id": "p27",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านชาบู"
+      },
+      {
+        "id": "p28",
+        "group": "other",
+        "confidence": "high",
+        "reason": "โรงรับจำนำ"
+      },
+      {
+        "id": "p29",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "คาเฟ่แมว"
+      },
+      {
+        "id": "p30",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านสุกี้หม้อดิน"
+      },
+      {
+        "id": "p31",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ศูนย์บริการส่งพัสดุและเคาน์เตอร์เซอร์วิส"
+      },
+      {
+        "id": "p32",
+        "group": "education",
+        "confidence": "high",
+        "reason": "มหาวิทยาลัย"
+      },
+      {
+        "id": "p33",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านตกแต่งคาร์บอนไฟเบอร์"
+      },
+      {
+        "id": "p34",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านคาเฟ่"
+      },
+      {
+        "id": "p35",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ร้านคาเฟ่"
+      },
+      {
+        "id": "p36",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านสุกี้"
+      },
+      {
+        "id": "p37",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "ยิมมวย ฟิตเนส"
+      },
+      {
+        "id": "p38",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน"
+      },
+      {
+        "id": "p39",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายรองเท้าเด็ก"
+      },
+      {
+        "id": "p40",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทขนส่งและเทรลเลอร์"
+      },
+      {
+        "id": "p41",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารห้องประชุมในสถานศึกษา"
+      },
+      {
+        "id": "p42",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านชาบู"
+      },
+      {
+        "id": "p43",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สนามฟุตบอล"
+      },
+      {
+        "id": "p44",
+        "group": "leisure",
+        "confidence": "medium",
+        "reason": "สวนพักผ่อนหรือท่องเที่ยวเชิงเกษตร"
+      },
+      {
+        "id": "p45",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านอาหารตามหมวดดิบ"
+      },
+      {
+        "id": "p46",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "บริการรับสกรีนเสื้อผ้า"
+      },
+      {
+        "id": "p47",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "แฟลตที่พักอาศัย"
+      },
+      {
+        "id": "p48",
+        "group": "dormitory",
+        "confidence": "high",
+        "reason": "อพาร์ตเมนต์ที่พักอาศัย"
+      },
+      {
+        "id": "p49",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารปิ้งย่าง"
+      },
+      {
+        "id": "p50",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายหนังสือการ์ตูน"
+      },
+      {
+        "id": "p51",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารกึ่งบาร์"
+      },
+      {
+        "id": "p52",
+        "group": "other",
+        "confidence": "high",
+        "reason": "อนุสาวรีย์"
+      },
+      {
+        "id": "p53",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทเอกชน"
+      },
+      {
+        "id": "p54",
+        "group": "other",
+        "confidence": "high",
+        "reason": "สุสานมุสลิม (กุโบร์)"
+      },
+      {
+        "id": "p55",
+        "group": "other",
+        "confidence": "high",
+        "reason": "วัดและศาสนสถาน"
+      },
+      {
+        "id": "p56",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านจำหน่ายน้ำแข็งแห้ง"
+      },
+      {
+        "id": "p57",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สนามกีฬาเฉลิมพระเกียรติ"
+      },
+      {
+        "id": "p58",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ห้างทอง ร้านขายทอง"
+      },
+      {
+        "id": "p59",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านสลัดและอาหาร"
+      },
+      {
+        "id": "p60",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "อู่ซ่อมรถมอเตอร์ไซค์"
+      },
+      {
+        "id": "p61",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารครัว9หน้า"
+      },
+      {
+        "id": "p62",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ชื่อซอยไม่ใช่สถานที่เฉพาะ"
+      },
+      {
+        "id": "p63",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารตามหมวดดิบ"
+      },
+      {
+        "id": "p64",
+        "group": "drink_dessert",
+        "confidence": "high",
+        "reason": "ขนมหวานผลไม้ลอยแก้ว"
+      },
+      {
+        "id": "p65",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารอีสาน"
+      },
+      {
+        "id": "p66",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านขายส่งและปลีกผ้า"
+      },
+      {
+        "id": "p67",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยว"
+      },
+      {
+        "id": "p68",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหาร"
+      },
+      {
+        "id": "p69",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านสักคิ้ว เสริมความงาม"
+      },
+      {
+        "id": "p70",
+        "group": "retail",
+        "confidence": "high",
+        "reason": "ร้านทำท่อไอเสียและซ่อมรถ"
+      },
+      {
+        "id": "p71",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านบะหมี่เกี๊ยว"
+      },
+      {
+        "id": "p72",
+        "group": "office",
+        "confidence": "high",
+        "reason": "บริษัทนำเที่ยวและทัวร์"
+      },
+      {
+        "id": "p73",
+        "group": "bubble_tea",
+        "confidence": "high",
+        "reason": "ร้านชานมไข่มุก Dinocha"
+      },
+      {
+        "id": "p74",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านอาหารและผับเพื่อชีวิต"
+      },
+      {
+        "id": "p75",
+        "group": "retail",
+        "confidence": "medium",
+        "reason": "ร้านจำหน่ายอะไหล่"
+      },
+      {
+        "id": "p76",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านก๋วยเตี๋ยวคั่วไก่"
+      },
+      {
+        "id": "p77",
+        "group": "food",
+        "confidence": "medium",
+        "reason": "ร้านอาหารตามหมวดดิบ"
+      },
+      {
+        "id": "p78",
+        "group": "food",
+        "confidence": "high",
+        "reason": "ร้านขายโจ๊ก"
+      },
+      {
+        "id": "p79",
+        "group": "other",
+        "confidence": "high",
+        "reason": "ชื่อซอยไม่ใช่สถานที่เฉพาะ"
+      },
+      {
+        "id": "p80",
+        "group": "health",
+        "confidence": "high",
+        "reason": "คลินิกรักษาสัตว์"
+      }
+    ]
+  },
+  "createdAt": "2026-10-19T08:14:10.919Z"
+}

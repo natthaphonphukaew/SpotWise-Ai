@@ -1,0 +1,81 @@
+{
+  "task": "poi-classify",
+  "version": 2,
+  "model": "gemini-3.8-flash",
+  "provider": "gemini",
+  "input": {
+    "count": 11,
+    "first": "w346450376"
+  },
+  "output": {
+    "items": [
+      {
+        "id": "p1",
+        "group": "education",
+        "confidence": "high",
+        "reason": "สถาบันการศึกษาและวิจัยด้านหุ่นยนต์"
+      },
+      {
+        "id": "p2",
+        "group": "market",
+        "confidence": "high",
+        "reason": "ชื่อระบุชัดเจนว่าเป็นตลาด"
+      },
+      {
+        "id": "p3",
+        "group": "leisure",
+        "confidence": "high",
+        "reason": "สวนสาธารณะหรือพื้นที่พักผ่อน"
+      },
+      {
+        "id": "p4",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อมีคำว่า Kafe เป็นร้านกาแฟ"
+      },
+      {
+        "id": "p5",
+        "group": "education",
+        "confidence": "low",
+        "reason": "ข้อมูลชื่อไม่ชัดเจน คงกลุ่มเดิมไว้"
+      },
+      {
+        "id": "p6",
+        "group": "education",
+        "confidence": "high",
+        "reason": "มหาวิทยาลัย ระดับอุดมศึกษา"
+      },
+      {
+        "id": "p7",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารเรียนในมหาวิทยาลัย"
+      },
+      {
+        "id": "p8",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารเรียนรวม (Classroom Building)"
+      },
+      {
+        "id": "p9",
+        "group": "education",
+        "confidence": "high",
+        "reason": "อาคารเรียนในมหาวิทยาลัย"
+      },
+      {
+        "id": "p10",
+        "group": "education",
+        "confidence": "high",
+        "reason": "ภาควิชาการเรียนการสอนในมหาวิทยาลัย"
+      },
+      {
+        "id": "p11",
+        "group": "coffee",
+        "confidence": "high",
+        "reason": "ชื่อมีคำว่า Coffee เป็นร้านกาแฟ"
+      }
+    ]
+  },
+  "createdAt": "2026-10-19T08:17:00.294Z"
+}
